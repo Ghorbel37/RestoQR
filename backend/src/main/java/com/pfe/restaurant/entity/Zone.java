@@ -19,8 +19,7 @@ public class Zone implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idZone;
     private String nom;
-    @OneToMany(mappedBy = "zone")
-    @JsonIgnore
+    @OneToMany(mappedBy = "zone", fetch = FetchType.EAGER)
     private List<TableRestaurant> tables;
 
     //najem na3mel findTables by ZONE fel Controller of Tables

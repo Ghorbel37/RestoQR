@@ -1,24 +1,31 @@
 package com.pfe.restaurant.dto;
 
-import com.pfe.restaurant.entity.TableRestaurant;
-import com.pfe.restaurant.entity.Zone;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.List;
 
 /**
- * A DTO for the {@link Zone} entity
+ * A DTO for the {@link com.pfe.restaurant.entity.Zone} entity
  */
-@Getter
-@Setter
-@NoArgsConstructor
+@Data
 @AllArgsConstructor
-@ToString
-@EqualsAndHashCode
+@NoArgsConstructor
 public class ZoneDto implements Serializable {
     private Long idZone;
     private String nom;
     private List<TableRestaurantDto> tables;
 
+    /**
+     * A DTO for the {@link com.pfe.restaurant.entity.TableRestaurant} entity
+     */
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class TableRestaurantDto implements Serializable {
+        private Long idTableRestaurant;
+        private int numero;
+    }
 }
