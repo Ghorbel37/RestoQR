@@ -4,7 +4,7 @@ import { ArticlesListComponent } from './articles-list/articles-list.component';
 import { LayoutComponent } from './layout/layout.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'layout', pathMatch: 'full' },
+  { path: '', redirectTo: 'articles', pathMatch: 'full' },
   { path: 'layout', component: LayoutComponent },
   { path: 'articles', component: ArticlesListComponent },
 ];
