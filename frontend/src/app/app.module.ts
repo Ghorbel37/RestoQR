@@ -9,7 +9,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ArticlesListComponent } from './articles-list/articles-list.component';
 import { LayoutComponent } from './layout/layout.component';
 import { HttpClientModule } from '@angular/common/http';
-import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -24,8 +23,7 @@ import { CoreModule } from './core/core.module';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
-    CoreModule
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

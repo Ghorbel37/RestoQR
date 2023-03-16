@@ -1,17 +1,4 @@
-export class Article {
-    idArticle: number;
-    description: string;
-    libelle: string;
-    prix: number;
-    reference: string;
-    image: string;
-}
-
-export class SousCategorie {
-    idSous_Categorie: number;
-    nom: string;
-    articles: Article[];
-}
+import { SousCategorie } from "./sous-categorie";
 
 export class Categorie {
     idCategorie: number;

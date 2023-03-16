@@ -1,3 +1,51 @@
-<div class="container">
-  <router-outlet></router-outlet>
-</div>
+<!-- Top Toolbar -->
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="sidenav.toggle()" class="example-icon"
+    aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <span matTooltip="Menu">Restaurant</span>
+  <span class="navbar-spacer"></span>
+  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <mat-icon>favorite</mat-icon>
+  </button>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <mat-icon>share</mat-icon>
+  </button>
+</mat-toolbar>
+
+<!-- Body -->
+<mat-sidenav-container class="navbar-sidenav-container">
+  <!-- Sidenav content -->
+  <mat-sidenav #sidenav mode="side" opened fixedTopGap="56" class="sidenav">
+    <mat-nav-list>
+      <!-- Client part -->
+      <h3 mat-subheader>Client</h3>
+      <a mat-list-item [routerLink]="['/articles']" routerLinkActive="active">
+        <mat-icon mat-list-icon>dashboard</mat-icon>
+        <p mat-line> Menu </p>
+      </a>
+
+      <mat-divider></mat-divider>
+
+      <!-- Admin part -->
+      <h3 mat-subheader>Admin</h3>
+      <mat-divider></mat-divider>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <!-- Main content -->
+  <mat-sidenav-content class="sidenav-content">
+    <div class="progress-bar-container">
+      <mat-progress-bar color="accent" mode="indeterminate">
+      </mat-progress-bar>
+      <!-- <mat-spinner class="spinner" [diameter]="50" *ngIf="showSpinner"></mat-spinner> -->
+    </div>
+    <router-outlet></router-outlet>
+    <footer class="footer">
+      Menu restaurant
+    </footer>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
