@@ -9,12 +9,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ArticlesListComponent } from './articles-list/articles-list.component';
 import { LayoutComponent } from './layout/layout.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CategoriesComponent } from './pages/categories/categories.component';
+import { ArticlesComponent } from './pages/articles/articles.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ArticlesListComponent,
-    LayoutComponent
+    LayoutComponent,
+    CategoriesComponent,
+    ArticlesComponent
   ],
   imports: [
     BrowserModule,

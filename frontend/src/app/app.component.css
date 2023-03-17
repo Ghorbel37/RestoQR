@@ -16,7 +16,7 @@ mat-sidenav {
     min-width: 180px !important;
     border-right: 1px solid #eee;
     box-shadow: 6px 0 6px rgba(0, 0, 0, .1);
-    /* background-color:rgb(63, 81, 181); */
+    /* background-color: rgb(63, 81, 181); */
 }
 
 
@@ -24,16 +24,16 @@ mat-sidenav {
     flex: 1 1 auto;
 }
 
-.navbar {
+/* .navbar {
     z-index: 2;
 }
 
 .navbar-brand {
     text-decoration: none;
     color: white;
-}
+} */
 
-.navbar-container {
+/* .navbar-container {
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -41,7 +41,7 @@ mat-sidenav {
     bottom: 0;
     left: 0;
     right: 0;
-}
+} */
 
 .navbar-is-mobile .navbar {
     position: fixed;
@@ -53,6 +53,6 @@ mat-sidenav {
     min-height: 100vh;
 }
 
-mat-sidenav mat-sidenav-container {
+mat-sidenav mat-sidenav-container mat-sidenav-content {
     height: 100%;
 }

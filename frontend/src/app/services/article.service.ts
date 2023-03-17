@@ -16,7 +16,7 @@ export class ArticleService {
     return this.httpClient.get<Article[]>(`${this.baseUrl}`);
   }
 
-  add(dto: Article): Observable<Object> {
+  save(dto: Article): Observable<Object> {
     return this.httpClient.post(`${this.baseUrl}`, dto);
   }
 

@@ -16,7 +16,7 @@ export class CategorieService {
     return this.httpClient.get<Categorie[]>(`${this.baseUrl}`);
   }
 
-  add(dto: Categorie): Observable<Object> {
+  save(dto: Categorie): Observable<Object> {
     return this.httpClient.post(`${this.baseUrl}`, dto);
   }
 
