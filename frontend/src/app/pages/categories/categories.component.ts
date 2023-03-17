@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit, Output } from '@angular/core';
 import { Categorie } from 'src/app/model/categorie';
 import { CategorieService } from 'src/app/services/categorie.service';
+import { Base64 } from 'js-base64';
 
 @Component({
   selector: 'app-categories',
