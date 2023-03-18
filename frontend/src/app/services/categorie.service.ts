@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment.development';
 import { Categorie } from '../model/categorie';
 
 @Injectable({
@@ -8,27 +9,27 @@ import { Categorie } from '../model/categorie';
 })
 export class CategorieService {
 
-  private baseUrl = 'http://localhost:9090/api/categories';
+  private endpoint = 'categories';
 
   constructor(private httpClient: HttpClient) { }
 
   getAll(): Observable<Categorie[]> {
-    return this.httpClient.get<Categorie[]>(`${this.baseUrl}`);
+    return this.httpClient.get<Categorie[]>(`${environment.apiUrl}${this.endpoint}`);
   }
 
   save(dto: Categorie): Observable<Object> {
-    return this.httpClient.post(`${this.baseUrl}`, dto);
+    return this.httpClient.post(`${environment.apiUrl}${this.endpoint}`, dto);
   }
 
   getById(id: number): Observable<Categorie> {
-    return this.httpClient.get<Categorie>(`${this.baseUrl}/${id}`);
+    return this.httpClient.get<Categorie>(`${environment.apiUrl}${this.endpoint}/${id}`);
   }
 
   update(id: number, dto: Categorie): Observable<Object> {
-    return this.httpClient.put(`${this.baseUrl}/${id}`, dto);
+    return this.httpClient.put(`${environment.apiUrl}${this.endpoint}/${id}`, dto);
   }
 
   delete(id: number): Observable<Object> {
-    return this.httpClient.delete(`${this.baseUrl}/${id}`);
+    return this.httpClient.delete(`${environment.apiUrl}${this.endpoint}/${id}`);
   }
 }
