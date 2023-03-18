@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { ArticlesComponent } from './pages/articles/articles.component';
 import { ConfirmDialogComponent } from './pages/_common/confirm-dialog/confirm-dialog.component';
+import { SousCategorieComponent } from './pages/sous-categorie/sous-categorie.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ConfirmDialogComponent } from './pages/_common/confirm-dialog/confirm-d
     LayoutComponent,
     CategoriesComponent,
     ArticlesComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    SousCategorieComponent
   ],
   imports: [
     BrowserModule,
