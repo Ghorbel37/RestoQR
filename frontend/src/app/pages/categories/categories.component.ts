@@ -1,9 +1,9 @@
 import { ChangeDetectorRef, Component, OnInit, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Categorie } from 'src/app/model/categorie';
 import { CategorieService } from 'src/app/services/categorie.service';
-import { Base64, fromBase64 } from 'js-base64';
-import { MatIconRegistry } from '@angular/material/icon';
-import { DomSanitizer } from '@angular/platform-browser';
+import { NotificationService } from 'src/app/services/notification.service';
+import { ConfirmDialogComponent, ConfirmDialogModel } from '../_common/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-categories',
@@ -15,14 +15,19 @@ export class CategoriesComponent implements OnInit {
   columnsToDisplay = ['idCategorie', 'nom', 'image', 'action'];
   existingCategories: Categorie[];
   newCategorie: Categorie = new Categorie();
+  result: string = '';
 
-  constructor(private categorieService: CategorieService, private changeDetectorRef: ChangeDetectorRef,
-    private matIconRegistry: MatIconRegistry,
-    private domSanitizer: DomSanitizer) {
+  constructor(
+    private categorieService: CategorieService,
+    private changeDetectorRef: ChangeDetectorRef,
+    private notificationService: NotificationService,
+    private dialog: MatDialog
+  ) {
 
   }
   ngOnInit(): void {
     this.refresh();
+    this.notificationService.openSnackBar('Categories affichés')
     console.log(this.existingCategories);
   }
 
@@ -39,16 +44,27 @@ export class CategoriesComponent implements OnInit {
 
   submit() {
     this.saveCategorie();
+    this.notificationService.openSnackBar("Categorie ajouté avec succés");
     console.log(this.newCategorie);
   }
 
-  delete(id: number) {
-    this.categorieService.delete(id).subscribe(data => {
-      console.log(data);
-      this.refresh();
+  openConfirmDialog() {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, { maxWidth: "400px", data: new ConfirmDialogModel("Attention", "Are you sure to delete") });
+
+    dialogRef.afterClosed().subscribe(dialogResult => {
+      this.result = dialogResult;
     });
   }
 
+  delete(id: number) {
+    this.openConfirmDialog();
 
-
+    if (this.result) {
+      this.categorieService.delete(id).subscribe(data => {
+        console.log(data);
+        this.refresh();
+      });
+      this.notificationService.openSnackBar("Deleted succesfully");
+    }
+  }
 }

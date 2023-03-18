@@ -12,124 +12,49 @@
 </form>
 <mat-divider></mat-divider>
 
-<table mat-table [dataSource]="existingCategories">
-    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-    <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
 
-    <ng-container matColumnDef="nom">
-        <th mat-header-cell *matHeaderCellDef> Categorie </th>
-        <td mat-cell *matCellDef="let categorie"> {{categorie.nom}} </td>
-    </ng-container>
+<div>
+    <mat-card>
+        <mat-card-content>
+            <h2>Categories</h2>
 
-    <ng-container matColumnDef="idCategorie">
-        <th mat-header-cell *matHeaderCellDef> Id </th>
-        <td mat-cell *matCellDef="let categorie"> {{categorie.idCategorie}} </td>
-    </ng-container>
+            <table mat-table [dataSource]="existingCategories">
 
-    <ng-container matColumnDef="image">
-        <th mat-header-cell *matHeaderCellDef> Image </th>
-        <td mat-cell *matCellDef="let categorie"> <img [src]="categorie.image" *ngIf="categorie.image"></td>
-    </ng-container>
+                <!-- nom column -->
+                <ng-container matColumnDef="nom">
+                    <th mat-header-cell *matHeaderCellDef> Categorie </th>
+                    <td mat-cell *matCellDef="let categorie"> {{categorie.nom}} </td>
+                </ng-container>
 
-    <ng-container matColumnDef="action">
-        <th mat-header-cell *matHeaderCellDef> Action </th>
-        <td mat-cell *matCellDef="let categorie">
-            <button mat-icon-button>
-                <mat-icon>edit</mat-icon>
-            </button>
-            <button mat-icon-button (click)="delete(categorie.idCategorie)">
-                <mat-icon>delete</mat-icon>
-            </button>
-        </td>
-    </ng-container>
+                <!-- id column -->
+                <ng-container matColumnDef="idCategorie">
+                    <th mat-header-cell *matHeaderCellDef> Id </th>
+                    <td mat-cell *matCellDef="let categorie"> {{categorie.idCategorie}} </td>
+                </ng-container>
 
-    <!-- <img [src]="categorie.image" *ngIf="categorie.image"> -->
-</table>
+                <!-- image column -->
+                <ng-container matColumnDef="image">
+                    <th mat-header-cell *matHeaderCellDef> Image </th>
+                    <td mat-cell *matCellDef="let categorie"> <img [src]="categorie.image" *ngIf="categorie.image">
+                    </td>
+                </ng-container>
 
-<!-- <table mat-table>
-    <thead>
-        <tr>
-            <th>Catégorie</th>
-            <th>Icon</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let categorie of categories">
-            <td>{{categorie.nom}}</td>
-            <td>{{categorie.idCategorie}}</td>
-            <td></td>
-        </tr>
-    </tbody>
-</table> -->
+                <!-- action column -->
+                <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef> Action </th>
+                    <td mat-cell *matCellDef="let categorie">
+                        <button mat-icon-button>
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-icon-button (click)="delete(categorie.idCategorie)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
 
-<!-- <table>
-    <tr>
-        <th>Company</th>
-        <th>Contact</th>
-        <th>Country</th>
-    </tr>
-    <tr>
-        <td>Alfreds Futterkiste</td>
-        <td>Maria Anders</td>
-        <td>Germany</td>
-    </tr>
-    <tr>
-        <td>Centro comercial Moctezuma</td>
-        <td>Francisco Chang</td>
-        <td>Mexico</td>
-    </tr>
-</table> -->
-
-
-<!-- <form [formGroup]="form">
-    <p>Use the form below to change your password.</p>
-
-    <div fxLayout="row">
-
-        <div fxFlex="40%" fxFlex.md="60%" fxFlex.sm="50%" fxFlex.xs="100%">
-
-            <mat-form-field class="full-width">
-                <input matInput placeholder="Current Password" formControlName="currentPassword"
-                    [type]="hideCurrentPassword ? 'password' : 'text'" autocomplete="current-password">
-                <mat-icon matSuffix (click)="hideCurrentPassword = !hideCurrentPassword">
-                    {{hideCurrentPassword ? 'visibility' : 'visibility_off'}}
-                </mat-icon>
-
-                <mat-error *ngIf="form.controls['currentPassword'].hasError('required')">
-                    Please enter a your current password
-                </mat-error>
-            </mat-form-field>
-
-            <mat-form-field class="full-width">
-                <input matInput placeholder="New Password" formControlName="newPassword"
-                    [type]="hideNewPassword ? 'password' : 'text'" autocomplete="new-password">
-                <mat-icon matSuffix (click)="hideNewPassword = !hideNewPassword">
-                    {{hideNewPassword ? 'visibility' : 'visibility_off'}}
-                </mat-icon>
-
-                <mat-error *ngIf="form.controls['newPassword'].hasError('required')">
-                    Please enter a new password
-                </mat-error>
-            </mat-form-field>
-
-            <mat-form-field class="full-width">
-                <input matInput placeholder="Confirm New Password" formControlName="newPasswordConfirm"
-                    [type]="hideNewPassword ? 'password' : 'text'" autocomplete="new-password">
-                <mat-icon matSuffix (click)="hideNewPassword = !hideNewPassword">
-                    {{hideNewPassword ? 'visibility' : 'visibility_off'}}
-                </mat-icon>
-
-                <mat-error *ngIf="form.controls['newPasswordConfirm'].hasError('required')">
-                    Please confirm your new password
-                </mat-error>
-            </mat-form-field>
-
-            <button mat-raised-button color="primary" [disabled]="form.invalid || disableSubmit"
-                (click)="changePassword()">Save</button>
-
-        </div>
-
-    </div>
-
-</form> -->
+                <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+                <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+            </table>
+        </mat-card-content>
+    </mat-card>
+</div>
