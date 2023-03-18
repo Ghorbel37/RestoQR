@@ -23,18 +23,28 @@
       <!-- Nav list -->
       <span matSubheader>Admin</span>
 
+      <!-- categorie nav -->
       <a mat-list-item [routerLink]="['/categories']">
         <mat-icon matListItemIcon>label</mat-icon>
         <span matListItemTitle>Categories</span>
         <span matListItemLine>Creer les categories</span>
       </a>
 
+      <!-- souscategorie nav -->
+      <a mat-list-item [routerLink]="['/sous_categories']">
+        <mat-icon matListItemIcon>account_tree</mat-icon>
+        <span matListItemTitle>Sous categories</span>
+        <span matListItemLine>Gerer les sous categories</span>
+      </a>
+
+      <!-- articles nav -->
       <a mat-list-item [routerLink]="['/articles']">
         <mat-icon matListItemIcon>format_list_bulleted</mat-icon>
         <span matListItemTitle>Elements du menu</span>
         <span matListItemLine>Gerer les articles</span>
       </a>
 
+      <!-- qrcode nav -->
       <a mat-list-item [routerLink]="['/layout']">
         <mat-icon matListItemIcon>qr_code</mat-icon>
         <span matListItemTitle>Qr code</span>
