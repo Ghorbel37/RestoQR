@@ -11,6 +11,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { ArticlesComponent } from './pages/articles/articles.component';
+import { ConfirmDialogComponent } from './pages/_common/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ArticlesComponent } from './pages/articles/articles.component';
     ArticlesListComponent,
     LayoutComponent,
     CategoriesComponent,
-    ArticlesComponent
+    ArticlesComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
