@@ -1,0 +1,22 @@
+<form (ngSubmit)="onSubmit()">
+    <mat-form-field>
+        <input matInput type="text" [(ngModel)]="categorie.idCategorie" disabled name="idCategorie">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Sous Categorie</mat-label>
+        <mat-select multiple="true" [(ngModel)]="sousCategoriesSelectionnes" name="scSelect">
+            <mat-option *ngFor="let option of sousCategories" [value]="option">
+                {{option.idSous_Categorie}} | {{option.nom}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <!-- <input type="text" placeholder="Pick one" id="sousCategories" matInput [formControl]="myControl"
+            [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete"> -->
+
+    <button mat-raised-button color="primary" [disabled]="" type="submit">Update</button>
+</form>
+{{categorie.idCategorie}}
+{{categorie.nom}}
+<img src={{categorie.image}} style="max-width: 32px;">

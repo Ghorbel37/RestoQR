@@ -13,6 +13,8 @@ import { CategoriesComponent } from './pages/categories/categories.component';
 import { ArticlesComponent } from './pages/articles/articles.component';
 import { ConfirmDialogComponent } from './pages/_common/confirm-dialog/confirm-dialog.component';
 import { SousCategorieComponent } from './pages/sous-categorie/sous-categorie.component';
+import { EditCategorieComponent } from './pages/categories/edit-categorie/edit-categorie.component';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { SousCategorieComponent } from './pages/sous-categorie/sous-categorie.co
     CategoriesComponent,
     ArticlesComponent,
     ConfirmDialogComponent,
-    SousCategorieComponent
+    SousCategorieComponent,
+    EditCategorieComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

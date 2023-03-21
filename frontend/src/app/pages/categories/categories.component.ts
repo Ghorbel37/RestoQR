@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Categorie } from 'src/app/model/categorie';
 import { CategorieService } from 'src/app/services/categorie.service';
 import { NotificationService } from 'src/app/services/notification.service';
@@ -21,7 +22,7 @@ export class CategoriesComponent implements OnInit {
     private categorieService: CategorieService,
     private changeDetectorRef: ChangeDetectorRef,
     private notificationService: NotificationService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
   ) {
 
   }
@@ -48,23 +49,24 @@ export class CategoriesComponent implements OnInit {
     console.log(this.newCategorie);
   }
 
-  openConfirmDialog() {
+  openConfirmDialog(): any {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, { maxWidth: "400px", data: new ConfirmDialogModel("Attention", "Are you sure to delete") });
-
+    return dialogRef;
     dialogRef.afterClosed().subscribe(dialogResult => {
       this.result = dialogResult;
     });
   }
 
   delete(id: number) {
-    this.openConfirmDialog();
-
-    if (this.result) {
-      this.categorieService.delete(id).subscribe(data => {
-        console.log(data);
-        this.refresh();
-      });
-      this.notificationService.openSnackBar("Deleted succesfully");
-    }
+    this.openConfirmDialog().afterClosed().subscribe(dialogResult => {
+      this.result = dialogResult;
+      if (this.result) {
+        this.categorieService.delete(id).subscribe(data => {
+          console.log(data);
+          this.refresh();
+        });
+        this.notificationService.openSnackBar("Deleted succesfully");
+      }
+    });
   }
 }

@@ -4,5 +4,5 @@ export class Categorie {
     idCategorie: number;
     nom: string;
     image: string;
-    Sous_Categories: SousCategorie[];
+    sous_Categories: SousCategorie[];
 }
