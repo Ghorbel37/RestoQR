@@ -1,8 +1,8 @@
-import { SousCategorie } from "./sous-categorie";
+import { Article } from "./article";
 
 export class Categorie {
     idCategorie: number;
     nom: string;
     image: string;
-    sous_Categories: SousCategorie[];
+    articles: Article[];
 }

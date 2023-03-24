@@ -34,10 +34,9 @@
 
             </mat-card-content>
 
-            <mat-card-actions>
+            <mat-card-actions class="login-actions">
                 <button mat-raised-button id="login" color="primary" [disabled]="loginForm.invalid || loading"
                     (click)="login()">Login</button>
-                <button mat-button id="resetPassword" (click)="resetPassword()" type="button">Reset Password</button>
             </mat-card-actions>
 
         </mat-card>
