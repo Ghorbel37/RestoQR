@@ -4,9 +4,9 @@
     </mat-form-field>
     <mat-form-field appearance="fill">
         <mat-label>Sous Categorie</mat-label>
-        <mat-select multiple="true" [(ngModel)]="sousCategoriesSelectionnes" name="scSelect">
-            <mat-option *ngFor="let option of sousCategories" [value]="option">
-                {{option.idSous_Categorie}} | {{option.nom}}
+        <mat-select multiple="true" [(ngModel)]="articlesSelectionnes" name="scSelect">
+            <mat-option *ngFor="let option of articles" [value]="option">
+                {{option.idArticle}} | {{option.libelle}}
             </mat-option>
         </mat-select>
     </mat-form-field>

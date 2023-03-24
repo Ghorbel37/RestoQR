@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { Article } from 'src/app/model/article';
 import { Categorie } from 'src/app/model/categorie';
-import { SousCategorie } from 'src/app/model/sous-categorie';
+import { ArticleService } from 'src/app/services/article.service';
 import { CategorieService } from 'src/app/services/categorie.service';
-import { SousCategorieService } from 'src/app/services/sous-categorie.service';
 
 @Component({
   selector: 'app-edit-categorie',
@@ -14,15 +14,15 @@ import { SousCategorieService } from 'src/app/services/sous-categorie.service';
 export class EditCategorieComponent implements OnInit {
   id: number;
   categorie: Categorie = new Categorie();
-  sousCategories: SousCategorie[];
+  articles: Article[];
   categories: Categorie[];
   // myControl = new FormControl('');
-  sousCategoriesSelectionnes: SousCategorie[];
+  articlesSelectionnes: Article[];
   // myForm: FormGroup;
 
   constructor(
     private categorieService: CategorieService,
-    private sousCategorieService: SousCategorieService,
+    private articleService: ArticleService,
     private route: ActivatedRoute,
     // private fb: FormBuilder
   ) { }
@@ -31,9 +31,9 @@ export class EditCategorieComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     this.categorieService.getById(this.id).subscribe(data => {
       this.categorie = data;
-      this.sousCategoriesSelectionnes = data.sous_Categories;
+      this.articlesSelectionnes = data.articles;
     });
-    this.sousCategorieService.getAll().subscribe(data => { this.sousCategories = data; });
+    this.articleService.getAll().subscribe(data => { this.articles = data; });
 
     // this.myForm = this.fb.group({
     //   idCategorie: this.categorie.idCategorie,
