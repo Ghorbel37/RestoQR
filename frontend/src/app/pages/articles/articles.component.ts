@@ -4,6 +4,7 @@ import { Article } from 'src/app/model/article';
 import { ArticleService } from 'src/app/services/article.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '../_common/confirm-dialog/confirm-dialog.component';
+import { CreateArticleModalComponent } from './create-article-modal/create-article-modal.component';
 
 @Component({
   selector: 'app-articles',
@@ -44,7 +45,9 @@ export class ArticlesComponent implements OnInit {
   }
 
   submit() {
-    this.saveCategorie();
+    const dialogRef = this.dialog.open(CreateArticleModalComponent, { data: this.newArticle });
+    dialogRef.afterClosed().subscribe(result => { console.log(result); })
+    return dialogRef;
     this.notificationService.openSnackBar("Categorie ajouté avec succés");
     console.log(this.newArticle);
   }

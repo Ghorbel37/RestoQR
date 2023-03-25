@@ -1,1 +1,27 @@
-<p>create-article-modal works!</p>
+<h1 mat-dialog-title>Creation article</h1>
+<div mat-dialog-content>
+    <p>Informations articles</p>
+    <mat-form-field appearance="fill">
+        <mat-label>Libelle</mat-label>
+        <input matInput [(ngModel)]="data.libelle">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Description</mat-label>
+        <input matInput [(ngModel)]="data.description">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Prix</mat-label>
+        <input matInput [(ngModel)]="data.prix">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Image</mat-label>
+        <input matInput [(ngModel)]="data.image">
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Create</button>
+</div>
