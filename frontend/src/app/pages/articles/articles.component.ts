@@ -11,7 +11,7 @@ import { ConfirmDialogComponent, ConfirmDialogModel } from '../_common/confirm-d
   styleUrls: ['./articles.component.css']
 })
 export class ArticlesComponent implements OnInit {
-  columnsToDisplay = ['idCategorie', 'nom', 'image', 'action'];
+  columnsToDisplay = ['libelle', 'description', 'prix', 'image', 'action'];
   existingArticles: Article[];
   newArticle: Article = new Article();
   result: string = '';
