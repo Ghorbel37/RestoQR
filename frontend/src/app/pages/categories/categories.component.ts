@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Categorie } from 'src/app/model/categorie';
 import { CategorieService } from 'src/app/services/categorie.service';
 import { NotificationService } from 'src/app/services/notification.service';
+import { CreateCategorieComponent } from '../modals/create-categorie/create-categorie.component';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '../_common/confirm-dialog/confirm-dialog.component';
 
 @Component({
@@ -17,6 +18,8 @@ export class CategoriesComponent implements OnInit {
   existingCategories: Categorie[];
   newCategorie: Categorie = new Categorie();
   result: string = '';
+  nom: string;
+  image: string;
 
   constructor(
     private categorieService: CategorieService,
@@ -54,6 +57,14 @@ export class CategoriesComponent implements OnInit {
     return dialogRef;
     dialogRef.afterClosed().subscribe(dialogResult => {
       this.result = dialogResult;
+    });
+  }
+
+  modal() {
+    const dialogRef = this.dialog.open(CreateCategorieComponent, { data: { nom: this.nom, image: this.image } });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      this.nom = result;
     });
   }
 

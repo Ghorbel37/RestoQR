@@ -1,1 +1,67 @@
-<p>articles works!</p>
+<form>
+    <div [align]="['center']">
+        <div>
+            <mat-form-field>
+                <mat-label>Catégorie</mat-label>
+                <input matInput type="text" placeholder="Entrées, Desserts, etc." [(ngModel)]="newArticle.libelle"
+                    name="nom">
+            </mat-form-field>
+            <button mat-raised-button color="primary" [disabled]="" (click)="submit()">Créer</button>
+        </div>
+    </div>
+</form>
+<mat-divider></mat-divider>
+
+
+<div>
+    <mat-card>
+        <mat-card-content>
+            <h2>Categories</h2>
+
+            <table mat-table [dataSource]="existingArticles">
+
+                <!-- libelle column -->
+                <ng-container matColumnDef="libelle">
+                    <th mat-header-cell *matHeaderCellDef> Libelle </th>
+                    <td mat-cell *matCellDef="let article"> {{article.libelle}} </td>
+                </ng-container>
+
+                <!-- description column -->
+                <ng-container matColumnDef="description">
+                    <th mat-header-cell *matHeaderCellDef> Description </th>
+                    <td mat-cell *matCellDef="let article"> {{article.description}} </td>
+                </ng-container>
+
+                <!-- prix column -->
+                <ng-container matColumnDef="prix">
+                    <th mat-header-cell *matHeaderCellDef> Prix </th>
+                    <td mat-cell *matCellDef="let article"> {{article.prix}}
+                    </td>
+                </ng-container>
+
+                <!-- image column -->
+                <ng-container matColumnDef="image">
+                    <th mat-header-cell *matHeaderCellDef> Image </th>
+                    <td mat-cell *matCellDef="let article"> <img [src]="article.image" *ngIf="article.image">
+                    </td>
+                </ng-container>
+
+                <!-- action column -->
+                <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef> Action </th>
+                    <td mat-cell *matCellDef="let article">
+                        <button mat-icon-button [routerLink]="['/', 'articles','edit', article.idArticle]">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-icon-button (click)="delete(article.idArticle)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+                <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+            </table>
+        </mat-card-content>
+    </mat-card>
+</div>

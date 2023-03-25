@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Hi {{data.image}}</h1>
+<div mat-dialog-content>
+    <p>What's your favorite animal?</p>
+    <mat-form-field appearance="fill">
+        <mat-label>Nom categorie</mat-label>
+        <input matInput [(ngModel)]="data.nom">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Image</mat-label>
+        <input type="file" matInput [(ngModel)]="data.image">
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button [mat-dialog-close]="data.nom" cdkFocusInitial>Create</button>
+</div>
