@@ -14,6 +14,7 @@ import { EditCategorieComponent } from './pages/categories/edit-categorie/edit-c
 import { LoginComponent } from './pages/login/login.component';
 import { CreateCategorieComponent } from './pages/categories/create-categorie-modal/create-categorie.component';
 import { QrCodesComponent } from './pages/qr-codes/qr-codes.component';
+import { CreateArticleModalComponent } from './pages/articles/create-article-modal/create-article-modal.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { QrCodesComponent } from './pages/qr-codes/qr-codes.component';
     EditCategorieComponent,
     LoginComponent,
     CreateCategorieComponent,
-    QrCodesComponent
+    QrCodesComponent,
+    CreateArticleModalComponent
   ],
   imports: [
     BrowserModule,
