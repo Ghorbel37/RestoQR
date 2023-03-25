@@ -12,7 +12,7 @@ import { ArticlesComponent } from './pages/articles/articles.component';
 import { ConfirmDialogComponent } from './pages/_common/confirm-dialog/confirm-dialog.component';
 import { EditCategorieComponent } from './pages/categories/edit-categorie/edit-categorie.component';
 import { LoginComponent } from './pages/login/login.component';
-import { CreateCategorieComponent } from './pages/modals/create-categorie/create-categorie.component';
+import { CreateCategorieComponent } from './pages/categories/create-categorie-modal/create-categorie.component';
 import { QrCodesComponent } from './pages/qr-codes/qr-codes.component';
 
 @NgModule({
