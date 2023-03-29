@@ -5,6 +5,7 @@ import { ArticleService } from 'src/app/services/article.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '../_common/confirm-dialog/confirm-dialog.component';
 import { CreateArticleModalComponent } from './create-article-modal/create-article-modal.component';
+import { UpdateArticleModalComponent } from './update-article-modal/update-article-modal.component';
 
 @Component({
   selector: 'app-articles',
@@ -12,7 +13,7 @@ import { CreateArticleModalComponent } from './create-article-modal/create-artic
   styleUrls: ['./articles.component.css']
 })
 export class ArticlesComponent implements OnInit {
-  columnsToDisplay = ['libelle', 'description', 'prix', 'image', 'action'];
+  columnsToDisplay = ['libelle', 'description', 'prix', 'reference', 'duree', 'image', 'action'];
   existingArticles: Article[];
   newArticle: Article = new Article();
   result: string = '';
@@ -52,9 +53,12 @@ export class ArticlesComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
       this.newArticle = result;
-      this.saveArticle();
+      if (this.newArticle) {
+        this.saveArticle();
+        this.notificationService.openSnackBar("Article ajouté avec succés");
+      }
     })
-    this.notificationService.openSnackBar("Article ajouté avec succés");
+
   }
 
   openConfirmDialog(): any {
@@ -63,6 +67,18 @@ export class ArticlesComponent implements OnInit {
     dialogRef.afterClosed().subscribe(dialogResult => {
       this.result = dialogResult;
     });
+  }
+
+  update(id: number) {
+    const dialogRef = this.dialog.open(UpdateArticleModalComponent, { data: this.newArticle });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      this.newArticle = result;
+      if (this.newArticle) {
+        this.articleService.update(this.newArticle.idArticle, this.newArticle);
+        this.notificationService.openSnackBar("Article mis a jour avec succés");
+      }
+    })
   }
 
   delete(id: number) {

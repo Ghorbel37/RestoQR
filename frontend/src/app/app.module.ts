@@ -16,6 +16,7 @@ import { CreateCategorieComponent } from './pages/categories/create-categorie-mo
 import { QrCodesComponent } from './pages/qr-codes/qr-codes.component';
 import { CreateArticleModalComponent } from './pages/articles/create-article-modal/create-article-modal.component';
 import { FileUploadComponent } from './pages/file-upload/file-upload.component';
+import { UpdateArticleModalComponent } from './pages/articles/update-article-modal/update-article-modal.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { FileUploadComponent } from './pages/file-upload/file-upload.component';
     CreateCategorieComponent,
     QrCodesComponent,
     CreateArticleModalComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    UpdateArticleModalComponent
   ],
   imports: [
     BrowserModule,
