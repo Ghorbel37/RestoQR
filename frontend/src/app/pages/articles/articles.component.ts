@@ -40,16 +40,21 @@ export class ArticlesComponent implements OnInit {
     });
   }
 
-  private saveCategorie() {
-    this.articleService.save(this.newArticle).subscribe(data => this.refresh());
+  private saveArticle() {
+    this.articleService.save(this.newArticle).subscribe(data => {
+      this.refresh();
+      this.newArticle = new Article();
+    });
   }
 
   submit() {
     const dialogRef = this.dialog.open(CreateArticleModalComponent, { data: this.newArticle });
-    dialogRef.afterClosed().subscribe(result => { console.log(result); })
-    return dialogRef;
-    this.notificationService.openSnackBar("Categorie ajouté avec succés");
-    console.log(this.newArticle);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      this.newArticle = result;
+      this.saveArticle();
+    })
+    this.notificationService.openSnackBar("Article ajouté avec succés");
   }
 
   openConfirmDialog(): any {

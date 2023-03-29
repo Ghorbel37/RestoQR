@@ -4,5 +4,6 @@ export class Article {
     libelle: string;
     prix: number;
     reference: string;
+    duree: string;
     image: string;
 }
