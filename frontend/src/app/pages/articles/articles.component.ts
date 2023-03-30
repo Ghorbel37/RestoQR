@@ -57,6 +57,7 @@ export class ArticlesComponent implements OnInit {
         this.saveArticle();
         this.notificationService.openSnackBar("Article ajouté avec succés");
       }
+      this.newArticle = new Article();
     })
 
   }
@@ -75,9 +76,10 @@ export class ArticlesComponent implements OnInit {
       console.log(result);
       this.newArticle = result;
       if (this.newArticle) {
-        this.articleService.update(this.newArticle.idArticle, this.newArticle);
+        this.articleService.update(this.newArticle.idArticle, this.newArticle);//.subscribe();
         this.notificationService.openSnackBar("Article mis a jour avec succés");
       }
+      this.newArticle = new Article();
     })
   }
 
