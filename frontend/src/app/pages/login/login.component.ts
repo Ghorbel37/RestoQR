@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
@@ -15,8 +16,8 @@ export class LoginComponent {
 
   constructor(private router: Router,
     private titleService: Title,
-    private notificationService: NotificationService,) {
-    // private authenticationService: AuthenticationService) {
+    private notificationService: NotificationService,
+    private authenticationService: AuthenticationService) {
   }
 
   ngOnInit() {
