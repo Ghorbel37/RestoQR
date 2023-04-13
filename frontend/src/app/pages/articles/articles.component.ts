@@ -63,7 +63,7 @@ export class ArticlesComponent implements OnInit {
   }
 
   openConfirmDialog(): any {
-    const dialogRef = this.dialog.open(ConfirmDialogComponent, { maxWidth: "400px", data: new ConfirmDialogModel("Attention", "Are you sure to delete") });
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, { maxWidth: "400px", data: new ConfirmDialogModel("Attention", "Êtes-vous sûr de vouloir supprimer") });
     return dialogRef;
     dialogRef.afterClosed().subscribe(dialogResult => {
       this.result = dialogResult;
@@ -91,7 +91,7 @@ export class ArticlesComponent implements OnInit {
           console.log(data);
           this.refresh();
         });
-        this.notificationService.openSnackBar("Deleted succesfully");
+        this.notificationService.openSnackBar("Element supprimé");
       }
     });
   }

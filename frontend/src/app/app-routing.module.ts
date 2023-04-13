@@ -6,13 +6,14 @@ import { EditCategorieComponent } from './pages/categories/edit-categorie/edit-c
 import { FileUploadComponent } from './pages/file-upload/file-upload.component';
 import { LoginComponent } from './pages/login/login.component';
 import { QrCodesComponent } from './pages/qr-codes/qr-codes.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'articles', pathMatch: 'full' },
-  { path: 'codes', component: QrCodesComponent },
-  { path: 'articles', component: ArticlesComponent },
-  { path: 'categories', component: CategoriesComponent },
-  { path: 'categories/edit/:id', component: EditCategorieComponent },
+  { path: 'codes', component: QrCodesComponent, canActivate: [AuthGuard] },
+  { path: 'articles', component: ArticlesComponent, canActivate: [AuthGuard] },
+  { path: 'categories', component: CategoriesComponent, canActivate: [AuthGuard] },
+  { path: 'categories/edit/:id', component: EditCategorieComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'upload', component: FileUploadComponent },
 ];

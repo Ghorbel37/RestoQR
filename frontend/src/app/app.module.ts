@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './custom-material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { ArticlesComponent } from './pages/articles/articles.component';
 import { ConfirmDialogComponent } from './pages/_common/confirm-dialog/confirm-dialog.component';
@@ -17,6 +17,7 @@ import { QrCodesComponent } from './pages/qr-codes/qr-codes.component';
 import { CreateArticleModalComponent } from './pages/articles/create-article-modal/create-article-modal.component';
 import { FileUploadComponent } from './pages/file-upload/file-upload.component';
 import { UpdateArticleModalComponent } from './pages/articles/update-article-modal/update-article-modal.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { UpdateArticleModalComponent } from './pages/articles/update-article-mod
     QrCodesComponent,
     CreateArticleModalComponent,
     FileUploadComponent,
-    UpdateArticleModalComponent
+    UpdateArticleModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +42,9 @@ import { UpdateArticleModalComponent } from './pages/articles/update-article-mod
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
