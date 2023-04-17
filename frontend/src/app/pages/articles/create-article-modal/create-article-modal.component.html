@@ -26,12 +26,12 @@
         <input matInput [(ngModel)]="data.duree">
     </mat-form-field>
 
-    <input type="file" class="file-input" #fileUpload>
+    <input type="file" class="file-input" (change)="changeListener($event)" accept="image/png, image/jpeg" #fileUpload>
     <div class="file-upload">
-        {{"No file uploaded yet."}}
         <button mat-mini-fab color="primary" class="upload-btn" (click)="fileUpload.click()">
             <mat-icon>attach_file</mat-icon>
         </button>
+        {{fileName ||"Aucun fichier choisi"}}
     </div>
 
 </div>
