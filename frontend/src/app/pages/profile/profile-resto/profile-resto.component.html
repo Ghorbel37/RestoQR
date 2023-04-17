@@ -1,1 +1,95 @@
-<p>profile-resto works!</p>
+<h1 mat-dialog-title>Creation article</h1>
+<div mat-dialog-content>
+    <form action="">
+        <mat-card>
+            <mat-card-title>Profile restaurant</mat-card-title>
+
+            <mat-card-content>
+                <mat-form-field appearance="fill">
+                    <mat-label>Nom du restaurant</mat-label>
+                    <input matInput [(ngModel)]="restaurant.nomRestaurant">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Adresse</mat-label>
+                    <input matInput [(ngModel)]="restaurant.adresse">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Téléphone</mat-label>
+                    <input matInput [(ngModel)]="restaurant.telephone">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>WiFi</mat-label>
+                    <input matInput [(ngModel)]="restaurant.wifi">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Mot de passe WiFi</mat-label>
+                    <input matInput [(ngModel)]="restaurant.mdpWifi">
+                </mat-form-field>
+
+
+                <input type="file" class="file-input" (change)="changeListener($event)" accept="image/png, image/jpeg"
+                    #fileUpload>
+                <div class="file-upload">
+                    <mat-label>Logo</mat-label>
+                    <button mat-mini-fab color="primary" class="upload-btn" (click)="fileUpload.click()">
+                        <mat-icon>attach_file</mat-icon>
+                    </button>
+                    {{fileName ||"Aucun fichier choisi"}}
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </form>
+
+</div>
+
+
+<!-- <div>
+    <form [formGroup]="loginForm">
+        <mat-card>
+            <mat-card-title>Restaurant</mat-card-title>
+            <mat-card-subtitle>Se connecter</mat-card-subtitle>
+            <mat-card-content>
+                <mat-error *ngIf="!loginValid">
+                    Veuillez verifier vos informations
+                </mat-error>
+
+                <mat-form-field>
+                    <input id="emailInput" matInput placeholder="Email" formControlName="email" autocomplete="email"
+                        type="email">
+
+                    <mat-error id="invalidEmailError" *ngIf="loginForm.controls['email'].hasError('email')">
+                        Veuillez saisir un email valide
+                    </mat-error>
+                    <mat-error id="requiredEmailError" *ngIf="loginForm.controls['email'].hasError('required')">
+                        L'email est
+                        <strong>obligatoire</strong>
+                    </mat-error>
+
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input id="passwordInput" matInput placeholder="Mot de passe" formControlName="password"
+                        type="password" autocomplete="current-password">
+                    <mat-error id="requiredPasswordError" *ngIf="loginForm.controls['email'].hasError('required')">
+                        Le mot de passe
+                        <strong>obligatoire</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-card-actions class="remember-me">
+                    <div class="full-width">
+                        <mat-slide-toggle formControlName="rememberMe">Se souvenir de mon email</mat-slide-toggle>
+                    </div>
+                </mat-card-actions>
+
+
+                <button mat-raised-button id="login" color="primary" [disabled]="loginForm.invalid || loading"
+                    (click)="login()">Se connecter</button>
+            </mat-card-content>
+
+
+
+        </mat-card>
+
+        <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+    </form>
+</div> -->
