@@ -19,6 +19,7 @@ import { FileUploadComponent } from './pages/file-upload/file-upload.component';
 import { UpdateArticleModalComponent } from './pages/articles/update-article-modal/update-article-modal.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { CreateCategorieExpansionComponent } from './pages/categories/create-categorie-expansion/create-categorie-expansion.component';
+import { ProfileRestoComponent } from './pages/profile/profile-resto/profile-resto.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { CreateCategorieExpansionComponent } from './pages/categories/create-cat
     FileUploadComponent,
     UpdateArticleModalComponent,
     CreateCategorieExpansionComponent,
+    ProfileRestoComponent,
   ],
   imports: [
     BrowserModule,

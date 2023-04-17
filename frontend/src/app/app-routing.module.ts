@@ -7,6 +7,7 @@ import { FileUploadComponent } from './pages/file-upload/file-upload.component';
 import { LoginComponent } from './pages/login/login.component';
 import { QrCodesComponent } from './pages/qr-codes/qr-codes.component';
 import { AuthGuard } from './guards/auth.guard';
+import { ProfileRestoComponent } from './pages/profile/profile-resto/profile-resto.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'articles', pathMatch: 'full' },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'categories/edit/:id', component: EditCategorieComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'upload', component: FileUploadComponent },
+  { path: 'profile', component: ProfileRestoComponent },
 ];
 
 @NgModule({
