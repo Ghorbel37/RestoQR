@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { atob } from 'js-base64';
 import { Categorie } from 'src/app/model/categorie';
 import { CategorieService } from 'src/app/services/categorie.service';
 import { NotificationService } from 'src/app/services/notification.service';
@@ -16,15 +15,14 @@ export class CreateCategorieExpansionComponent {
 
   constructor(
     private categorieService: CategorieService,
-    // private changeDetectorRef: ChangeDetectorRef,
     private notificationService: NotificationService,
   ) { }
 
-  private saveCategorie() {
+  submit() {
     this.categorieService.save(this.categorie).subscribe(data => {
       this.refresh.emit();
+      this.notificationService.openSnackBar("Categorie ajouté avec succés");
       // this.categorie = new Categorie();
-
     });
   }
 
@@ -42,17 +40,8 @@ export class CreateCategorieExpansionComponent {
       const formData = new FormData();
       formData.append("thumbnail", file);
 
-      // console.log(myReader.result);
       page.categorie.image = myReader.result.toString();
-
     }
     myReader.readAsDataURL(file);
   }
-
-  submit() {
-    this.saveCategorie();
-    this.notificationService.openSnackBar("Categorie ajouté avec succés");
-    console.log(this.categorie);
-  }
-
 }

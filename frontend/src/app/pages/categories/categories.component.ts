@@ -20,8 +20,6 @@ export class CategoriesComponent implements OnInit {
   existingCategories: Categorie[];
   categorie: Categorie = new Categorie();
   result: string = '';
-  nom: string;
-  image: string;
 
   constructor(
     private categorieService: CategorieService,
@@ -34,7 +32,6 @@ export class CategoriesComponent implements OnInit {
   ngOnInit(): void {
     this.refresh();
     this.notificationService.openSnackBar('Categories affichés')
-    console.log(this.existingCategories);
   }
 
   refresh() {
@@ -52,21 +49,6 @@ export class CategoriesComponent implements OnInit {
     });
   }
 
-  openConfirmDialog(): any {
-    const dialogRef = this.dialog.open(ConfirmDialogComponent, { maxWidth: "400px", data: new ConfirmDialogModel("Attention", "Êtes-vous sûr de vouloir supprimer") });
-    return dialogRef;
-    // dialogRef.afterClosed().subscribe(dialogResult => {
-    //   this.result = dialogResult;
-    // });
-  }
-
-  modal() {
-    const dialogRef = this.dialog.open(CreateCategorieComponent, { data: { nom: this.nom, image: this.image } });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-      this.nom = result;
-    });
-  }
 
   update(categorie: Categorie) {
     const dialogRef = this.dialog.open(UpdateCategorieModalComponent, { data: categorie })
@@ -80,7 +62,8 @@ export class CategoriesComponent implements OnInit {
   }
 
   delete(id: number) {
-    this.openConfirmDialog().afterClosed().subscribe(dialogResult => {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, { maxWidth: "400px", data: new ConfirmDialogModel("Attention", "Êtes-vous sûr de vouloir supprimer") });
+    dialogRef.afterClosed().subscribe(dialogResult => {
       this.result = dialogResult;
       if (this.result) {
         this.categorieService.delete(id).subscribe(data => {
