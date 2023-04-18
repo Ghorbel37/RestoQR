@@ -6,4 +6,6 @@ export class Article {
     reference: string;
     duree: string;
     image: string;
+    categorieIdCategorie: number;
+    categorieNom: string;
 }

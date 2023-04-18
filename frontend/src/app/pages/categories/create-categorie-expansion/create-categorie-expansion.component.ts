@@ -22,7 +22,7 @@ export class CreateCategorieExpansionComponent {
     this.categorieService.save(this.categorie).subscribe(data => {
       this.refresh.emit();
       this.notificationService.openSnackBar("Categorie ajouté avec succés");
-      // this.categorie = new Categorie();
+      this.categorie = new Categorie();
     });
   }
 

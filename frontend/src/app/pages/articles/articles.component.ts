@@ -15,10 +15,9 @@ import { UpdateArticleModalComponent } from './update-article-modal/update-artic
 export class ArticlesComponent implements OnInit {
   columnsToDisplay = ['libelle', 'description', 'prix', 'reference', 'duree', 'image', 'action'];
   existingArticles: Article[];
-  newArticle: Article = new Article();
+  article: Article = new Article();
   result: string = '';
-  nom: string;
-  image: string;
+
 
   constructor(
     private articleService: ArticleService,
@@ -31,7 +30,6 @@ export class ArticlesComponent implements OnInit {
   ngOnInit(): void {
     this.refresh();
     this.notificationService.openSnackBar('Categories affichés')
-    console.log(this.existingArticles);
   }
 
   refresh() {
@@ -42,56 +40,48 @@ export class ArticlesComponent implements OnInit {
   }
 
   private saveArticle() {
-    this.articleService.save(this.newArticle).subscribe(data => {
+    this.articleService.save(this.article).subscribe(data => {
       this.refresh();
-      this.newArticle = new Article();
+      this.notificationService.openSnackBar("Article ajouté avec succés");
+      this.article = new Article();
     });
   }
 
-  submit() {
-    const dialogRef = this.dialog.open(CreateArticleModalComponent, { data: this.newArticle });
+  // submit() {
+  //   const dialogRef = this.dialog.open(CreateArticleModalComponent, { data: this.newArticle });
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     console.log(result);
+  //     this.newArticle = result;
+  //     if (this.newArticle) {
+  //       this.saveArticle();
+  //       this.notificationService.openSnackBar("Article ajouté avec succés");
+  //     }
+  //     this.newArticle = new Article();
+  //   })
+
+  // }
+
+  update(article: Article) {
+    const dialogRef = this.dialog.open(UpdateArticleModalComponent, { data: article });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-      this.newArticle = result;
-      if (this.newArticle) {
-        this.saveArticle();
-        this.notificationService.openSnackBar("Article ajouté avec succés");
+      if (result) {
+        this.article = result;
+        this.articleService.update(this.article.idArticle, this.article);
+        this.article = new Article();
       }
-      this.newArticle = new Article();
-    })
-
-  }
-
-  openConfirmDialog(): any {
-    const dialogRef = this.dialog.open(ConfirmDialogComponent, { maxWidth: "400px", data: new ConfirmDialogModel("Attention", "Êtes-vous sûr de vouloir supprimer") });
-    return dialogRef;
-    dialogRef.afterClosed().subscribe(dialogResult => {
-      this.result = dialogResult;
     });
-  }
-
-  update(id: number) {
-    const dialogRef = this.dialog.open(UpdateArticleModalComponent, { data: this.newArticle });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-      this.newArticle = result;
-      if (this.newArticle) {
-        this.articleService.update(this.newArticle.idArticle, this.newArticle);//.subscribe();
-        this.notificationService.openSnackBar("Article mis a jour avec succés");
-      }
-      this.newArticle = new Article();
-    })
   }
 
   delete(id: number) {
-    this.openConfirmDialog().afterClosed().subscribe(dialogResult => {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, { maxWidth: "400px", data: new ConfirmDialogModel("Attention", "Êtes-vous sûr de vouloir supprimer") });
+    dialogRef.afterClosed().subscribe(dialogResult => {
       this.result = dialogResult;
-      if (this.result) {
+      if (dialogResult) {
         this.articleService.delete(id).subscribe(data => {
           console.log(data);
           this.refresh();
+          this.notificationService.openSnackBar("Element supprimé");
         });
-        this.notificationService.openSnackBar("Element supprimé");
       }
     });
   }

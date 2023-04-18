@@ -1,14 +1,14 @@
 <div class="center">
     <form>
         <mat-card>
-            <mat-card-title>Profile restaurant</mat-card-title>
-
-            <div class="center">
-                <mat-label *ngIf="restaurant.logo">Logo du restaurant</mat-label><br>
-                <img [src]="restaurant.logo" *ngIf="restaurant.logo">
-            </div>
-
             <mat-card-content>
+                <h2>Profile restaurant</h2>
+
+                <div class="center">
+                    <mat-label *ngIf="restaurant.logo">Logo du restaurant</mat-label><br>
+                    <img [src]="restaurant.logo" *ngIf="restaurant.logo">
+                </div>
+
                 <mat-form-field appearance="fill">
                     <mat-label>Nom du restaurant</mat-label>
                     <input matInput [(ngModel)]="restaurant.nomRestaurant" name="nomRestaurant">

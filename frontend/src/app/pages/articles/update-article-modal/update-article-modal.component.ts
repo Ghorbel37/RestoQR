@@ -8,12 +8,30 @@ import { Article } from 'src/app/model/article';
   styleUrls: ['./update-article-modal.component.css']
 })
 export class UpdateArticleModalComponent {
+  fileName: string;
+
   constructor(
     public dialogRef: MatDialogRef<UpdateArticleModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Article
   ) { }
 
-  onNoClick(): void {
-    this.dialogRef.close();
+  changeListener($event): void {
+    this.readThis($event.target);
+  }
+
+  readThis(inputValue: any): void {
+    var file: File = inputValue.files[0];
+    var myReader: FileReader = new FileReader();
+    var page = this;
+
+    myReader.onloadend = function (e) {
+      page.fileName = file.name;
+      const formData = new FormData();
+      formData.append("thumbnail", file);
+
+      page.data.image = myReader.result.toString();
+
+    }
+    myReader.readAsDataURL(file);
   }
 }

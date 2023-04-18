@@ -1,35 +1,40 @@
-<h1 mat-dialog-title>Mise a jour article</h1>
-<div mat-dialog-content>
-    <p>Informations articles</p>
+<mat-expansion-panel hideToggle #expansion>
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            Nouveau article
+        </mat-panel-title>
+        <mat-panel-description>
+            <mat-icon>add</mat-icon>
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+
     <mat-form-field appearance="fill">
         <mat-label>Libelle</mat-label>
-        <input matInput [(ngModel)]="data.libelle">
+        <input matInput [(ngModel)]="article.libelle" placeholder="Spaghetti, soupe, etc.">
+        <mat-error>
+            Le libelle est obligatoire
+        </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
         <mat-label>Description</mat-label>
-        <input matInput [(ngModel)]="data.description">
+        <input matInput [(ngModel)]="article.description">
     </mat-form-field>
 
     <mat-form-field appearance="fill">
         <mat-label>Prix</mat-label>
-        <input matInput [(ngModel)]="data.prix">
+        <input matInput [(ngModel)]="article.prix">
     </mat-form-field>
 
     <mat-form-field appearance="fill">
         <mat-label>Reference</mat-label>
-        <input matInput [(ngModel)]="data.reference">
+        <input matInput [(ngModel)]="article.reference">
     </mat-form-field>
 
     <mat-form-field appearance="fill">
         <mat-label>Duree</mat-label>
-        <input matInput [(ngModel)]="data.duree">
+        <input matInput [(ngModel)]="article.duree">
     </mat-form-field>
-
-    <div class="center">
-        <mat-label *ngIf="data.image">Image</mat-label><br>
-        <img [src]="data.image" *ngIf="data.image">
-    </div>
 
     <input type="file" class="file-input" (change)="changeListener($event)" accept="image/png, image/jpeg" #fileUpload>
     <div class="file-upload">
@@ -39,8 +44,8 @@
         {{fileName ||"Aucun fichier choisi"}}
     </div>
 
-</div>
-<div mat-dialog-actions>
-    <button mat-button [mat-dialog-close]="false">Annuler</button>
-    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Créer</button>
-</div>
+    <mat-action-row>
+        <button mat-button color="primary" (click)="submit();expansion.close();">Créer</button>
+    </mat-action-row>
+
+</mat-expansion-panel>
