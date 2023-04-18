@@ -3,10 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Categorie } from 'src/app/model/categorie';
 import { CategorieService } from 'src/app/services/categorie.service';
 import { NotificationService } from 'src/app/services/notification.service';
-import { CreateCategorieComponent } from './create-categorie-modal/create-categorie.component';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '../_common/confirm-dialog/confirm-dialog.component';
-import { EditCategorieComponent } from './edit-categorie/edit-categorie.component';
-import { UpdateArticleModalComponent } from '../articles/update-article-modal/update-article-modal.component';
 import { UpdateCategorieModalComponent } from './update-categorie-modal/update-categorie-modal.component';
 
 @Component({
