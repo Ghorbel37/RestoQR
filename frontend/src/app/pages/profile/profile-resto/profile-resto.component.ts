@@ -18,6 +18,9 @@ export class ProfileRestoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.restaurantService.getRestaurant().subscribe(data => {
+      this.restaurant = data;
+    })
     // this.restaurantService.getAll();
   }
 
@@ -43,13 +46,13 @@ export class ProfileRestoComponent implements OnInit {
   }
 
   submit() {
-    this.saveRestaurant();
+    this.updateRestaurant();
     this.notificationService.openSnackBar("Categorie ajouté avec succés");
     console.log(this.restaurant);
   }
 
-  saveRestaurant() {
-    this.restaurantService.save(this.restaurant).subscribe();
+  updateRestaurant() {
+    this.restaurantService.update(this.restaurant).subscribe();
   }
 
 }

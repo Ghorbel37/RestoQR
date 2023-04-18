@@ -1,41 +1,47 @@
-<h1 mat-dialog-title>Creation article</h1>
-<div mat-dialog-content>
-    <form action="">
+<div class="center">
+    <form>
         <mat-card>
             <mat-card-title>Profile restaurant</mat-card-title>
+
+            <div class="center">
+                <mat-label *ngIf="restaurant.logo">Logo du restaurant</mat-label><br>
+                <img [src]="restaurant.logo" *ngIf="restaurant.logo">
+            </div>
 
             <mat-card-content>
                 <mat-form-field appearance="fill">
                     <mat-label>Nom du restaurant</mat-label>
-                    <input matInput [(ngModel)]="restaurant.nomRestaurant">
+                    <input matInput [(ngModel)]="restaurant.nomRestaurant" name="nomRestaurant">
                 </mat-form-field>
                 <mat-form-field appearance="fill">
                     <mat-label>Adresse</mat-label>
-                    <input matInput [(ngModel)]="restaurant.adresse">
+                    <input matInput [(ngModel)]="restaurant.adresse" name="adresse">
                 </mat-form-field>
                 <mat-form-field appearance="fill">
                     <mat-label>Téléphone</mat-label>
-                    <input matInput [(ngModel)]="restaurant.telephone">
+                    <input matInput [(ngModel)]="restaurant.telephone" name="telephone">
                 </mat-form-field>
                 <mat-form-field appearance="fill">
                     <mat-label>WiFi</mat-label>
-                    <input matInput [(ngModel)]="restaurant.wifi">
+                    <input matInput [(ngModel)]="restaurant.wifi" name="wifi">
                 </mat-form-field>
                 <mat-form-field appearance="fill">
                     <mat-label>Mot de passe WiFi</mat-label>
-                    <input matInput [(ngModel)]="restaurant.mdpWifi">
+                    <input matInput [(ngModel)]="restaurant.mdpWifi" name="mdpWifi">
                 </mat-form-field>
+
 
 
                 <input type="file" class="file-input" (change)="changeListener($event)" accept="image/png, image/jpeg"
                     #fileUpload>
                 <div class="file-upload">
-                    <mat-label>Logo</mat-label>
                     <button mat-mini-fab color="primary" class="upload-btn" (click)="fileUpload.click()">
                         <mat-icon>attach_file</mat-icon>
                     </button>
                     {{fileName ||"Aucun fichier choisi"}}
                 </div>
+
+                <button mat-raised-button id="login" color="primary" (click)="submit()">Modifier</button>
             </mat-card-content>
         </mat-card>
     </form>
