@@ -5,6 +5,9 @@ import { CategorieService } from 'src/app/services/categorie.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { CreateCategorieComponent } from './create-categorie-modal/create-categorie.component';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '../_common/confirm-dialog/confirm-dialog.component';
+import { EditCategorieComponent } from './edit-categorie/edit-categorie.component';
+import { UpdateArticleModalComponent } from '../articles/update-article-modal/update-article-modal.component';
+import { UpdateCategorieModalComponent } from './update-categorie-modal/update-categorie-modal.component';
 
 @Component({
   selector: 'app-categories',
@@ -13,9 +16,9 @@ import { ConfirmDialogComponent, ConfirmDialogModel } from '../_common/confirm-d
 })
 export class CategoriesComponent implements OnInit {
 
-  columnsToDisplay = ['idCategorie', 'nom', 'image', 'action'];
+  columnsToDisplay = ['nom', 'image', 'action'];
   existingCategories: Categorie[];
-  newCategorie: Categorie = new Categorie();
+  categorie: Categorie = new Categorie();
   result: string = '';
   nom: string;
   image: string;
@@ -41,22 +44,20 @@ export class CategoriesComponent implements OnInit {
     });
   }
 
-  private saveCategorie() {
-    this.categorieService.save(this.newCategorie).subscribe(data => this.refresh());
-  }
-
   submit() {
-    this.saveCategorie();
-    this.notificationService.openSnackBar("Categorie ajouté avec succés");
-    console.log(this.newCategorie);
+    this.categorieService.save(this.categorie).subscribe(data => {
+      this.refresh();
+      this.notificationService.openSnackBar("Categorie ajouté avec succés");
+      this.categorie = new Categorie();
+    });
   }
 
   openConfirmDialog(): any {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, { maxWidth: "400px", data: new ConfirmDialogModel("Attention", "Êtes-vous sûr de vouloir supprimer") });
     return dialogRef;
-    dialogRef.afterClosed().subscribe(dialogResult => {
-      this.result = dialogResult;
-    });
+    // dialogRef.afterClosed().subscribe(dialogResult => {
+    //   this.result = dialogResult;
+    // });
   }
 
   modal() {
@@ -67,15 +68,25 @@ export class CategoriesComponent implements OnInit {
     });
   }
 
+  update(categorie: Categorie) {
+    const dialogRef = this.dialog.open(UpdateCategorieModalComponent, { data: categorie })
+    dialogRef.afterClosed().subscribe(dialogResult => {
+      if (dialogResult) {
+        this.categorie = dialogResult;
+        this.categorieService.update(this.categorie.idCategorie, this.categorie).subscribe();
+        this.categorie = new Categorie();
+      }
+    })
+  }
+
   delete(id: number) {
     this.openConfirmDialog().afterClosed().subscribe(dialogResult => {
       this.result = dialogResult;
       if (this.result) {
         this.categorieService.delete(id).subscribe(data => {
-          console.log(data);
           this.refresh();
+          this.notificationService.openSnackBar("Element supprimé");
         });
-        this.notificationService.openSnackBar("Element supprimé");
       }
     });
   }

@@ -20,6 +20,7 @@ import { UpdateArticleModalComponent } from './pages/articles/update-article-mod
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { CreateCategorieExpansionComponent } from './pages/categories/create-categorie-expansion/create-categorie-expansion.component';
 import { ProfileRestoComponent } from './pages/profile/profile-resto/profile-resto.component';
+import { UpdateCategorieModalComponent } from './pages/categories/update-categorie-modal/update-categorie-modal.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { ProfileRestoComponent } from './pages/profile/profile-resto/profile-res
     UpdateArticleModalComponent,
     CreateCategorieExpansionComponent,
     ProfileRestoComponent,
+    UpdateCategorieModalComponent,
   ],
   imports: [
     BrowserModule,
