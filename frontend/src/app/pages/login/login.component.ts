@@ -24,7 +24,6 @@ export class LoginComponent {
   ngOnInit() {
     this.titleService.setTitle('Login');
     if (this._authService.isLoggedIn()) {
-      this.loginValid = true;
       this.router.navigateByUrl('/articles');
     }
     this.createForm();
@@ -47,42 +46,18 @@ export class LoginComponent {
 
     // this.loading = true;
     this.loginValid = true;
-    this._authService.login(email.toLowerCase(), password);
     if (rememberMe) {
       localStorage.setItem('savedUserEmail', email);
     } else {
       localStorage.removeItem('savedUserEmail');
     }
 
-    if (this._authService.isLoggedIn()) {
-      this.loginValid = true;
-      this.router.navigateByUrl('/articles');
-    }
-    else {
-      this.loginValid = false;
-    }
-  }
-
-
-  // this.authenticationService
-  //   .login(email.toLowerCase(), password)
-  //   .subscribe(
-  //     data => {
-  //       if (rememberMe) {
-  //         localStorage.setItem('savedUserEmail', email);
-  //       } else {
-  //         localStorage.removeItem('savedUserEmail');
-  //       }
-  //       this.router.navigate(['/']);
-  //     },
-  //     error => {
-  //       this.notificationService.openSnackBar(error.error);
-  //       this.loading = false;
-  //     }
-  //   );
-  // }
-
-  resetPassword() {
-    this.router.navigate(['/auth/password-reset-request']);
+    this._authService.login2(email.toLowerCase(), password).subscribe({
+      next: (token) => {
+        this._authService.setSession(token);
+        this.router.navigateByUrl('/articles');
+      },
+      error: () => this.loginValid = false
+    })
   }
 }

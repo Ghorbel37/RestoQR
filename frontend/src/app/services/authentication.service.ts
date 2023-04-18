@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
 import * as moment from 'moment';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -13,16 +14,18 @@ export class AuthenticationService {
   constructor(private http: HttpClient) {
   }
 
-  login(email: string, password: string): Boolean {
-    var login: Boolean = false;
+  login(email: string, password: string) {
     localStorage.removeItem("id_token");
     this.http.post(`${environment.apiUrl}${this.endpoint}/login`, { email, password }, { responseType: 'text' }).subscribe(res => {
       this.setSession(res);
-      login = true;
       console.log('connected succesfully');
     }
     );
-    return login;
+  }
+
+  login2(email: string, password: string): Observable<any> {
+    localStorage.removeItem("id_token");
+    return this.http.post(`${environment.apiUrl}${this.endpoint}/login`, { email, password }, { responseType: 'text' });
   }
 
   setSession(authResult: string) {
