@@ -14,7 +14,6 @@ import { EditCategorieComponent } from './pages/categories/edit-categorie/edit-c
 import { LoginComponent } from './pages/login/login.component';
 import { QrCodesComponent } from './pages/qr-codes/qr-codes.component';
 import { CreateArticleModalComponent } from './pages/articles/create-article-modal/create-article-modal.component';
-import { FileUploadComponent } from './pages/file-upload/file-upload.component';
 import { UpdateArticleModalComponent } from './pages/articles/update-article-modal/update-article-modal.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { CreateCategorieExpansionComponent } from './pages/categories/create-categorie-expansion/create-categorie-expansion.component';
@@ -32,7 +31,6 @@ import { CreateArticleExpansionComponent } from './pages/articles/create-article
     LoginComponent,
     QrCodesComponent,
     CreateArticleModalComponent,
-    FileUploadComponent,
     UpdateArticleModalComponent,
     CreateCategorieExpansionComponent,
     ProfileRestoComponent,
