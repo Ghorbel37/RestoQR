@@ -44,18 +44,44 @@
       <a mat-list-item [routerLink]="['/articles']">
         <mat-icon matListItemIcon>format_list_bulleted</mat-icon>
         <span matListItemTitle>Elements du menu</span>
-        <span matListItemLine>Gerer les articles</span>
+        <span matListItemLine>Gérer les articles</span>
       </a>
 
       <!-- qrcode nav -->
       <a mat-list-item [routerLink]="['/codes']">
         <mat-icon matListItemIcon>qr_code</mat-icon>
         <span matListItemTitle>Qr code</span>
-        <span matListItemLine>Creer les code Qr</span>
+        <span matListItemLine>Créer les code Qr</span>
+      </a>
+
+      <a mat-list-item [routerLink]="['/codes']">
+        <mat-icon matListItemIcon>group_add</mat-icon>
+        <span matListItemTitle>Clients</span>
+        <span matListItemLine>Gérer les clients fideles</span>
+      </a>
+
+      <a mat-list-item [routerLink]="['/codes']">
+        <mat-icon matListItemIcon>grid_view</mat-icon>
+        <span matListItemTitle>Tables</span>
+        <span matListItemLine>Gérer tables</span>
       </a>
 
 
       <mat-divider></mat-divider>
+
+      <span matSubheader>Client</span>
+      <a mat-list-item [routerLink]="['/codes']">
+        <mat-icon matListItemIcon>storefront</mat-icon>
+        <span matListItemTitle>Menu</span>
+        <span matListItemLine>Consulter notre menu</span>
+      </a>
+
+      <a mat-list-item [routerLink]="['/codes']">
+        <mat-icon matListItemIcon>shopping_cart</mat-icon>
+        <span matListItemTitle>Panier</span>
+        <span matListItemLine>Modifier votre panier</span>
+      </a>
+
 
     </mat-nav-list>
 

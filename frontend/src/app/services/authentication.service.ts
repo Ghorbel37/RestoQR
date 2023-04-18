@@ -14,16 +14,7 @@ export class AuthenticationService {
   constructor(private http: HttpClient) {
   }
 
-  login(email: string, password: string) {
-    localStorage.removeItem("id_token");
-    this.http.post(`${environment.apiUrl}${this.endpoint}/login`, { email, password }, { responseType: 'text' }).subscribe(res => {
-      this.setSession(res);
-      console.log('connected succesfully');
-    }
-    );
-  }
-
-  login2(email: string, password: string): Observable<any> {
+  login(email: string, password: string): Observable<any> {
     localStorage.removeItem("id_token");
     return this.http.post(`${environment.apiUrl}${this.endpoint}/login`, { email, password }, { responseType: 'text' });
   }

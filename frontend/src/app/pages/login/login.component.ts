@@ -52,7 +52,7 @@ export class LoginComponent {
       localStorage.removeItem('savedUserEmail');
     }
 
-    this._authService.login2(email.toLowerCase(), password).subscribe({
+    this._authService.login(email.toLowerCase(), password).subscribe({
       next: (token) => {
         this._authService.setSession(token);
         this.router.navigateByUrl('/articles');
