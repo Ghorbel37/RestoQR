@@ -55,7 +55,8 @@ export class CategoriesComponent implements OnInit {
         this.categorieService.update(this.categorie.idCategorie, this.categorie).subscribe();
         this.categorie = new Categorie();
       }
-    })
+      else this.refresh();
+    });
   }
 
   delete(id: number) {

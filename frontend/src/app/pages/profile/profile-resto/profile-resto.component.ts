@@ -46,13 +46,8 @@ export class ProfileRestoComponent implements OnInit {
   }
 
   submit() {
-    this.updateRestaurant();
-    this.notificationService.openSnackBar("Categorie ajouté avec succés");
-    console.log(this.restaurant);
+    this.restaurantService.update(this.restaurant).subscribe({
+      next: () => this.notificationService.openSnackBar("Informations restaurant mises a jour")
+    });
   }
-
-  updateRestaurant() {
-    this.restaurantService.update(this.restaurant).subscribe();
-  }
-
 }
