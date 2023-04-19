@@ -2,16 +2,6 @@
     flex: 1 1 auto;
 }
 
-.footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: red;
-    color: white;
-    text-align: center;
-}
-
 mat-sidenav {
     min-width: 180px !important;
     border-right: 1px solid #eee;
