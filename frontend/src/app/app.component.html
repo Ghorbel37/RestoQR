@@ -22,6 +22,14 @@
   <!-- Sidenav content -->
   <mat-sidenav #sidenav mode="over">
 
+    <div *ngIf="restaurant.logo">
+      <div class="center-div" color="primary">
+        <img class="avatar" [src]="restaurant.logo" />
+        <h4 class="name">{{restaurant.nomRestaurant}}</h4>
+      </div>
+      <mat-divider></mat-divider>
+    </div>
+
     <mat-nav-list>
       <!-- Nav list -->
       <span matSubheader>Admin</span>

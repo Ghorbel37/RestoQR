@@ -55,6 +55,7 @@ export class LoginComponent {
     this._authService.login(email.toLowerCase(), password).subscribe({
       next: (token) => {
         this._authService.setSession(token);
+        this.titleService.setTitle("Restaurant")
         this.router.navigateByUrl('/articles');
       },
       error: () => this.loginValid = false
