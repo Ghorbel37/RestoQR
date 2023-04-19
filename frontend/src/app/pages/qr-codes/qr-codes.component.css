@@ -1,0 +1,17 @@
+img {
+    width: 800px;
+    height: 800px;
+}
+
+/* The div container */
+.qrcodeImage {
+    display: flex;
+    flex: 1;
+}
+
+/* Add custom styles here */
+.center {
+    display: flex;
+    flex: 1;
+    justify-content: baseline;
+}

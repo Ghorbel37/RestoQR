@@ -1,3 +1,5 @@
+import { QRCodeModule } from 'angularx-qrcode';
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -20,6 +22,7 @@ import { CreateCategorieExpansionComponent } from './pages/categories/create-cat
 import { ProfileRestoComponent } from './pages/profile/profile-resto/profile-resto.component';
 import { UpdateCategorieModalComponent } from './pages/categories/update-categorie-modal/update-categorie-modal.component';
 import { CreateArticleExpansionComponent } from './pages/articles/create-article-expansion/create-article-expansion.component';
+import { MenuClientComponent } from './pages/menu-client/menu-client/menu-client.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +39,7 @@ import { CreateArticleExpansionComponent } from './pages/articles/create-article
     ProfileRestoComponent,
     UpdateCategorieModalComponent,
     CreateArticleExpansionComponent,
+    MenuClientComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,7 +48,8 @@ import { CreateArticleExpansionComponent } from './pages/articles/create-article
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    QRCodeModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

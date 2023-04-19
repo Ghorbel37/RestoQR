@@ -62,7 +62,7 @@ mat-divider {
 
 .center-div {
     margin: 16px;
-    width: 200px;
+    width: stretch;
     border-right: none;
     /* background: gray; */
     border-radius: 10px;
