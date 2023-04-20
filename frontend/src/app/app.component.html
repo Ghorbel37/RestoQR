@@ -6,9 +6,9 @@
 
   <span matTooltip="Menu">Restaurant</span>
   <span class="navbar-spacer"></span>
-  <button mat-icon-button matTooltip="Panier">
+  <!-- <button mat-icon-button matTooltip="Panier">
     <mat-icon>shopping_cart</mat-icon>
-  </button>
+  </button> -->
   <!-- <button mat-icon-button>
     <mat-icon>share</mat-icon>
   </button> -->
@@ -62,7 +62,7 @@
         <span matListItemLine>Créer les code Qr</span>
       </a>
 
-      <a mat-list-item [routerLink]="['/codes']">
+      <!-- <a mat-list-item [routerLink]="['/codes']">
         <mat-icon matListItemIcon>group_add</mat-icon>
         <span matListItemTitle>Clients</span>
         <span matListItemLine>Gérer les clients fideles</span>
@@ -72,23 +72,23 @@
         <mat-icon matListItemIcon>grid_view</mat-icon>
         <span matListItemTitle>Tables</span>
         <span matListItemLine>Gérer tables</span>
-      </a>
+      </a> -->
 
 
       <mat-divider></mat-divider>
 
       <span matSubheader>Client</span>
-      <a mat-list-item [routerLink]="['/codes']">
+      <a mat-list-item [routerLink]="['/menu']">
         <mat-icon matListItemIcon>storefront</mat-icon>
         <span matListItemTitle>Menu</span>
         <span matListItemLine>Consulter notre menu</span>
       </a>
 
-      <a mat-list-item [routerLink]="['/codes']">
+      <!-- <a mat-list-item [routerLink]="['/codes']">
         <mat-icon matListItemIcon>shopping_cart</mat-icon>
         <span matListItemTitle>Panier</span>
         <span matListItemLine>Modifier votre panier</span>
-      </a>
+      </a> -->
 
 
     </mat-nav-list>

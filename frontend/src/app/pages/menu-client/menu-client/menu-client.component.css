@@ -1,0 +1,24 @@
+.example-card {
+    max-width: 400px;
+    margin-bottom: 8px;
+}
+
+.mat-mdc-form-field+.mat-mdc-form-field {
+    margin-left: 8px;
+}
+
+.img-categorie {
+    width: auto;
+    max-height: 32px;
+}
+
+.img-article {
+    width: auto;
+    max-height: 128px;
+}
+
+#button-cart {
+    position: fixed;
+    bottom: 70px;
+    right: 40px;
+}

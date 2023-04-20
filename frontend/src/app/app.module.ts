@@ -23,6 +23,8 @@ import { ProfileRestoComponent } from './pages/profile/profile-resto/profile-res
 import { UpdateCategorieModalComponent } from './pages/categories/update-categorie-modal/update-categorie-modal.component';
 import { CreateArticleExpansionComponent } from './pages/articles/create-article-expansion/create-article-expansion.component';
 import { MenuClientComponent } from './pages/menu-client/menu-client/menu-client.component';
+import { PanierComponent } from './pages/menu-client/panier/panier.component';
+import { CommandeModalComponent } from './pages/menu-client/commande-modal/commande-modal.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { MenuClientComponent } from './pages/menu-client/menu-client/menu-client
     UpdateCategorieModalComponent,
     CreateArticleExpansionComponent,
     MenuClientComponent,
+    PanierComponent,
+    CommandeModalComponent,
   ],
   imports: [
     BrowserModule,
