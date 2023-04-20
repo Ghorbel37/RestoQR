@@ -19,7 +19,7 @@ export class ArticleService {
   }
 
   getAllCategories(): Observable<Categorie[]> {
-    return this.httpClient.get<Categorie[]>(`${environment.apiUrl}categories`)
+    return this.httpClient.get<Categorie[]>(`${environment.apiUrl}${this.categories}`)
   }
 
   save(dto: Article): Observable<Object> {
