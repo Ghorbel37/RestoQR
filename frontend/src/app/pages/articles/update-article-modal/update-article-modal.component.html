@@ -3,32 +3,42 @@
     <p>Informations articles</p>
     <mat-form-field appearance="fill">
         <mat-label>Libelle</mat-label>
-        <input matInput [(ngModel)]="data.libelle">
+        <input matInput [(ngModel)]="article.libelle">
     </mat-form-field>
 
     <mat-form-field appearance="fill">
         <mat-label>Description</mat-label>
-        <input matInput [(ngModel)]="data.description">
+        <input matInput [(ngModel)]="article.description">
     </mat-form-field>
 
     <mat-form-field appearance="fill">
         <mat-label>Prix</mat-label>
-        <input matInput [(ngModel)]="data.prix">
+        <input matInput [(ngModel)]="article.prix">
     </mat-form-field>
 
     <mat-form-field appearance="fill">
         <mat-label>Reference</mat-label>
-        <input matInput [(ngModel)]="data.reference">
+        <input matInput [(ngModel)]="article.reference">
     </mat-form-field>
 
     <mat-form-field appearance="fill">
         <mat-label>Duree</mat-label>
-        <input matInput [(ngModel)]="data.duree">
+        <input matInput [(ngModel)]="article.duree">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Categorie</mat-label>
+        <mat-select [(ngModel)]="article.categorie.idCategorie">
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let categorie of categories" [value]="categorie.idCategorie">
+                {{categorie.nom}}
+            </mat-option>
+        </mat-select>
     </mat-form-field>
 
     <div class="center">
-        <mat-label *ngIf="data.image">Image</mat-label><br>
-        <img [src]="data.image" *ngIf="data.image">
+        <mat-label *ngIf="article.image">Image</mat-label><br>
+        <img [src]="article.image" *ngIf="article.image">
     </div>
 
     <input type="file" class="file-input" (change)="changeListener($event)" accept="image/png, image/jpeg" #fileUpload>
@@ -42,5 +52,5 @@
 </div>
 <div mat-dialog-actions>
     <button mat-button [mat-dialog-close]="false">Annuler</button>
-    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Créer</button>
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Modifier</button>
 </div>

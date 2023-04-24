@@ -36,6 +36,16 @@
         <input matInput [(ngModel)]="article.duree">
     </mat-form-field>
 
+    <mat-form-field appearance="fill">
+        <mat-label>Categorie</mat-label>
+        <mat-select [(ngModel)]="article.categorie">
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let categorie of categories" [value]="categorie">
+                {{categorie.nom}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
     <input type="file" class="file-input" (change)="changeListener($event)" accept="image/png, image/jpeg" #fileUpload>
     <div class="file-upload">
         <button mat-mini-fab color="primary" class="upload-btn" (click)="fileUpload.click()">

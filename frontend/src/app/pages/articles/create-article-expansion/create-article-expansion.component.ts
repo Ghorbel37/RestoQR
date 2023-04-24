@@ -1,5 +1,5 @@
-import { Component, Output, EventEmitter } from '@angular/core';
-import { Article } from 'src/app/model/article';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
+import { Article, Categorie } from 'src/app/model/article';
 import { ArticleService } from 'src/app/services/article.service';
 import { NotificationService } from 'src/app/services/notification.service';
 
@@ -8,15 +8,22 @@ import { NotificationService } from 'src/app/services/notification.service';
   templateUrl: './create-article-expansion.component.html',
   styleUrls: ['./create-article-expansion.component.css']
 })
-export class CreateArticleExpansionComponent {
+export class CreateArticleExpansionComponent implements OnInit {
   article: Article = new Article();
   fileName: string;
   @Output("refresh") refresh: EventEmitter<any> = new EventEmitter();
+  categories: Categorie[];
 
   constructor(
     private articleService: ArticleService,
     private notificationService: NotificationService,
   ) { }
+
+  ngOnInit(): void {
+    this.articleService.getAllCategories().subscribe({
+      next: (data) => this.categories = data,
+    })
+  }
 
   submit() {
     this.articleService.save(this.article).subscribe(data => {

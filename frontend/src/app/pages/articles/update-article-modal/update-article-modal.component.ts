@@ -1,19 +1,31 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Article } from 'src/app/model/article';
+import { Article, Categorie } from 'src/app/model/article';
+import { ArticleService } from 'src/app/services/article.service';
 
 @Component({
   selector: 'app-update-article-modal',
   templateUrl: './update-article-modal.component.html',
   styleUrls: ['./update-article-modal.component.css']
 })
-export class UpdateArticleModalComponent {
+export class UpdateArticleModalComponent implements OnInit {
   fileName: string;
+  categories: Categorie[];
+  article: Article;
 
   constructor(
     public dialogRef: MatDialogRef<UpdateArticleModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Article
+    @Inject(MAT_DIALOG_DATA) public data: any[],
+    private articleService: ArticleService,
   ) { }
+
+  ngOnInit(): void {
+    this.articleService.getAllCategories().subscribe({
+      next: (result) => this.categories = result,
+    })
+    this.article = this.data[0];
+    this.categories = this.data[1];
+  }
 
   changeListener($event): void {
     this.readThis($event.target);
@@ -29,7 +41,7 @@ export class UpdateArticleModalComponent {
       const formData = new FormData();
       formData.append("thumbnail", file);
 
-      page.data.image = myReader.result.toString();
+      page.article.image = myReader.result.toString();
 
     }
     myReader.readAsDataURL(file);

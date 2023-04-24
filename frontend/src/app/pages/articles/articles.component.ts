@@ -1,6 +1,6 @@
 import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Article } from 'src/app/model/article';
+import { Article, Categorie } from 'src/app/model/article';
 import { ArticleService } from 'src/app/services/article.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '../_common/confirm-dialog/confirm-dialog.component';
@@ -17,6 +17,7 @@ export class ArticlesComponent implements OnInit {
   existingArticles: Article[];
   article: Article = new Article();
   result: string = '';
+  categories: Categorie[];
 
 
   constructor(
@@ -29,7 +30,10 @@ export class ArticlesComponent implements OnInit {
   }
   ngOnInit(): void {
     this.refresh();
-    this.notificationService.openSnackBar('Categories affichés')
+    this.articleService.getAllCategories().subscribe({
+      next: (data) => this.categories = data,
+    })
+    this.notificationService.openSnackBar('Articles affichés')
   }
 
   refresh() {
@@ -62,7 +66,8 @@ export class ArticlesComponent implements OnInit {
   // }
 
   update(article: Article) {
-    const dialogRef = this.dialog.open(UpdateArticleModalComponent, { data: article });
+    let articleCategorie: any[] = [article, this.categories];
+    const dialogRef = this.dialog.open(UpdateArticleModalComponent, { data: articleCategorie });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.article = result;
