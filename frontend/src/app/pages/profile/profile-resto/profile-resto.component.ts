@@ -21,7 +21,6 @@ export class ProfileRestoComponent implements OnInit {
     this.restaurantService.getRestaurant().subscribe(data => {
       this.restaurant = data;
     })
-    // this.restaurantService.getAll();
   }
 
   changeListener($event): void {
@@ -38,7 +37,6 @@ export class ProfileRestoComponent implements OnInit {
       const formData = new FormData();
       formData.append("thumbnail", file);
 
-      // console.log(myReader.result);
       page.restaurant.logo = myReader.result.toString();
 
     }
@@ -47,7 +45,12 @@ export class ProfileRestoComponent implements OnInit {
 
   submit() {
     this.restaurantService.update(this.restaurant).subscribe({
-      next: () => this.notificationService.openSnackBar("Informations restaurant mises a jour")
+      next: () => {
+        if (this.restaurant.nbrTables && this.restaurant.nbrTables > 0) {
+          this.restaurantService.updateTables(this.restaurant.nbrTables).subscribe();
+        }
+        this.notificationService.openSnackBar("Informations restaurant mises a jour")
+      }
     });
   }
 }

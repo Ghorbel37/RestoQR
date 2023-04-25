@@ -45,6 +45,6 @@
 </mat-card>
 
 <button mat-fab id="button-cart" color="accent" *ngIf="panier.panier" [matBadge]="panier.quantitePanier"
-    matBadgePosition="before" matBadgeColor="accent" (click)="true" matTooltip="Panier">
+    matBadgePosition="before" matBadgeColor="accent" routerLink="/panier" matTooltip="Panier">
     <mat-icon>shopping_cart</mat-icon>
 </button>

@@ -9,6 +9,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { ProfileRestoComponent } from './pages/profile/profile-resto/profile-resto.component';
 import { MenuClientComponent } from './pages/menu-client/menu-client/menu-client.component';
 import { TablesComponent } from './pages/tables/tables.component';
+import { PanierComponent } from './pages/menu-client/panier/panier.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'articles', pathMatch: 'full' },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileRestoComponent },
   { path: 'menu', component: MenuClientComponent },
   { path: 'tables', component: TablesComponent },
+  { path: 'panier', component: PanierComponent },
 ];
 
 @NgModule({

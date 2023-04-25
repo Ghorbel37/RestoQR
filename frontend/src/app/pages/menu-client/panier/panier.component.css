@@ -1,0 +1,9 @@
+img {
+    max-width: 64px;
+    height: auto;
+}
+
+.align {
+    display: flex;
+    align-items: center;
+}

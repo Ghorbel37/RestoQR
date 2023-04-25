@@ -34,4 +34,8 @@ export class MenuClientComponent implements OnInit {
     this.panier.removeFromCart(ligne);
   }
 
+  toPanier() {
+
+  }
+
 }

@@ -4,5 +4,6 @@ export class Restaurant {
     adresse: string;
     wifi: string;
     mdpWifi: string;
+    nbrTables: number;
     logo: string;
 }

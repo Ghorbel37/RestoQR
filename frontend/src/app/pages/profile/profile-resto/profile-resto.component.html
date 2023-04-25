@@ -29,6 +29,10 @@
                     <mat-label>Mot de passe WiFi</mat-label>
                     <input matInput [(ngModel)]="restaurant.mdpWifi" name="mdpWifi">
                 </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Nombre des tables</mat-label>
+                    <input matInput type="number" min="0" max="128" [(ngModel)]="restaurant.nbrTables" name="nbrTables">
+                </mat-form-field>
 
 
 
