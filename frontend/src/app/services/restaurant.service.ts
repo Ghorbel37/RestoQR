@@ -19,4 +19,6 @@ export class RestaurantService {
   update(dto: Restaurant): Observable<Object> {
     return this.httpClient.put(`${environment.apiUrl}${this.endpoint}`, dto);
   }
+
+
 }
