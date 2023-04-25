@@ -1,12 +1,27 @@
-<div class="center">
-    <mat-card>
-        <mat-card-content>
-            <h2 style="text-align: center;">QR Code</h2>
-            <qrcode #qrCode [qrdata]="qrData" [cssClass]="'center'" [elementType]="'url'" [errorCorrectionLevel]="'M'"
-                [margin]="1" [scale]="1" [width]="250"></qrcode>
+<div class="qr-code">
+    <div class="center">
+        <mat-card>
+            <mat-card-content>
+                <h2 style="text-align: center;">QR Code</h2>
+                <qrcode #qrCode [qrdata]="qrData" [cssClass]="'center'" [elementType]="'url'"
+                    [errorCorrectionLevel]="'M'" [margin]="1" [scale]="1" [width]="250"></qrcode>
 
-            <button mat-raised-button color="primary" (click)="printPdf(qrCode,4)" class="center">Imprimer</button>
+                <button mat-raised-button color="primary" (click)="printPdf(qrCode,4)" class="center">Imprimer</button>
 
-        </mat-card-content>
-    </mat-card>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+    <div class="center">
+        <mat-card>
+            <mat-card-content>
+                <h2 style="text-align: center;">QR Code</h2>
+                <qrcode #qrCode [qrdata]="qrData" [cssClass]="'center'" [elementType]="'url'"
+                    [errorCorrectionLevel]="'M'" [margin]="1" [scale]="1" [width]="250"></qrcode>
+
+                <button mat-raised-button color="primary" (click)="printPdf(qrCode,4)" class="center">Imprimer</button>
+
+            </mat-card-content>
+        </mat-card>
+    </div>
 </div>

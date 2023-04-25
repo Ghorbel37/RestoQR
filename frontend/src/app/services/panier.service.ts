@@ -5,7 +5,7 @@ import { LigneCommande } from '../model/ligne-commande';
   providedIn: 'root'
 })
 export class PanierService {
-  panier: LigneCommande[];
+  lignes: LigneCommande[];
   prixTotal: number;
   quantitePanier: number;
 
@@ -13,38 +13,55 @@ export class PanierService {
 
   //Add to cart and verify if exists to change quantité
   addToCart(ligne: LigneCommande) {
-    if (!this.panier) {
-      this.panier = new Array();
+    if (!this.lignes) {
+      this.lignes = new Array();
     }
-    let i = this.panier.findIndex(lc => lc.article.idArticle === ligne.article.idArticle);
+    let i = this.lignes.findIndex(lc => lc.article.idArticle === ligne.article.idArticle);
     if (i > -1) {
-      this.panier[i].quantite++;
-      this.calculerPrixLigne(this.panier[i]);
+      this.lignes[i].quantite++;
+      this.calculerPrixLigne(this.lignes[i]);
     }
     else {
-      this.panier.push(ligne);
+      this.lignes.push(ligne);
     }
     this.calculerPrixQuantite();
   }
 
-  //Delete item from cart
+  //Remove item from cart
   removeFromCart(ligne: LigneCommande) {
-    if (this.panier) {
-      var i = this.panier.findIndex(lc => lc.article.idArticle === ligne.article.idArticle);
-      if (i > -1 && this.panier[i].quantite > 1) {
-        this.panier[i].quantite--;
-        this.calculerPrixLigne(this.panier[i]);
-        console.log(this.panier[i])
+    if (this.lignes) {
+      var i = this.lignes.findIndex(lc => lc.article.idArticle === ligne.article.idArticle);
+      if (i > -1 && this.lignes[i].quantite > 1) {
+        this.lignes[i].quantite--;
+        this.calculerPrixLigne(this.lignes[i]);
       }
       else if (i > -1) {
-        this.panier.splice(i, 1);
+        this.lignes.splice(i, 1);
       }
       this.calculerPrixQuantite();
 
-      if (this.panier.length == 0) {
-        this.panier = null;
+      if (this.lignes.length == 0) {
+        this.lignes = null;
       }
     }
+  }
+
+  deleteLigne(ligne: LigneCommande) {
+    if (this.lignes) {
+      var i = this.lignes.findIndex(lc => lc.article.idArticle === ligne.article.idArticle);
+      if (i > -1) {
+        this.lignes.splice(i, 1);
+      }
+      this.calculerPrixQuantite();
+
+      if (this.lignes.length == 0) {
+        this.lignes = null;
+      }
+    }
+  }
+
+  emptyCart() {
+    this.lignes = null;
   }
 
   calculerPrixLigne(ligne: LigneCommande) {
@@ -54,12 +71,12 @@ export class PanierService {
   calculerPrixQuantite() {
     let total: number = 0;
     let quantite: number = 0;
-    this.panier.forEach(function (ligne, i) {
-      console.log(ligne);
+    this.lignes.forEach(function (ligne, i) {
       total += ligne.prixLigne;
       quantite += ligne.quantite;
     });
     this.prixTotal = total;
     this.quantitePanier = quantite;
+    console.log(this.lignes);
   }
 }

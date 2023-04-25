@@ -1,4 +1,12 @@
 <mat-card class="center">
+    <div *ngIf="restaurant.logo">
+        <div class="center-div" color="primary">
+            <img class="avatar" [src]="restaurant.logo" />
+            <h4 class="name"><b>Menu {{restaurant.nomRestaurant}}</b></h4>
+        </div>
+        <mat-divider class="divider-margin"></mat-divider>
+    </div>
+
     <mat-accordion>
         <mat-expansion-panel *ngFor="let categorie of categories" hideToggle>
             <mat-expansion-panel-header>
@@ -9,11 +17,11 @@
             </mat-expansion-panel-header>
             <mat-card *ngFor="let article of categorie.articles" class="example-card">
                 <mat-card-header>
-                    <img mat-card-sm-image [src]="article.image" />
+                    <img mat-card-sm-image class="img-article" [src]="article.image" />
                     <mat-card-title-group>
                         <mat-card-title>{{article.libelle}}</mat-card-title>
                         <mat-card-subtitle>{{article.description}}<br />
-                            {{article.prix}}TND|{{article.duree}}
+                            {{article.prix}} DT | {{article.duree}}
                         </mat-card-subtitle>
                     </mat-card-title-group>
                 </mat-card-header>
@@ -44,7 +52,7 @@
     </mat-accordion>
 </mat-card>
 
-<button mat-fab id="button-cart" color="accent" *ngIf="panier.panier" [matBadge]="panier.quantitePanier"
+<button mat-fab id="button-cart" color="accent" *ngIf="panier.lignes" [matBadge]="panier.quantitePanier"
     matBadgePosition="before" matBadgeColor="accent" routerLink="/panier" matTooltip="Panier">
     <mat-icon>shopping_cart</mat-icon>
 </button>

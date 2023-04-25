@@ -16,7 +16,6 @@ export class ArticlesComponent implements OnInit {
   columnsToDisplay = ['libelle', 'description', 'prix', 'reference', 'duree', 'image', 'action'];
   existingArticles: Article[];
   article: Article = new Article();
-  result: string = '';
   categories: Categorie[];
 
 
@@ -80,10 +79,8 @@ export class ArticlesComponent implements OnInit {
   delete(id: number) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, { maxWidth: "400px", data: new ConfirmDialogModel("Attention", "Êtes-vous sûr de vouloir supprimer") });
     dialogRef.afterClosed().subscribe(dialogResult => {
-      this.result = dialogResult;
       if (dialogResult) {
         this.articleService.delete(id).subscribe(data => {
-          console.log(data);
           this.refresh();
           this.notificationService.openSnackBar("Element supprimé");
         });

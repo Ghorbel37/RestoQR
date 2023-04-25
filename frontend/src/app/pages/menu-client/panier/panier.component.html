@@ -1,51 +1,69 @@
-<div class="center">
-    <mat-card>
-        <mat-card-content>
-            <h2>Panier</h2>
+<div>
+    <!-- <mat-card class="table-card">
+        <mat-card-content> -->
+    <h2>Panier</h2>
 
-            <table mat-table [dataSource]="panier.panier">
+    <table mat-table [dataSource]="panier.lignes" #tabPanier>
 
-                <!-- image column -->
-                <ng-container matColumnDef="image">
-                    <th mat-header-cell *matHeaderCellDef> Image </th>
-                    <td mat-cell *matCellDef="let ligne"> <img [src]="ligne.article.image" *ngIf="ligne.article.image">
-                    </td>
-                </ng-container>
+        <!-- image column -->
+        <ng-container matColumnDef="image">
+            <th mat-header-cell *matHeaderCellDef> Image </th>
+            <td mat-cell *matCellDef="let ligne"> <img [src]="ligne.article.image" *ngIf="ligne.article.image">
+            </td>
+        </ng-container>
 
-                <!-- details column -->
-                <ng-container matColumnDef="details">
-                    <th mat-header-cell *matHeaderCellDef> Details </th>
-                    <td mat-cell *matCellDef="let ligne"> <b>{{ligne.article.libelle}}</b>
-                        <br>Prix: {{ligne.prixLigne}}DT
-                    </td>
-                </ng-container>
+        <!-- details column -->
+        <ng-container matColumnDef="details">
+            <th mat-header-cell *matHeaderCellDef> Details </th>
+            <td mat-cell *matCellDef="let ligne"> <b>{{ligne.article.libelle}}</b>
+                <br>Prix: {{ligne.prixLigne}}DT
+            </td>
+        </ng-container>
 
-                <!-- image column
+        <!-- image column
                 <ng-container matColumnDef="image">
                     <th mat-header-cell *matHeaderCellDef> Image </th>
                     <td mat-cell *matCellDef="let categorie"> <img [src]="categorie.image" *ngIf="categorie.image">
                     </td>
                 </ng-container> -->
 
-                <!-- action column -->
-                <ng-container matColumnDef="action">
-                    <th mat-header-cell *matHeaderCellDef> Action </th>
-                    <td mat-cell *matCellDef="let ligne">
-                        <div class="align">
-                            <button mat-icon-button (click)="true">
-                                <mat-icon>add</mat-icon>
-                            </button>
-                            <label>{{ligne.quantite}}</label>
-                            <button mat-icon-button (click)="true">
-                                <mat-icon>remove</mat-icon>
-                            </button>
-                        </div>
-                    </td>
-                </ng-container>
+        <!-- action column -->
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> Action </th>
+            <td mat-cell *matCellDef="let ligne">
+                <div class="align">
+                    <button mat-icon-button (click)="addToCart(ligne)">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                    <label>{{ligne.quantite}}</label>
+                    <button mat-icon-button (click)="removeFromCart(ligne);tabPanier.renderRows()">
+                        <mat-icon>remove</mat-icon>
+                    </button>
+                    <button mat-icon-button color="warn" (click)="deleteLigne(ligne);tabPanier.renderRows()">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+            </td>
+        </ng-container>
 
-                <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-                <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
-            </table>
-        </mat-card-content>
-    </mat-card>
+        <!-- <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr> -->
+        <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+    </table>
+    <!-- </mat-card-content>
+    </mat-card> -->
+</div>
+
+<div class="cart-bottom">
+    <span>Totale: {{panier.prixTotal}} DT</span>
+    <div class="cart-buttons">
+        <button (click)="emptyCart()" mat-fab extended color="warn" style="margin-right: 6px;">
+            <mat-icon>delete</mat-icon>
+            Vider le panier
+        </button>
+        <button mat-fab extended color="primary">
+            <mat-icon>shopping_cart</mat-icon>
+            Passer commande
+        </button>
+    </div>
+
 </div>

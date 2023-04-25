@@ -1,9 +1,32 @@
 img {
     max-width: 64px;
     height: auto;
+    margin-top: 5px;
 }
 
 .align {
     display: flex;
     align-items: center;
+}
+
+.table-card {
+    width: fit-content;
+}
+
+.cart-bottom {
+    position: fixed;
+    bottom: 0;
+    margin-bottom: 8px;
+    text-align: center;
+
+}
+
+.cart-bottom span {
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 12px;
+}
+
+.cart-buttons button {
+    font-size: 10px;
 }

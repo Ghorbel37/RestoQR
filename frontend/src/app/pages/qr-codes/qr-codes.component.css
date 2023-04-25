@@ -15,3 +15,9 @@ img {
     flex: 1;
     justify-content: baseline;
 }
+
+.qr-code {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
