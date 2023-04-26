@@ -1,12 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Commande } from '../model/commande';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommandeService {
 
-  private endpoint = 'commande';
+  private endpoint = 'commandes';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -14,11 +17,11 @@ export class CommandeService {
   //   return this.httpClient.get<Categorie[]>(`${environment.apiUrl}${this.endpoint}`);
   // }
 
-  // save(dto: Categorie): Observable<Object> {
-  //   return this.httpClient.post(`${environment.apiUrl}${this.endpoint}`, dto);
-  // }
+  save(dto: Commande): Observable<Object> {
+    return this.httpClient.post(`${environment.apiUrl}${this.endpoint}`, dto);
+  }
 
-  // getById(id: number): Observable<Categorie> {
-  //   return this.httpClient.get<Categorie>(`${environment.apiUrl}${this.endpoint}/${id}`);
-  // }
+  getById(id: number): Observable<Commande> {
+    return this.httpClient.get<Commande>(`${environment.apiUrl}${this.endpoint}/${id}`);
+  }
 }

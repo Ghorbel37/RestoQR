@@ -9,7 +9,6 @@ import { Observable } from 'rxjs';
 })
 export class RestaurantService {
   private endpoint = 'restaurant';
-  private tablesLink = "tables/multiple";
 
   constructor(private httpClient: HttpClient) { }
 
@@ -20,10 +19,4 @@ export class RestaurantService {
   update(dto: Restaurant): Observable<Object> {
     return this.httpClient.put(`${environment.apiUrl}${this.endpoint}`, dto);
   }
-
-  updateTables(nbrTables: number): Observable<Object> {
-    return this.httpClient.post(`${environment.apiUrl}`, nbrTables)
-  }
-
-
 }

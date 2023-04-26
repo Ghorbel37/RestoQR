@@ -1,1 +1,14 @@
-<p>commande-modal works!</p>
+<h1 mat-dialog-title>Confirmation commande</h1>
+<div mat-dialog-content>
+    <p>Veuillez indiquer votre numero de table</p>
+    <mat-form-field appearance="fill">
+        <mat-label>Numero table</mat-label>
+        <input matInput [formControl]="numTable" type="number">
+        <mat-error>Numero table inexistant</mat-error>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="false">Annuler</button>
+    <button mat-button [mat-dialog-close]="numTable.value" [disabled]="numTable.invalid"
+        color="primary">Confirmer</button>
+</div>

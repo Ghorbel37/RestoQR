@@ -6,8 +6,8 @@ import { LigneCommande } from '../model/ligne-commande';
 })
 export class PanierService {
   lignes: LigneCommande[];
-  prixTotal: number;
-  quantitePanier: number;
+  prixTotal: number = 0;
+  quantitePanier: number = 0;
 
   constructor() { }
 
@@ -62,6 +62,8 @@ export class PanierService {
 
   emptyCart() {
     this.lignes = null;
+    this.prixTotal = 0;
+    this.quantitePanier = 0;
   }
 
   calculerPrixLigne(ligne: LigneCommande) {
@@ -77,6 +79,5 @@ export class PanierService {
     });
     this.prixTotal = total;
     this.quantitePanier = quantite;
-    console.log(this.lignes);
   }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Restaurant } from 'src/app/model/restaurant';
 import { NotificationService } from 'src/app/services/notification.service';
 import { RestaurantService } from 'src/app/services/restaurant.service';
+import { TablesService } from 'src/app/services/tables.service';
 
 @Component({
   selector: 'app-profile-resto',
@@ -15,6 +16,7 @@ export class ProfileRestoComponent implements OnInit {
   constructor(
     private restaurantService: RestaurantService,
     private notificationService: NotificationService,
+    private tableService: TablesService,
   ) { }
 
   ngOnInit() {
@@ -47,7 +49,7 @@ export class ProfileRestoComponent implements OnInit {
     this.restaurantService.update(this.restaurant).subscribe({
       next: () => {
         if (this.restaurant.nbrTables && this.restaurant.nbrTables > 0) {
-          this.restaurantService.updateTables(this.restaurant.nbrTables).subscribe();
+          this.tableService.updateTables(this.restaurant.nbrTables).subscribe();
         }
         this.notificationService.openSnackBar("Informations restaurant mises a jour")
       }
