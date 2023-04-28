@@ -25,6 +25,8 @@ import { CreateArticleExpansionComponent } from './pages/articles/create-article
 import { MenuClientComponent } from './pages/menu-client/menu-client/menu-client.component';
 import { PanierComponent } from './pages/menu-client/panier/panier.component';
 import { CommandeModalComponent } from './pages/menu-client/commande-modal/commande-modal.component';
+import { AlertDialogComponent } from './pages/_common/alert-dialog/alert-dialog.component';
+import { CreateAccountComponent } from './pages/comptes/create-account/create-account.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { CommandeModalComponent } from './pages/menu-client/commande-modal/comma
     MenuClientComponent,
     PanierComponent,
     CommandeModalComponent,
+    AlertDialogComponent,
+    CreateAccountComponent,
   ],
   imports: [
     BrowserModule,

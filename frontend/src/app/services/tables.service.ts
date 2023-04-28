@@ -13,17 +13,17 @@ export class TablesService {
 
   constructor(private httpClient: HttpClient) { }
 
-  // getAll(): Observable<Categorie[]> {
-  //   return this.httpClient.get<Categorie[]>(`${environment.apiUrl}${this.endpoint}`);
-  // }
+  getAll(): Observable<Table[]> {
+    return this.httpClient.get<Table[]>(`${environment.apiUrl}${this.endpoint}`);
+  }
 
   // save(dto: Categorie): Observable<Object> {
   //   return this.httpClient.post(`${environment.apiUrl}${this.endpoint}`, dto);
   // }
 
-  // getById(id: number): Observable<Categorie> {
-  //   return this.httpClient.get<Categorie>(`${environment.apiUrl}${this.endpoint}/${id}`);
-  // }
+  getById(id: number): Observable<Table> {
+    return this.httpClient.get<Table>(`${environment.apiUrl}${this.endpoint}/${id}`);
+  }
 
   getByNumero(numero: number): Observable<Table> {
     return this.httpClient.get<Table>(`${environment.apiUrl}${this.endpoint}/numero/${numero}`);

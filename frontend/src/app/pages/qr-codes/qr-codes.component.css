@@ -10,14 +10,24 @@ img {
 }
 
 /* Add custom styles here */
-.center {
+.center-card {
     display: flex;
     flex: 1;
-    justify-content: baseline;
+    justify-content: center;
+}
+
+mat-card {
+    max-width: 400px;
+    margin: 2em auto;
+    text-align: center;
 }
 
 .qr-code {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+}
+
+.full-width {
+    width: 100%;
 }

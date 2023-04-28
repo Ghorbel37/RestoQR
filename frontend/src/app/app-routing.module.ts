@@ -19,7 +19,11 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'profile', component: ProfileRestoComponent },
   { path: 'menu', component: MenuClientComponent },
+  { path: 'menu/:idTable', component: MenuClientComponent },
   { path: 'panier', component: PanierComponent },
+  { path: 'panier/:idTable', component: PanierComponent },
+
+  { path: '**', redirectTo: 'menu', pathMatch: 'full' },
 ];
 
 @NgModule({
