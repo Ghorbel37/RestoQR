@@ -9,6 +9,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { ProfileRestoComponent } from './pages/profile/profile-resto/profile-resto.component';
 import { MenuClientComponent } from './pages/menu-client/menu-client/menu-client.component';
 import { PanierComponent } from './pages/menu-client/panier/panier.component';
+import { AccountListComponent } from './pages/comptes/account-list/account-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'articles', pathMatch: 'full' },
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'menu/:idTable', component: MenuClientComponent },
   { path: 'panier', component: PanierComponent },
   { path: 'panier/:idTable', component: PanierComponent },
+  { path: 'users', component: AccountListComponent },
 
   { path: '**', redirectTo: 'menu', pathMatch: 'full' },
 ];

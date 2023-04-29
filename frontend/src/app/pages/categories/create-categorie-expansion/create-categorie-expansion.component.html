@@ -10,7 +10,7 @@
 
     <mat-form-field appearance="fill">
         <mat-label>Nom categorie</mat-label>
-        <input matInput placeholder="Entrées, Desserts, etc." [(ngModel)]="categorie.nom" name="nom" required>
+        <input matInput placeholder="Entrées, Desserts, etc." [formControl]="nomCategorie">
         <mat-error>
             Le nom est obligatoire
         </mat-error>
@@ -25,7 +25,8 @@
     </div>
 
     <mat-action-row>
-        <button mat-button color="primary" (click)="submit();expansion.close()">Créer</button>
+        <button mat-button color="primary" (click)="submit();expansion.close()"
+            [disabled]="nomCategorie.invalid">Créer</button>
     </mat-action-row>
 
 </mat-expansion-panel>

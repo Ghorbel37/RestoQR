@@ -27,6 +27,8 @@ import { PanierComponent } from './pages/menu-client/panier/panier.component';
 import { CommandeModalComponent } from './pages/menu-client/commande-modal/commande-modal.component';
 import { AlertDialogComponent } from './pages/_common/alert-dialog/alert-dialog.component';
 import { CreateAccountComponent } from './pages/comptes/create-account/create-account.component';
+import { AccountListComponent } from './pages/comptes/account-list/account-list.component';
+import { AccountCreateExpansionComponent } from './pages/comptes/account-create-expansion/account-create-expansion.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,8 @@ import { CreateAccountComponent } from './pages/comptes/create-account/create-ac
     CommandeModalComponent,
     AlertDialogComponent,
     CreateAccountComponent,
+    AccountListComponent,
+    AccountCreateExpansionComponent,
   ],
   imports: [
     BrowserModule,

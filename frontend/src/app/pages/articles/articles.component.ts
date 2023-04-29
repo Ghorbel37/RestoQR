@@ -6,6 +6,7 @@ import { NotificationService } from 'src/app/services/notification.service';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '../_common/confirm-dialog/confirm-dialog.component';
 import { CreateArticleModalComponent } from './create-article-modal/create-article-modal.component';
 import { UpdateArticleModalComponent } from './update-article-modal/update-article-modal.component';
+import { CategorieService } from 'src/app/services/categorie.service';
 
 @Component({
   selector: 'app-articles',
@@ -23,13 +24,14 @@ export class ArticlesComponent implements OnInit {
     private articleService: ArticleService,
     private changeDetectorRef: ChangeDetectorRef,
     private notificationService: NotificationService,
+    private categorieService: CategorieService,
     private dialog: MatDialog,
   ) {
 
   }
   ngOnInit(): void {
     this.refresh();
-    this.articleService.getAllCategories().subscribe({
+    this.categorieService.getAll().subscribe({
       next: (data) => this.categories = data,
     })
     this.notificationService.openSnackBar('Articles affichés')
@@ -70,7 +72,11 @@ export class ArticlesComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.article = result;
-        this.articleService.update(this.article.idArticle, this.article);
+        console.log(this.article);
+        this.articleService.update(this.article.idArticle, this.article).subscribe({
+          next: (data) => console.log(data),
+        }
+        );
         this.article = new Article();
       }
     });

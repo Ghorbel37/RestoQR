@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { Article, Categorie } from 'src/app/model/article';
 import { ArticleService } from 'src/app/services/article.service';
+import { CategorieService } from 'src/app/services/categorie.service';
 import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
@@ -17,10 +18,11 @@ export class CreateArticleExpansionComponent implements OnInit {
   constructor(
     private articleService: ArticleService,
     private notificationService: NotificationService,
+    private categorieService: CategorieService,
   ) { }
 
   ngOnInit(): void {
-    this.articleService.getAllCategories().subscribe({
+    this.categorieService.getAll().subscribe({
       next: (data) => this.categories = data,
     })
   }

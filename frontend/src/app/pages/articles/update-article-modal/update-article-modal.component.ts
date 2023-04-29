@@ -1,7 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Article, Categorie } from 'src/app/model/article';
 import { ArticleService } from 'src/app/services/article.service';
+import { CategorieService } from 'src/app/services/categorie.service';
 
 @Component({
   selector: 'app-update-article-modal',
@@ -12,19 +14,33 @@ export class UpdateArticleModalComponent implements OnInit {
   fileName: string;
   categories: Categorie[];
   article: Article;
+  categorie: FormControl;
+  idCategorie: number;
 
   constructor(
     public dialogRef: MatDialogRef<UpdateArticleModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any[],
     private articleService: ArticleService,
+    private categorieService: CategorieService,
   ) { }
 
   ngOnInit(): void {
-    this.articleService.getAllCategories().subscribe({
-      next: (result) => this.categories = result,
-    })
     this.article = this.data[0];
     this.categories = this.data[1];
+    if (this.article.categorie) {
+      this.idCategorie = this.article.categorie.idCategorie;
+    }
+  }
+
+  close() {
+    if (!this.idCategorie) {
+      this.article.categorie = null;
+    }
+    else {
+      this.article.categorie = new Categorie();
+      this.article.categorie.idCategorie = this.idCategorie;
+    }
+    this.dialogRef.close(this.article);
   }
 
   changeListener($event): void {

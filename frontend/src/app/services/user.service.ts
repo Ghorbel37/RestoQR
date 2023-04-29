@@ -1,31 +1,31 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { User } from '../model/user';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
-import { Article } from '../model/article';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ArticleService {
+export class UserService {
 
-  private endpoint = 'articles';
+  private endpoint = 'users';
 
   constructor(private httpClient: HttpClient) { }
 
-  getAll(): Observable<Article[]> {
-    return this.httpClient.get<Article[]>(`${environment.apiUrl}${this.endpoint}`);
+  getAll(): Observable<User[]> {
+    return this.httpClient.get<User[]>(`${environment.apiUrl}${this.endpoint}`);
   }
 
-  save(dto: Article): Observable<Object> {
+  save(dto: User): Observable<Object> {
     return this.httpClient.post(`${environment.apiUrl}${this.endpoint}`, dto);
   }
 
-  getById(id: number): Observable<Article> {
-    return this.httpClient.get<Article>(`${environment.apiUrl}${this.endpoint}/${id}`);
+  getById(id: number): Observable<User> {
+    return this.httpClient.get<User>(`${environment.apiUrl}${this.endpoint}/${id}`);
   }
 
-  update(id: number, dto: Article): Observable<Object> {
+  update(id: number, dto: User): Observable<Object> {
     return this.httpClient.put(`${environment.apiUrl}${this.endpoint}/${id}`, dto);
   }
 

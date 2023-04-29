@@ -23,9 +23,7 @@ export class CategoriesComponent implements OnInit {
     private changeDetectorRef: ChangeDetectorRef,
     private notificationService: NotificationService,
     private dialog: MatDialog,
-  ) {
-
-  }
+  ) { }
   ngOnInit(): void {
     this.refresh();
     this.notificationService.openSnackBar('Categories affichés')

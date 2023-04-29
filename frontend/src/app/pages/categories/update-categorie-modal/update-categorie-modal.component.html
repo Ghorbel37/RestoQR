@@ -3,7 +3,7 @@
     <p>Informations categorie</p>
     <mat-form-field appearance="fill">
         <mat-label>Nom</mat-label>
-        <input matInput [(ngModel)]="data.nom">
+        <input matInput [formControl]="nomCategorie">
     </mat-form-field>
 
     <div class="center">
@@ -22,5 +22,6 @@
 </div>
 <div mat-dialog-actions>
     <button mat-button [mat-dialog-close]="false">Annuler</button>
-    <button mat-button [mat-dialog-close]="data" color="primary" cdkFocusInitial>Modifier</button>
+    <button mat-button [mat-dialog-close]="data" color="primary" [disabled]="nomCategorie.invalid"
+        cdkFocusInitial>Modifier</button>
 </div>

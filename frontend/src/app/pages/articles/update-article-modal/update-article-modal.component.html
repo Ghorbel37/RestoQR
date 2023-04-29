@@ -28,8 +28,8 @@
 
     <mat-form-field appearance="fill">
         <mat-label>Categorie</mat-label>
-        <mat-select [(ngModel)]="article.categorie.idCategorie">
-            <mat-option>--</mat-option>
+        <mat-select [(value)]="idCategorie">
+            <mat-option [value]="null">--</mat-option>
             <mat-option *ngFor="let categorie of categories" [value]="categorie.idCategorie">
                 {{categorie.nom}}
             </mat-option>
@@ -52,5 +52,5 @@
 </div>
 <div mat-dialog-actions>
     <button mat-button [mat-dialog-close]="false">Annuler</button>
-    <button mat-button [mat-dialog-close]="data" color="primary" cdkFocusInitial>Modifier</button>
+    <button mat-button (click)="close()" color="primary" cdkFocusInitial>Modifier</button>
 </div>
