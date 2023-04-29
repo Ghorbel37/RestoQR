@@ -10,7 +10,7 @@
 
     <mat-form-field appearance="fill">
         <mat-label>Libelle</mat-label>
-        <input matInput [(ngModel)]="article.libelle" placeholder="Spaghetti, soupe, etc.">
+        <input matInput [(ngModel)]="article.libelle" #libelle="ngModel" required placeholder="Spaghetti, soupe, etc.">
         <mat-error>
             Le libelle est obligatoire
         </mat-error>
@@ -23,7 +23,7 @@
 
     <mat-form-field appearance="fill">
         <mat-label>Prix</mat-label>
-        <input matInput [(ngModel)]="article.prix">
+        <input type="number" matInput [(ngModel)]="article.prix" min="0" #prix="ngModel" required>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
@@ -55,7 +55,8 @@
     </div>
 
     <mat-action-row>
-        <button mat-button color="primary" (click)="submit();expansion.close();">Créer</button>
+        <button mat-button color="primary" [disabled]="libelle.invalid||prix.invalid"
+            (click)="submit();expansion.close();">Créer</button>
     </mat-action-row>
 
 </mat-expansion-panel>

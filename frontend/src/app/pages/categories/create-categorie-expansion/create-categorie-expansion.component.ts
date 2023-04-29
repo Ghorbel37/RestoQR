@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
 import { Categorie } from 'src/app/model/categorie';
 import { CategorieService } from 'src/app/services/categorie.service';
 import { NotificationService } from 'src/app/services/notification.service';
@@ -11,7 +10,6 @@ import { NotificationService } from 'src/app/services/notification.service';
 })
 export class CreateCategorieExpansionComponent {
   categorie: Categorie = new Categorie();
-  nomCategorie: FormControl = new FormControl<string>(this.categorie.nom, [Validators.required]);
   fileName: string;
   @Output("refresh") refresh: EventEmitter<any> = new EventEmitter();
 

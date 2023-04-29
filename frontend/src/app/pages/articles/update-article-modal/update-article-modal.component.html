@@ -3,7 +3,7 @@
     <p>Informations articles</p>
     <mat-form-field appearance="fill">
         <mat-label>Libelle</mat-label>
-        <input matInput [(ngModel)]="article.libelle">
+        <input matInput [(ngModel)]="article.libelle" #libelle="ngModel" required>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
@@ -13,7 +13,7 @@
 
     <mat-form-field appearance="fill">
         <mat-label>Prix</mat-label>
-        <input matInput [(ngModel)]="article.prix">
+        <input type="number" matInput [(ngModel)]="article.prix" min="0" #prix="ngModel" required>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
@@ -52,5 +52,6 @@
 </div>
 <div mat-dialog-actions>
     <button mat-button [mat-dialog-close]="false">Annuler</button>
-    <button mat-button (click)="close()" color="primary" cdkFocusInitial>Modifier</button>
+    <button mat-button (click)="close()" color="primary" [disabled]="libelle.invalid||prix.invalid"
+        cdkFocusInitial>Modifier</button>
 </div>

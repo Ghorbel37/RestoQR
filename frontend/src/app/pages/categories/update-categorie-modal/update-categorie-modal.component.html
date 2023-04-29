@@ -3,7 +3,7 @@
     <p>Informations categorie</p>
     <mat-form-field appearance="fill">
         <mat-label>Nom</mat-label>
-        <input matInput [formControl]="nomCategorie">
+        <input matInput [(ngModel)]="data.nom" #nomCategorie="ngModel" required>
     </mat-form-field>
 
     <div class="center">

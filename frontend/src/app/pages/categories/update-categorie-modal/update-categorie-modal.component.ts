@@ -1,5 +1,4 @@
 import { Component, Inject } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Categorie } from 'src/app/model/categorie';
 
@@ -9,7 +8,6 @@ import { Categorie } from 'src/app/model/categorie';
   styleUrls: ['./update-categorie-modal.component.css']
 })
 export class UpdateCategorieModalComponent {
-  nomCategorie: FormControl = new FormControl<string>(this.data.nom, [Validators.required]);
   fileName: string;
 
   constructor(
