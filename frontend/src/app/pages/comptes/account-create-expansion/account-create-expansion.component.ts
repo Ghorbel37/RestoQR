@@ -8,11 +8,10 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './account-create-expansion.component.html',
   styleUrls: ['./account-create-expansion.component.css']
 })
-export class AccountCreateExpansionComponent implements OnInit {
+export class AccountCreateExpansionComponent {
   user: User = new User();
-  roles: string[] = ["ADMIN", "PERSONNEL", "CLIENT"];
-  // role: Role;
-  // this = Object.values(Role);//.filter(value => typeof value !== 'number');;
+  roles = Object.values(Role).filter(value => isNaN(Number(value)));
+
   @Output("refresh") refresh: EventEmitter<any> = new EventEmitter();
 
   constructor(
@@ -20,12 +19,7 @@ export class AccountCreateExpansionComponent implements OnInit {
     private notificationService: NotificationService,
   ) { }
 
-  ngOnInit(): void {
-    // this.enum = Object.keys(this.user.role).filter(f => !isNaN(Number(f)));
-  }
-
   submit() {
-
     this.userService.save(this.user).subscribe(data => {
       this.refresh.emit();
       this.notificationService.openSnackBar("Compte ajouté avec succés");

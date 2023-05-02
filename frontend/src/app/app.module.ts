@@ -29,6 +29,7 @@ import { AlertDialogComponent } from './pages/_common/alert-dialog/alert-dialog.
 import { CreateAccountComponent } from './pages/comptes/create-account/create-account.component';
 import { AccountListComponent } from './pages/comptes/account-list/account-list.component';
 import { AccountCreateExpansionComponent } from './pages/comptes/account-create-expansion/account-create-expansion.component';
+import { ChangePasswordModalComponent } from './pages/comptes/change-password-modal/change-password-modal.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { AccountCreateExpansionComponent } from './pages/comptes/account-create-
     CreateAccountComponent,
     AccountListComponent,
     AccountCreateExpansionComponent,
+    ChangePasswordModalComponent,
   ],
   imports: [
     BrowserModule,

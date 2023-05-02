@@ -1,24 +1,19 @@
-import { Component, Inject } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Table } from 'src/app/model/table';
-import { RestaurantService } from 'src/app/services/restaurant.service';
 
 @Component({
   selector: 'app-commande-modal',
   templateUrl: './commande-modal.component.html',
   styleUrls: ['./commande-modal.component.css']
 })
-export class CommandeModalComponent {
+export class CommandeModalComponent implements OnInit {
   numMax: number;
   table: Table;
   numeroTable: number;
   numTable: FormControl;
   instructions: FormControl;
-
-  // commandeForm = new FormGroup({
-  //   numTable: new FormControl(0, [Validators.required, Validators.min(0), Validators.max(this.data)]),
-  // });
 
   constructor(
     public dialogRef: MatDialogRef<CommandeModalComponent>,
@@ -29,12 +24,10 @@ export class CommandeModalComponent {
     this.numMax = this.data.nbrTables;
     this.table = this.data.table;
     this.numTable = new FormControl<number>(0, [Validators.required, Validators.min(1), Validators.max(this.numMax)]);
-    this.instructions = new FormControl(null, [Validators.maxLength(255)]);
+    this.instructions = new FormControl<string>(null, [Validators.maxLength(255)]);
 
     if (this.table) {
       this.numTable.setValue(this.table.numero);
     }
-
-    console.log(this.data);
   }
 }
