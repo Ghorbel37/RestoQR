@@ -15,11 +15,11 @@ import java.time.LocalDate;
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idClient;
+    private Long id;
     private String firstname;
     private String lastname;
     private LocalDate dateNais;
-    private String numero;
+    private Integer numero;
     @OneToOne
     private User user;
 }

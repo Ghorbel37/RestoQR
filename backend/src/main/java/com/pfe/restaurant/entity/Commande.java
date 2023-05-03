@@ -20,7 +20,8 @@ public class Commande implements Serializable {
     private Long idCommande;
     private LocalDate date;
     private Etat etat;
-    @OneToMany(cascade = CascadeType.DETACH,orphanRemoval = true)
+    private String instructions;
+    @OneToMany
     private Collection<LigneCommande> ligneCommandes;
     @ManyToOne
     private Client client;

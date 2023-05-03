@@ -1,4 +1,4 @@
-package com.pfe.restaurant.ressource;
+package com.pfe.restaurant.controller;
 
 import com.pfe.restaurant.dto.LigneCommandeDto;
 import com.pfe.restaurant.service.LigneCommandeService;
@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/lignecommandes")
+@RequestMapping("/api/ligneCommandes")
 @AllArgsConstructor
-public class LigneCommandeRessource {
+public class LigneCommandeController {
 
     private final LigneCommandeService ligneCommandeService;
 

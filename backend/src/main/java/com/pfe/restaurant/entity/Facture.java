@@ -17,7 +17,7 @@ import java.time.LocalDate;
 @EqualsAndHashCode
 public class Facture implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idFacture;
     private LocalDate dateFacture;
     private BigDecimal montantTotale;

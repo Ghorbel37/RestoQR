@@ -1,4 +1,4 @@
-package com.pfe.restaurant.ressource;
+package com.pfe.restaurant.controller;
 
 import com.pfe.restaurant.dto.TableRestaurantDto;
 import com.pfe.restaurant.service.TableRestaurantService;
@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/tablerestaurants")
+@RequestMapping("/api/tables")
 @AllArgsConstructor
-public class TableRestaurantRessource {
+public class TableRestaurantController {
     private final TableRestaurantService tableRestaurantService;
 
     @PostMapping

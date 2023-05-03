@@ -39,7 +39,7 @@ public class ClientService {
     public ClientDto update(Long id, ClientDto clientDto) {
         Client existingClient = clientRepository.findById(id).orElseThrow(() -> new RuntimeException("Client not found"));
         Client updatedClient = clientMapper.fromDtoToEntity(clientDto);
-        updatedClient.setIdClient(existingClient.getIdClient());
+        updatedClient.setId(existingClient.getId());
         clientRepository.save(updatedClient);
         return clientMapper.fromEntityToDto(updatedClient);
     }

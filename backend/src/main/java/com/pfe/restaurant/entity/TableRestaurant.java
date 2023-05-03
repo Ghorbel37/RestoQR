@@ -14,8 +14,8 @@ import java.io.Serializable;
 @EqualsAndHashCode
 public class TableRestaurant implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idTableRestaurant;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long idTable;
     private int numero;
     @ManyToOne
     private Zone zone;

@@ -15,17 +15,15 @@ import java.math.BigDecimal;
 @EqualsAndHashCode
 public class Article implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idArticle;
     private String description;
     private String libelle;
     private BigDecimal prix;
     private String reference;
+    private String duree;
+    @Lob
     private String image;
     @ManyToOne
-    private SousCategorie sousCategorie;
-    //@OneToMany (mappedBy="article")
-    //private Collection<LigneCommande> ligneCommandes;
-
-
+    private Categorie categorie;
 }

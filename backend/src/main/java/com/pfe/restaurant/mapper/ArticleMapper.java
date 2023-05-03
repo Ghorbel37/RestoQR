@@ -9,6 +9,4 @@ import org.springframework.stereotype.Component;
 @Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public interface ArticleMapper extends GenericMapper<ArticleDto, Article> {
 
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    Article partialUpdate(ArticleDto articleDto, @MappingTarget Article article);
 }

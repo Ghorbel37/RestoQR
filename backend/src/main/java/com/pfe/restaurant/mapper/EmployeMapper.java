@@ -2,7 +2,9 @@ package com.pfe.restaurant.mapper;
 
 import com.pfe.restaurant.dto.EmployeDto;
 import com.pfe.restaurant.entity.Employe;
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.MappingConstants;
+import org.mapstruct.ReportingPolicy;
 import org.springframework.stereotype.Component;
 
 @Component

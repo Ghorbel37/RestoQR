@@ -21,6 +21,12 @@ public class LigneCommandeService {
         return ligneCommandeMapper.fromEntityToDto(ligneCommande);
     }
 
+    public List<LigneCommandeDto> saveAll(List<LigneCommandeDto> ligneCommandeDto) {
+        List<LigneCommande> ligneCommande = ligneCommandeMapper.fromDtoListToEntities(ligneCommandeDto);
+        ligneCommande = ligneCommandeRepository.saveAll(ligneCommande);
+        return ligneCommandeMapper.fromEntitiesToDtoList(ligneCommande);
+    }
+
     public List<LigneCommandeDto> findAll() {
         List<LigneCommande> ligneCommandes = ligneCommandeRepository.findAll();
         return ligneCommandeMapper.fromEntitiesToDtoList(ligneCommandes);

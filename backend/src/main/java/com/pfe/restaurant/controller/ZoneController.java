@@ -1,4 +1,4 @@
-package com.pfe.restaurant.ressource;
+package com.pfe.restaurant.controller;
 
 import com.pfe.restaurant.dto.ZoneDto;
 import com.pfe.restaurant.service.ZoneService;
@@ -11,7 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/zones")
 @AllArgsConstructor
-public class ZoneRessource {
+public class ZoneController {
     private final ZoneService zoneService;
 
     @PostMapping

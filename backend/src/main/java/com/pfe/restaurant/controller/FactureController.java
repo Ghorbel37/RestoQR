@@ -1,4 +1,4 @@
-package com.pfe.restaurant.ressource;
+package com.pfe.restaurant.controller;
 
 import com.pfe.restaurant.dto.FactureDto;
 import com.pfe.restaurant.service.FactureService;
@@ -11,7 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/factures")
 @AllArgsConstructor
-public class FactureRessource {
+public class FactureController {
     private final FactureService factureService;
 
     @PostMapping

@@ -39,7 +39,7 @@ public class EmployeService {
     public EmployeDto update(Long id, EmployeDto employeDto) {
         Employe existingEmploye = employeRepository.findById(id).orElseThrow(() -> new RuntimeException("Employe not found"));
         Employe updatedEmploye = employeMapper.fromDtoToEntity(employeDto);
-        updatedEmploye.setIdEmploye(existingEmploye.getIdEmploye());
+        updatedEmploye.setId(existingEmploye.getId());
         employeRepository.save(updatedEmploye);
         return employeMapper.fromEntityToDto(updatedEmploye);
     }

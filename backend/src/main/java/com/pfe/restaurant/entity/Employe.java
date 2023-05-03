@@ -16,7 +16,7 @@ import java.io.Serializable;
 public class Employe implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idEmploye;
+    private Long id;
     private String nom;
     @OneToOne
     private User user;

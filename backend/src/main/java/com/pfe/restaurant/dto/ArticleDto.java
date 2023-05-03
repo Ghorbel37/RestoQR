@@ -21,6 +21,18 @@ public class ArticleDto implements Serializable {
     private String libelle;
     private BigDecimal prix;
     private String reference;
+    private String duree;
     private String image;
-    private SousCategorieDto sousCategorie;
+    private CategorieDto categorie;
+
+    /**
+     * A DTO for the {@link com.example.raed.model.Categorie} entity
+     */
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class CategorieDto implements Serializable {
+        private Long idCategorie;
+        private String nom;
+    }
 }

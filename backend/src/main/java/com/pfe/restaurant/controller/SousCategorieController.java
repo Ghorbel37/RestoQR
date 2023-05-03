@@ -1,4 +1,4 @@
-package com.pfe.restaurant.ressource;
+package com.pfe.restaurant.controller;
 
 import com.pfe.restaurant.dto.SousCategorieDto;
 import com.pfe.restaurant.service.SousCategorieService;
@@ -11,7 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/souscategories")
 @AllArgsConstructor
-public class SousCategorieRessource {
+public class SousCategorieController {
 
     private final SousCategorieService sousCategorieService;
 

@@ -15,10 +15,10 @@ import java.math.BigDecimal;
 @EqualsAndHashCode
 public class LigneCommande implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idLigneCommande;
     private BigDecimal prixLigne;
-    private float quantite;
+    private int quantite;
     @ManyToOne
     private Article article;
 }

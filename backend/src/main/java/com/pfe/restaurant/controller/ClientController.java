@@ -1,4 +1,4 @@
-package com.pfe.restaurant.ressource;
+package com.pfe.restaurant.controller;
 
 import com.pfe.restaurant.dto.ClientDto;
 import com.pfe.restaurant.service.ClientService;
@@ -11,7 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/clients")
 @AllArgsConstructor
-public class ClientRessource {
+public class ClientController {
     private final ClientService clientService;
 
     @PostMapping
