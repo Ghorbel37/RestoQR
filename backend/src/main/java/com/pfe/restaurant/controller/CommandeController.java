@@ -3,9 +3,11 @@ package com.pfe.restaurant.controller;
 import com.pfe.restaurant.dto.CommandeDto;
 import com.pfe.restaurant.service.CommandeService;
 import lombok.AllArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -42,5 +44,11 @@ public class CommandeController {
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         commandeService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/ByDate/{date}")
+    public ResponseEntity<List<CommandeDto>> getCommandesByDate(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date) {
+        List<CommandeDto> result = commandeService.findByDate(date);
+        return ResponseEntity.ok(result);
     }
 }

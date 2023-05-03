@@ -1,6 +1,7 @@
 package com.pfe.restaurant.controller;
 
 import com.pfe.restaurant.dto.ClientDto;
+import com.pfe.restaurant.dto.UserDto;
 import com.pfe.restaurant.service.ClientService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -42,5 +43,15 @@ public class ClientController {
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         clientService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+
+    //TODO http://localhost:9090/api/clients/user?userId=8
+    @GetMapping("/user")
+    public ResponseEntity<ClientDto> getClientByUser(@RequestParam Long userId) {
+        UserDto userDto = new UserDto();
+        userDto.setIdUser(userId);
+        ClientDto result = clientService.findByUser(userDto);
+        return ResponseEntity.ok(result);
     }
 }

@@ -35,7 +35,7 @@ public class LigneCommandeController {
 
     @PutMapping("/{id}")
     public ResponseEntity<LigneCommandeDto> update(@PathVariable Long id, @RequestBody LigneCommandeDto ligneCommandeDto) {
-        LigneCommandeDto updatedLigneCommandeDto = ligneCommandeService.update(id,ligneCommandeDto);
+        LigneCommandeDto updatedLigneCommandeDto = ligneCommandeService.update(id, ligneCommandeDto);
         return ResponseEntity.ok(updatedLigneCommandeDto);
     }
 
@@ -43,5 +43,17 @@ public class LigneCommandeController {
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         ligneCommandeService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/saveAll")
+    public ResponseEntity<List<LigneCommandeDto>> saveAll(@RequestBody List<LigneCommandeDto> ligneCommandeDtos) {
+        List<LigneCommandeDto> savedLigneCommandeDtos = ligneCommandeService.saveAll(ligneCommandeDtos);
+        return ResponseEntity.ok(savedLigneCommandeDtos);
+    }
+
+    @PutMapping("/quantite/{id}")
+    public ResponseEntity<LigneCommandeDto> updateLigneCommandeQuantite(@PathVariable Long id, @RequestParam int quantite) {
+        LigneCommandeDto updatedLigneCommandeDto = ligneCommandeService.updateQuantite(id, quantite);
+        return ResponseEntity.ok(updatedLigneCommandeDto);
     }
 }

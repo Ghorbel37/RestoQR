@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/tables")
@@ -37,7 +38,12 @@ public class TableRestaurantController {
         TableRestaurantDto updatedTableRestaurantDto = tableRestaurantService.update(id,tableRestaurantDto);
         return ResponseEntity.ok(updatedTableRestaurantDto);
     }
-
+    @GetMapping("/numero/{numero}")
+    public ResponseEntity<TableRestaurantDto> getTableByNumero(@PathVariable int numero) {
+        Optional<TableRestaurantDto> result = tableRestaurantService.findByNumero(numero);
+        return result.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         tableRestaurantService.delete(id);
