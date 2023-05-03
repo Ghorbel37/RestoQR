@@ -1,10 +1,12 @@
 package com.pfe.restaurant.model;
 
+import com.example.raed.model.Rating;
 import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Getter
@@ -26,4 +28,6 @@ public class Article implements Serializable {
     private String image;
     @ManyToOne
     private Categorie categorie;
+    @OneToMany
+    private List<Rating> ratings;
 }

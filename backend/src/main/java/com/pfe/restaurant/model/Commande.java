@@ -20,7 +20,7 @@ public class Commande implements Serializable {
     private Long idCommande;
     private LocalDate date;
     private Etat etat;
-    private String instructions;
+    private String description;
     @OneToMany
     private Collection<LigneCommande> ligneCommandes;
     @ManyToOne

@@ -17,6 +17,7 @@ public class TableRestaurant implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idTable;
     private int numero;
+    @JsonIgnore
     @ManyToOne
     private Zone zone;
 

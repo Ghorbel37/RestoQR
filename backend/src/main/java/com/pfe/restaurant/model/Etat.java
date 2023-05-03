@@ -1,7 +1,7 @@
 package com.pfe.restaurant.model;
 
 public enum Etat {
-    validé,
-    annulé,
+    valide,
+    annule,
     En_cours,
 }
