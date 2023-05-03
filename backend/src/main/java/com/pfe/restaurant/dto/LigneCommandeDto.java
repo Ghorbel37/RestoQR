@@ -16,6 +16,6 @@ import java.math.BigDecimal;
 public class LigneCommandeDto implements Serializable {
     private Long idLigneCommande;
     private BigDecimal prixLigne;
-    private float quantite;
+    private int quantite;
     private ArticleDto article;
 }
