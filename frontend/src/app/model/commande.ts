@@ -11,7 +11,7 @@ export class Commande {
 }
 
 enum Etat {
-    validé,
-    annulé,
+    valide,
+    annule,
     En_cours,
 }
