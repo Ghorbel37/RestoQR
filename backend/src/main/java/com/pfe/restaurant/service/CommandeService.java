@@ -7,6 +7,7 @@ import com.pfe.restaurant.repository.CommandeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -42,5 +43,9 @@ public class CommandeService {
         updatedCommande.setIdCommande(existingCommande.getIdCommande());
         commandeRepository.save(updatedCommande);
         return commandeMapper.fromEntityToDto(updatedCommande);
+    }
+    public List<CommandeDto> findByDate(LocalDate date) {
+        List<Commande> commandes = commandeRepository.findByDate(date);
+        return commandeMapper.fromEntitiesToDtoList(commandes);
     }
 }

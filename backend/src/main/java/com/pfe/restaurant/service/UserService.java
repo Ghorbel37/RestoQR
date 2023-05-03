@@ -10,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -31,7 +32,12 @@ public class UserService {
     }
 
     public UserDto findOne(Long id) {
-        return userMapper.fromEntityToDto(userRepository.findById(id).get());
+        Optional<User> optionalUser = userRepository.findById(id);
+        if (optionalUser.isPresent()) {
+            return userMapper.fromEntityToDto(optionalUser.get());
+        } else {
+            throw new RuntimeException("User with ID " + id + " not found");
+        }
     }
 
     public void delete(Long id) {
@@ -45,5 +51,13 @@ public class UserService {
         updatedUser.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
         userRepository.save(updatedUser);
         return userMapper.fromEntityToDto(updatedUser);
+    }
+    public UserDto findByEmail(String email) {
+        Optional<User> optionalUser = userRepository.findByEmail(email);
+        if (optionalUser.isPresent()) {
+            return userMapper.fromEntityToDto(optionalUser.get());
+        } else {
+            throw new RuntimeException("User with email " + email + " not found");
+        }
     }
 }

@@ -7,6 +7,7 @@ import com.pfe.restaurant.repository.LigneCommandeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -22,9 +23,9 @@ public class LigneCommandeService {
     }
 
     public List<LigneCommandeDto> saveAll(List<LigneCommandeDto> ligneCommandeDto) {
-        List<LigneCommande> ligneCommande = ligneCommandeMapper.fromDtoListToEntities(ligneCommandeDto);
-        ligneCommande = ligneCommandeRepository.saveAll(ligneCommande);
-        return ligneCommandeMapper.fromEntitiesToDtoList(ligneCommande);
+        List<LigneCommande> ligneCommandes = ligneCommandeMapper.fromDtoListToEntities(ligneCommandeDto);
+        ligneCommandes = ligneCommandeRepository.saveAll(ligneCommandes);
+        return ligneCommandeMapper.fromEntitiesToDtoList(ligneCommandes);
     }
 
     public List<LigneCommandeDto> findAll() {
@@ -46,5 +47,14 @@ public class LigneCommandeService {
         updatedLigneCommande.setIdLigneCommande(existingLigneCommande.getIdLigneCommande());
         ligneCommandeRepository.save(updatedLigneCommande);
         return ligneCommandeMapper.fromEntityToDto(updatedLigneCommande);
+    }
+    public LigneCommandeDto updateQuantite(Long id, int quantite) {
+        LigneCommande existingLigneCommande = ligneCommandeRepository.findById(id).orElseThrow(() -> new RuntimeException("LigneCommande not found"));
+        existingLigneCommande.setQuantite(quantite);
+        BigDecimal prixArticle = existingLigneCommande.getArticle().getPrix();
+        BigDecimal nouveauPrixLigne = BigDecimal.valueOf(quantite).multiply(prixArticle);
+        existingLigneCommande.setPrixLigne(nouveauPrixLigne);
+        ligneCommandeRepository.save(existingLigneCommande);
+        return ligneCommandeMapper.fromEntityToDto(existingLigneCommande);
     }
 }

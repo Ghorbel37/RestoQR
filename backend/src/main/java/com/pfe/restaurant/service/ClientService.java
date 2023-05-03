@@ -2,6 +2,8 @@ package com.pfe.restaurant.service;
 
 
 import com.pfe.restaurant.dto.ClientDto;
+import com.pfe.restaurant.dto.UserDto;
+import com.pfe.restaurant.mapper.UserMapper;
 import com.pfe.restaurant.model.Client;
 import com.pfe.restaurant.mapper.ClientMapper;
 import com.pfe.restaurant.repository.ClientRepository;
@@ -15,6 +17,7 @@ import java.util.List;
 public class ClientService {
     private final ClientRepository clientRepository;
     private final ClientMapper clientMapper;
+    private final UserMapper userMapper;
 
 
     public ClientDto save(ClientDto clientDto) {
@@ -42,5 +45,10 @@ public class ClientService {
         updatedClient.setId(existingClient.getId());
         clientRepository.save(updatedClient);
         return clientMapper.fromEntityToDto(updatedClient);
+    }
+
+    public ClientDto findByUser(UserDto userDto) {
+        Client client = clientRepository.findByUser(userMapper.fromDtoToEntity(userDto));
+        return clientMapper.fromEntityToDto(client);
     }
 }

@@ -66,6 +66,7 @@ public class TableRestaurantService {
         tableRestaurantRepository.save(updatedTableRestaurant);
         return tableRestaurantMapper.fromEntityToDto(updatedTableRestaurant);
     }
+
 }
 
 
