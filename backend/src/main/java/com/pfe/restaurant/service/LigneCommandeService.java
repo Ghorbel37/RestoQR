@@ -1,7 +1,7 @@
 package com.pfe.restaurant.service;
 
 import com.pfe.restaurant.dto.LigneCommandeDto;
-import com.pfe.restaurant.entity.LigneCommande;
+import com.pfe.restaurant.model.LigneCommande;
 import com.pfe.restaurant.mapper.LigneCommandeMapper;
 import com.pfe.restaurant.repository.LigneCommandeRepository;
 import lombok.AllArgsConstructor;

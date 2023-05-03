@@ -1,6 +1,6 @@
 package com.pfe.restaurant.repository;
 
-import com.pfe.restaurant.entity.User;
+import com.pfe.restaurant.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

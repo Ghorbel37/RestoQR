@@ -1,7 +1,7 @@
 package com.pfe.restaurant.mapper;
 
 import com.pfe.restaurant.dto.ZoneDto;
-import com.pfe.restaurant.entity.Zone;
+import com.pfe.restaurant.model.Zone;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;

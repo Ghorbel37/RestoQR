@@ -1,7 +1,7 @@
 package com.pfe.restaurant.config;
 
-import com.pfe.restaurant.entity.Role;
-import com.pfe.restaurant.entity.User;
+import com.pfe.restaurant.model.Role;
+import com.pfe.restaurant.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

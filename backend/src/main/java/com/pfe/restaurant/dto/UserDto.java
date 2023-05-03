@@ -1,7 +1,7 @@
 package com.pfe.restaurant.dto;
 
-import com.pfe.restaurant.entity.Role;
-import com.pfe.restaurant.entity.User;
+import com.pfe.restaurant.model.Role;
+import com.pfe.restaurant.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

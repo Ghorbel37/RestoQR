@@ -2,7 +2,7 @@ package com.pfe.restaurant.service;
 
 
 import com.pfe.restaurant.dto.ArticleDto;
-import com.pfe.restaurant.entity.Article;
+import com.pfe.restaurant.model.Article;
 import com.pfe.restaurant.mapper.ArticleMapper;
 import com.pfe.restaurant.repository.ArticleRepository;
 import lombok.AllArgsConstructor;

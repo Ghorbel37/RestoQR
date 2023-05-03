@@ -1,6 +1,6 @@
 package com.pfe.restaurant.dto;
 
-import com.pfe.restaurant.entity.Article;
+import com.pfe.restaurant.model.Article;
 import lombok.*;
 
 import java.io.Serializable;
@@ -26,7 +26,7 @@ public class ArticleDto implements Serializable {
     private CategorieDto categorie;
 
     /**
-     * A DTO for the {@link com.example.raed.model.Categorie} entity
+     * A DTO for the {@link com.pfe.restaurant.model.Categorie} entity
      */
     @Data
     @AllArgsConstructor

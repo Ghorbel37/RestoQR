@@ -1,7 +1,7 @@
 package com.pfe.restaurant.controller;
 
 import com.pfe.restaurant.dto.AuthRequestDto;
-import com.pfe.restaurant.entity.User;
+import com.pfe.restaurant.model.User;
 import com.pfe.restaurant.repository.UserRepository;
 import com.pfe.restaurant.service.JwtService;
 import lombok.AllArgsConstructor;

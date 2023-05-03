@@ -1,4 +1,5 @@
-package com.pfe.restaurant.entity;
+package com.pfe.restaurant.model;
+
 
 import lombok.*;
 
@@ -15,13 +16,13 @@ import java.io.Serializable;
 @AllArgsConstructor
 @ToString
 @EqualsAndHashCode
-public class SousCategorie implements Serializable {
+public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idSousCategorie;
-    private String nom;
-//	@ManyToOne(fetch = FetchType.LAZY)
-//	private Categorie categorie;
-    //@OneToMany
-    //private Collection<Article> articles ;
+    private Long idUser;
+    private String email;
+    private String password;
+    private Role role;
+
+
 }

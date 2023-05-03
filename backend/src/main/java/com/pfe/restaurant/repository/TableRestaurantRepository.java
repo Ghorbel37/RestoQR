@@ -1,6 +1,6 @@
 package com.pfe.restaurant.repository;
 
-import com.pfe.restaurant.entity.TableRestaurant;
+import com.pfe.restaurant.model.TableRestaurant;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

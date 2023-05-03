@@ -1,6 +1,6 @@
 package com.pfe.restaurant.dto;
 
-import com.pfe.restaurant.entity.Etat;
+import com.pfe.restaurant.model.Etat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.util.Collection;
 
 /**
- * A DTO for the {@link com.pfe.restaurant.entity.Commande} entity
+ * A DTO for the {@link com.pfe.restaurant.model.Commande} entity
  */
 @Data
 @AllArgsConstructor

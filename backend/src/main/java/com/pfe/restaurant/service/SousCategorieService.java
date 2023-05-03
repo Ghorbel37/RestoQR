@@ -1,7 +1,7 @@
 package com.pfe.restaurant.service;
 
 import com.pfe.restaurant.dto.SousCategorieDto;
-import com.pfe.restaurant.entity.SousCategorie;
+import com.pfe.restaurant.model.SousCategorie;
 import com.pfe.restaurant.mapper.SousCategorieMapper;
 import com.pfe.restaurant.repository.SousCategorieRepository;
 import lombok.AllArgsConstructor;

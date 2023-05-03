@@ -1,7 +1,7 @@
 package com.pfe.restaurant.mapper;
 
 import com.pfe.restaurant.dto.FactureDto;
-import com.pfe.restaurant.entity.Facture;
+import com.pfe.restaurant.model.Facture;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.ReportingPolicy;

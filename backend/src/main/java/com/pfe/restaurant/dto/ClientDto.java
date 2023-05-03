@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
- * A DTO for the {@link com.pfe.restaurant.entity.Client} entity
+ * A DTO for the {@link com.pfe.restaurant.model.Client} entity
  */
 @Data
 @AllArgsConstructor

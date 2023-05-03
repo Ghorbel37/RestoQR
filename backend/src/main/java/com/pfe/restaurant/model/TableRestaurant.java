@@ -1,4 +1,4 @@
-package com.pfe.restaurant.entity;
+package com.pfe.restaurant.model;
 
 import lombok.*;
 

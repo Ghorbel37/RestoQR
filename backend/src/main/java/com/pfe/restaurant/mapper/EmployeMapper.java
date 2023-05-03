@@ -1,7 +1,7 @@
 package com.pfe.restaurant.mapper;
 
 import com.pfe.restaurant.dto.EmployeDto;
-import com.pfe.restaurant.entity.Employe;
+import com.pfe.restaurant.model.Employe;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.ReportingPolicy;

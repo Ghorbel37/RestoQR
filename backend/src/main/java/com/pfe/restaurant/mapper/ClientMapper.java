@@ -1,7 +1,7 @@
 package com.pfe.restaurant.mapper;
 
 import com.pfe.restaurant.dto.ClientDto;
-import com.pfe.restaurant.entity.Client;
+import com.pfe.restaurant.model.Client;
 import org.mapstruct.*;
 import org.springframework.stereotype.Component;
 

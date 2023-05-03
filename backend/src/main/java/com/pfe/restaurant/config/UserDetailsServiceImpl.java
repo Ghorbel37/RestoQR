@@ -1,6 +1,6 @@
 package com.pfe.restaurant.config;
 
-import com.pfe.restaurant.entity.User;
+import com.pfe.restaurant.model.User;
 import com.pfe.restaurant.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

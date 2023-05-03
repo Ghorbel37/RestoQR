@@ -1,6 +1,6 @@
 package com.pfe.restaurant.dto;
 
-import com.pfe.restaurant.entity.SousCategorie;
+import com.pfe.restaurant.model.SousCategorie;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

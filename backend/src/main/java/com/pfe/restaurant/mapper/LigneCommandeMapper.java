@@ -1,7 +1,7 @@
 package com.pfe.restaurant.mapper;
 
 import com.pfe.restaurant.dto.LigneCommandeDto;
-import com.pfe.restaurant.entity.LigneCommande;
+import com.pfe.restaurant.model.LigneCommande;
 import org.mapstruct.*;
 import org.springframework.stereotype.Component;
 

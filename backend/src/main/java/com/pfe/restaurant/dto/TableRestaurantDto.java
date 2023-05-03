@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 /**
- * A DTO for the {@link com.pfe.restaurant.entity.TableRestaurant} entity
+ * A DTO for the {@link com.pfe.restaurant.model.TableRestaurant} entity
  */
 @Data
 @AllArgsConstructor
@@ -18,7 +18,7 @@ public class TableRestaurantDto implements Serializable {
     private ZoneDto zone;
 
     /**
-     * A DTO for the {@link com.pfe.restaurant.entity.Zone} entity
+     * A DTO for the {@link com.pfe.restaurant.model.Zone} entity
      */
     @Data
     @AllArgsConstructor

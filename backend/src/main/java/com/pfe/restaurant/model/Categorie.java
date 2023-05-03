@@ -1,11 +1,10 @@
-package com.pfe.restaurant.entity;
+package com.pfe.restaurant.model;
 
 import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.List;
 
 @Entity
 @Getter

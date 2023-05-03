@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
- * A DTO for the {@link com.pfe.restaurant.entity.LigneCommande} entity
+ * A DTO for the {@link com.pfe.restaurant.model.LigneCommande} entity
  */
 @Data
 @AllArgsConstructor

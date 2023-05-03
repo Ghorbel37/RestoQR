@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 /**
- * A DTO for the {@link com.pfe.restaurant.entity.Facture} entity
+ * A DTO for the {@link com.pfe.restaurant.model.Facture} entity
  */
 @Data
 @AllArgsConstructor

@@ -2,7 +2,7 @@ package com.pfe.restaurant.service;
 
 
 import com.pfe.restaurant.dto.FactureDto;
-import com.pfe.restaurant.entity.Facture;
+import com.pfe.restaurant.model.Facture;
 import com.pfe.restaurant.mapper.FactureMapper;
 import com.pfe.restaurant.repository.FactureRepository;
 import lombok.AllArgsConstructor;

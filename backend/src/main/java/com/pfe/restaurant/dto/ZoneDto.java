@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * A DTO for the {@link com.pfe.restaurant.entity.Zone} entity
+ * A DTO for the {@link com.pfe.restaurant.model.Zone} entity
  */
 @Data
 @AllArgsConstructor
@@ -19,7 +19,7 @@ public class ZoneDto implements Serializable {
     private List<TableRestaurantDto> tables;
 
     /**
-     * A DTO for the {@link com.pfe.restaurant.entity.TableRestaurant} entity
+     * A DTO for the {@link com.pfe.restaurant.model.TableRestaurant} entity
      */
     @Data
     @AllArgsConstructor

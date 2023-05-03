@@ -2,7 +2,7 @@ package com.pfe.restaurant.service;
 
 
 import com.pfe.restaurant.dto.UserDto;
-import com.pfe.restaurant.entity.User;
+import com.pfe.restaurant.model.User;
 import com.pfe.restaurant.mapper.UserMapper;
 import com.pfe.restaurant.repository.UserRepository;
 import lombok.AllArgsConstructor;
