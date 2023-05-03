@@ -13,7 +13,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EmployeDto implements Serializable {
-    private Long idEmploye;
+    private Long id;
     private String nom;
     private UserDto user;
 }

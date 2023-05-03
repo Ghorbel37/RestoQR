@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ClientDto implements Serializable {
-    private Long idClient;
+    private Long id;
     private String firstname;
     private String lastname;
     private LocalDate dateNais;
