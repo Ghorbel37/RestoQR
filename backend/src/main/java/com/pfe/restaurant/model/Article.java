@@ -1,6 +1,5 @@
 package com.pfe.restaurant.model;
 
-import com.example.raed.model.Rating;
 import lombok.*;
 
 import javax.persistence.*;
