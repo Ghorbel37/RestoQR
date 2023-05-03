@@ -19,6 +19,7 @@ public class CommandeDto implements Serializable {
     private Long idCommande;
     private LocalDate date;
     private Etat etat;
+    private String description ;
     private Collection<LigneCommandeDto> ligneCommandes;
     private ClientDto client;
     private TableRestaurantDto tableRestaurant;

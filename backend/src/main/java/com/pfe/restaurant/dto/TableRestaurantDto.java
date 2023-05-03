@@ -13,7 +13,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TableRestaurantDto implements Serializable {
-    private Long idTableRestaurant;
+    private Long idTable;
     private int numero;
     private ZoneDto zone;
 

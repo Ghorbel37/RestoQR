@@ -25,7 +25,7 @@ public class ZoneDto implements Serializable {
     @AllArgsConstructor
     @NoArgsConstructor
     public static class TableRestaurantDto implements Serializable {
-        private Long idTableRestaurant;
+        private Long idTable;
         private int numero;
     }
 }
