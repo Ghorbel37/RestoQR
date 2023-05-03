@@ -17,5 +17,5 @@
 <div mat-dialog-actions>
     <button mat-button [mat-dialog-close]="false">Annuler</button>
     <button mat-button [mat-dialog-close]="[numTable.value,instructions.value]"
-        [disabled]="numTable.invalid&&instructions.invalid" color="primary">Confirmer</button>
+        [disabled]="numTable.invalid||instructions.invalid" color="primary">Confirmer</button>
 </div>
