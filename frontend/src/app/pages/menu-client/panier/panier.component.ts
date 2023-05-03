@@ -102,7 +102,7 @@ export class PanierComponent implements OnInit {
       next: (data) => {
         this.commande.date = new Date();
         this.commande.etat = 2;
-        this.commande.instructions = instructions;
+        this.commande.description = instructions;
         this.commande.ligneCommandes = this.panier.lignes;
         this.commande.tableRestaurant = data;
         this.saveCommande(this.commande);

@@ -5,7 +5,7 @@ export class Commande {
     idCommande: number;
     date: Date;
     etat: Etat;
-    instructions: string;
+    description: string;
     ligneCommandes: LigneCommande[];
     tableRestaurant: Table;
 }
