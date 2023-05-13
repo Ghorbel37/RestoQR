@@ -1,4 +1,4 @@
-<div>
+<div class="panier">
     <!-- <mat-card class="table-card">
         <mat-card-content> -->
     <h2>Panier</h2>
@@ -53,7 +53,7 @@
     </mat-card> -->
 </div>
 
-<div class="cart-bottom">
+<div class="cart-bottom" #cartBottom>
     <span>Totale: {{panier.prixTotal}} DT</span>
     <div class="cart-buttons">
         <button (click)="emptyCart()" mat-fab extended color="warn" style="margin-right: 6px;">

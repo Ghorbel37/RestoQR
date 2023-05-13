@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild, Renderer2 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { LigneCommande } from 'src/app/model/ligne-commande';
 import { PanierService } from 'src/app/services/panier.service';
@@ -19,6 +19,7 @@ import { AlertDialogComponent, AlertDialogModel } from '../../_common/alert-dial
   styleUrls: ['./panier.component.css']
 })
 export class PanierComponent implements OnInit {
+  // @ViewChild('cartBottom', { static: true }) cartBottomRef!: ElementRef;
   columnsToDisplay = ['image', 'details', 'action'];
   nbrTables: number;
   table: Table;
@@ -31,6 +32,7 @@ export class PanierComponent implements OnInit {
         error: () => this.router.navigate(['/panier']),
       })
     }
+    // this.setCartBottomHeight();
   }
 
   constructor(
@@ -42,7 +44,21 @@ export class PanierComponent implements OnInit {
     private commandeService: CommandeService,
     private ligneCommandeService: LigneCommandeService,
     private route: ActivatedRoute,
+    private renderer: Renderer2
   ) { }
+
+  // setCartBottomHeight() {
+  //   const cartBottom = this.cartBottomRef.nativeElement;
+  //   const contentHeight = document.querySelector('.content')!.clientHeight; // replace with selector for content above "cart-bottom" div
+  //   const windowHeight = window.innerHeight;
+  //   const cartBottomHeight = windowHeight - contentHeight;
+  //   this.renderer.setStyle(cartBottom, 'height', cartBottomHeight + 'px');
+  // }
+
+  // @HostListener('window:resize')
+  // onWindowResize() {
+  //   this.setCartBottomHeight();
+  // }
 
   addToCart(ligne: LigneCommande) {
     this.panier.addToCart(ligne);
