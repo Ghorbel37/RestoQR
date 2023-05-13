@@ -21,7 +21,7 @@ export class LigneCommandeService {
   }
 
   saveAll(dto: LigneCommande[]): Observable<LigneCommande[]> {
-    return this.httpClient.post<LigneCommande[]>(`${environment.apiUrl}${this.endpoint}/multiple`, dto);
+    return this.httpClient.post<LigneCommande[]>(`${environment.apiUrl}${this.endpoint}/saveAll`, dto);
   }
 
   getById(id: number): Observable<LigneCommande> {
