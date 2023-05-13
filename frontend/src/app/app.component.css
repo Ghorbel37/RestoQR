@@ -40,7 +40,11 @@ mat-sidenav {
 }
 
 .navbar-sidenav-container {
-    min-height: 100vh;
+    min-height: calc(100vh - (56px));
+}
+
+#toolbar-header {
+    height: 56px;
 }
 
 mat-sidenav mat-sidenav-container mat-sidenav-content {

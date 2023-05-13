@@ -13,7 +13,7 @@ img {
     width: fit-content;
 }
 
-.cart-bottom {
+/* .cart-bottom {
     position: fixed;
     bottom: 0;
     margin-bottom: 8px;
@@ -21,12 +21,42 @@ img {
 
 }
 
-.cart-bottom span {
+
+
+.cart-buttons button {
+    font-size: 10px;
+} */
+
+.table-card {
+    margin-bottom: 100px;
+}
+
+span {
     font-weight: bold;
     display: inline-block;
     margin-bottom: 12px;
 }
 
-.cart-buttons button {
+button {
     font-size: 10px;
+}
+
+.cart-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.cart-bottom {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    padding: 16px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    box-shadow: 0px -2px 6px rgba(0, 0, 0, 0.1);
 }
