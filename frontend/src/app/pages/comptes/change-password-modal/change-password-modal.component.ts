@@ -25,8 +25,8 @@ export class ChangePasswordModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.passwordForm = this.formBuilder.group({
-      password: new FormControl<string>("", [Validators.required, Validators.minLength(6)]),
-      confirmPassword: new FormControl<string>("", [Validators.required, Validators.minLength(6)]),
+      password: new FormControl<string>("", [Validators.required, Validators.minLength(3)]),
+      confirmPassword: new FormControl<string>("", [Validators.required]),
     }, {
       validator: MustMatch('password', 'confirmPassword'),
     });
