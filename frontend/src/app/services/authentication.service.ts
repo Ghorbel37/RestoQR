@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
 import * as moment from 'moment';
 import { Observable } from 'rxjs';
+import jwt_decode from 'jwt-decode';
 
 
 @Injectable({
@@ -19,17 +20,20 @@ export class AuthenticationService {
     return this.http.post(`${environment.apiUrl}${this.endpoint}/login`, { email, password }, { responseType: 'text' });
   }
 
-  setSession(authResult: string) {
-    localStorage.setItem('id_token', authResult);
-    console.log("jwt token set");
+  setSession(token: string) {
+    let decodedToken = jwt_decode(token);
+
+    localStorage.setItem('id_token', token);
+    localStorage.setItem('expires_at', decodedToken["exp"]);
   }
+
   logout() {
     localStorage.removeItem("id_token");
     localStorage.removeItem("expires_at");
   }
 
   public isLoggedIn(): boolean {
-    return localStorage.getItem("id_token") != null //&& moment().isBefore(this.getExpiration());
+    return localStorage.getItem("id_token") != null && moment().isBefore(this.getExpiration());
   }
 
   isLoggedOut() {
@@ -39,6 +43,6 @@ export class AuthenticationService {
   getExpiration() {
     const expiration = localStorage.getItem("expires_at");
     const expiresAt = JSON.parse(expiration);
-    return moment(expiresAt);
+    return moment.unix(expiresAt);
   }
 }
