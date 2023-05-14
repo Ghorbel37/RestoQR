@@ -5,13 +5,10 @@ import { PanierService } from 'src/app/services/panier.service';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '../../_common/confirm-dialog/confirm-dialog.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommandeModalComponent } from '../commande-modal/commande-modal.component';
-import { RestaurantService } from 'src/app/services/restaurant.service';
-import { TablesService } from 'src/app/services/tables.service';
 import { Table } from 'src/app/model/table';
-import { CommandeService } from 'src/app/services/commande.service';
 import { Commande } from 'src/app/model/commande';
-import { LigneCommandeService } from 'src/app/services/ligne-commande.service';
 import { AlertDialogComponent, AlertDialogModel } from '../../_common/alert-dialog/alert-dialog.component';
+import { MenuService } from 'src/app/services/menu.service';
 
 @Component({
   selector: 'app-panier',
@@ -27,7 +24,7 @@ export class PanierComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.route.snapshot.params['idTable']) {
-      this.tableService.getById(this.route.snapshot.params['idTable']).subscribe({
+      this.menu.getTableById(this.route.snapshot.params['idTable']).subscribe({
         next: (data) => this.table = data,
         error: () => this.router.navigate(['/panier']),
       })
@@ -39,12 +36,9 @@ export class PanierComponent implements OnInit {
     protected panier: PanierService,
     private dialog: MatDialog,
     private router: Router,
-    private restaurant: RestaurantService,
-    private tableService: TablesService,
-    private commandeService: CommandeService,
-    private ligneCommandeService: LigneCommandeService,
     private route: ActivatedRoute,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private menu: MenuService,
   ) { }
 
   // setCartBottomHeight() {
@@ -83,7 +77,7 @@ export class PanierComponent implements OnInit {
   }
 
   passerCommande() {
-    this.restaurant.getRestaurant().subscribe({
+    this.menu.getRestaurant().subscribe({
       next: (restaurant) => {
         this.openCommandePopup(restaurant.nbrTables, this.table);
       },
@@ -105,7 +99,7 @@ export class PanierComponent implements OnInit {
   }
 
   saveLigneCommandes(numTable: number, instructions: string) {
-    this.ligneCommandeService.saveAll(this.panier.lignes).subscribe({
+    this.menu.saveAllLigneCommandes(this.panier.lignes).subscribe({
       next: (data) => {
         this.panier.lignes = data;
         this.createCommande(numTable, instructions);
@@ -114,7 +108,7 @@ export class PanierComponent implements OnInit {
   }
 
   createCommande(numTable: number, instructions: string) {
-    this.tableService.getByNumero(numTable).subscribe({
+    this.menu.getTableByNumero(numTable).subscribe({
       next: (data) => {
         this.commande.date = new Date();
         this.commande.etat = 2;
@@ -127,7 +121,7 @@ export class PanierComponent implements OnInit {
   }
 
   saveCommande(commande: Commande) {
-    this.commandeService.save(commande).subscribe({
+    this.menu.saveCommande(commande).subscribe({
       next: (data) => this.dialog.open(AlertDialogComponent, { maxWidth: "400px", data: new AlertDialogModel("Succés", "Nous avons reçu votre commande") })
         .afterClosed().subscribe(() => {
           this.router.navigate(["/menu"]);

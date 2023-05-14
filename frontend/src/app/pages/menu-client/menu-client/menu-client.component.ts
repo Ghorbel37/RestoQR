@@ -1,15 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { error } from 'console';
 import { Article } from 'src/app/model/article';
 import { Categorie } from 'src/app/model/categorie';
 import { LigneCommande } from 'src/app/model/ligne-commande';
 import { Restaurant } from 'src/app/model/restaurant';
 import { Table } from 'src/app/model/table';
-import { CategorieService } from 'src/app/services/categorie.service';
+import { MenuService } from 'src/app/services/menu.service';
 import { PanierService } from 'src/app/services/panier.service';
-import { RestaurantService } from 'src/app/services/restaurant.service';
-import { TablesService } from 'src/app/services/tables.service';
 
 @Component({
   selector: 'app-menu-client',
@@ -22,26 +19,24 @@ export class MenuClientComponent implements OnInit {
   table: Table;
 
   constructor(
-    private categorieService: CategorieService,
     protected panier: PanierService,
-    private restaurantService: RestaurantService,
     private route: ActivatedRoute,
     private router: Router,
-    private tableService: TablesService,
+    private menu: MenuService,
   ) { }
 
   ngOnInit(): void {
     if (this.route.snapshot.params['idTable']) {
-      this.tableService.getById(this.route.snapshot.params['idTable']).subscribe({
+      this.menu.getTableById(this.route.snapshot.params['idTable']).subscribe({
         next: (data) => this.table = data,
         error: () => this.router.navigate(['menu']),
       })
     }
-    this.restaurantService.getRestaurant().subscribe({
+    this.menu.getRestaurant().subscribe({
       next: (data) =>
         this.restaurant = data,
     });
-    this.categorieService.getAll().subscribe({
+    this.menu.getCategories().subscribe({
       next: (data) => this.categories = data,
     });
   }
