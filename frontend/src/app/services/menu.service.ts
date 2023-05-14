@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 import { Restaurant } from '../model/restaurant';
-import { Categorie } from '../model/article';
+import { Categorie } from '../model/categorie';
 import { Table } from '../model/table';
 import { LigneCommande } from '../model/ligne-commande';
 import { Commande } from '../model/commande';
