@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 /**
- * A DTO for the {@link com.example.raed.model.Restaurant} entity
+ * A DTO for the {@link com.pfe.restaurant.model.Restaurant} entity
  */
 @Data
 @AllArgsConstructor
