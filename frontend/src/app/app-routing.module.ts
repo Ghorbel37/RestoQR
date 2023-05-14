@@ -12,18 +12,18 @@ import { PanierComponent } from './pages/menu-client/panier/panier.component';
 import { AccountListComponent } from './pages/comptes/account-list/account-list.component';
 
 const routes: Routes = [
-  // { path: '', redirectTo: 'articles', pathMatch: 'full' },
+  { path: '', redirectTo: 'articles', pathMatch: 'full' },
   { path: 'codes', component: QrCodesComponent, canActivate: [AuthGuard] },
   { path: 'articles', component: ArticlesComponent, canActivate: [AuthGuard] },
   { path: 'categories', component: CategoriesComponent, canActivate: [AuthGuard] },
   { path: 'categories/edit/:id', component: EditCategorieComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
-  { path: 'profile', component: ProfileRestoComponent, canActivate: [AuthGuard] },
+  { path: 'profile', component: ProfileRestoComponent },
   { path: 'menu', component: MenuClientComponent },
   { path: 'menu/:idTable', component: MenuClientComponent },
   { path: 'panier', component: PanierComponent },
   { path: 'panier/:idTable', component: PanierComponent },
-  { path: 'users', component: AccountListComponent, canActivate: [AuthGuard] },
+  { path: 'users', component: AccountListComponent },
 
   { path: '**', redirectTo: 'menu', pathMatch: 'full' },
 ];
