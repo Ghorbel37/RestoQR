@@ -9,6 +9,4 @@ import org.springframework.stereotype.Component;
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING, uses = {ArticleMapper.class})
 public interface LigneCommandeMapper extends GenericMapper<LigneCommandeDto, LigneCommande> {
 
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    LigneCommande partialUpdate(LigneCommandeDto ligneCommandeDto, @MappingTarget LigneCommande ligneCommande);
 }
