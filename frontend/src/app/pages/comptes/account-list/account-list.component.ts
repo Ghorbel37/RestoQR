@@ -27,7 +27,7 @@ export class AccountListComponent implements OnInit {
 
   ngOnInit(): void {
     this.refresh();
-    this.notificationService.openSnackBar('Categories affichés')
+    this.notificationService.openSnackBar('Comptes affichés')
   }
 
   refresh() {
