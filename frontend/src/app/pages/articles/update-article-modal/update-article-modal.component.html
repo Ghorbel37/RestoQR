@@ -1,40 +1,39 @@
 <h1 mat-dialog-title>Mise a jour article</h1>
 <div mat-dialog-content>
     <p>Informations articles</p>
-    <mat-form-field appearance="fill">
-        <mat-label>Libelle</mat-label>
-        <input matInput [(ngModel)]="article.libelle" #libelle="ngModel" required>
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
-        <mat-label>Description</mat-label>
-        <input matInput [(ngModel)]="article.description">
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
-        <mat-label>Prix</mat-label>
-        <input type="number" matInput [(ngModel)]="article.prix" min="0" #prix="ngModel" required>
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
-        <mat-label>Reference</mat-label>
-        <input matInput [(ngModel)]="article.reference">
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
-        <mat-label>Duree</mat-label>
-        <input matInput [(ngModel)]="article.duree">
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
-        <mat-label>Categorie</mat-label>
-        <mat-select [(value)]="idCategorie">
-            <mat-option [value]="null">--</mat-option>
-            <mat-option *ngFor="let categorie of categories" [value]="categorie.idCategorie">
-                {{categorie.nom}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
+    <div class="form-fields">
+        <mat-form-field appearance="fill">
+            <mat-label>Libelle</mat-label>
+            <input matInput [(ngModel)]="article.libelle" #libelle="ngModel" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Description</mat-label>
+            <input matInput [(ngModel)]="article.description">
+        </mat-form-field>
+        <mat-form-field appearance="fill" floatLabel="always">
+            <mat-label>Prix</mat-label>
+            <input type="number" matInput [(ngModel)]="article.prix" min="0" #prix="ngModel" placeholder="0.00"
+                required>
+            <span matTextSuffix>TND</span>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Reference</mat-label>
+            <input matInput [(ngModel)]="article.reference">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Duree</mat-label>
+            <input matInput [(ngModel)]="article.duree">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Categorie</mat-label>
+            <mat-select [(value)]="idCategorie">
+                <mat-option [value]="null">--</mat-option>
+                <mat-option *ngFor="let categorie of categories" [value]="categorie.idCategorie">
+                    {{categorie.nom}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
 
     <div class="center">
         <mat-label *ngIf="article.image">Image</mat-label><br>

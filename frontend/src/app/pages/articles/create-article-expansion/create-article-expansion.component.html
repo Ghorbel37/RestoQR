@@ -8,43 +8,43 @@
         </mat-panel-description>
     </mat-expansion-panel-header>
 
-    <mat-form-field appearance="fill">
-        <mat-label>Libelle</mat-label>
-        <input matInput [(ngModel)]="article.libelle" #libelle="ngModel" required placeholder="Spaghetti, soupe, etc.">
-        <mat-error>
-            Le libelle est obligatoire
-        </mat-error>
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
-        <mat-label>Description</mat-label>
-        <input matInput [(ngModel)]="article.description">
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
-        <mat-label>Prix</mat-label>
-        <input type="number" matInput [(ngModel)]="article.prix" min="0" #prix="ngModel" required>
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
-        <mat-label>Reference</mat-label>
-        <input matInput [(ngModel)]="article.reference">
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
-        <mat-label>Duree</mat-label>
-        <input matInput [(ngModel)]="article.duree">
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
-        <mat-label>Categorie</mat-label>
-        <mat-select [(ngModel)]="article.categorie">
-            <mat-option>--</mat-option>
-            <mat-option *ngFor="let categorie of categories" [value]="categorie">
-                {{categorie.nom}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
+    <div class="form-fields">
+        <mat-form-field appearance="fill">
+            <mat-label>Libelle</mat-label>
+            <input matInput [(ngModel)]="article.libelle" #libelle="ngModel" required
+                placeholder="Spaghetti, soupe, etc.">
+            <mat-error>
+                Le libelle est obligatoire
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Description</mat-label>
+            <input matInput [(ngModel)]="article.description">
+        </mat-form-field>
+        <mat-form-field appearance="fill" floatLabel="always">
+            <mat-label>Prix</mat-label>
+            <input type="number" matInput [(ngModel)]="article.prix" min="0" #prix="ngModel" placeholder="0.00"
+                required>
+            <span matTextSuffix>TND</span>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Reference</mat-label>
+            <input matInput [(ngModel)]="article.reference">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Duree</mat-label>
+            <input matInput [(ngModel)]="article.duree">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Categorie</mat-label>
+            <mat-select [(ngModel)]="article.categorie">
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let categorie of categories" [value]="categorie">
+                    {{categorie.nom}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
 
     <input type="file" class="file-input" (change)="changeListener($event)" accept="image/png, image/jpeg" #fileUpload>
     <div class="file-upload">
