@@ -4,7 +4,7 @@
   <!-- Body -->
   <mat-sidenav-container class="navbar-sidenav-container">
     <!-- Sidenav content -->
-    <mat-sidenav mode="over" #sidenav>
+    <mat-sidenav mode="over" autoFocus="false" #sidenav>
 
       <div *ngIf="restaurant.logo">
         <div class="center-div" color="primary">
@@ -19,40 +19,45 @@
         <span matSubheader>Admin</span>
 
         <!-- profile nav -->
-        <a mat-list-item [routerLink]="['/profile']">
+        <a mat-list-item [routerLink]="['/profile']" routerLinkActive="active"
+          (click)="sidenav.mode === 'side' || sidenav.close()">
           <mat-icon matListItemIcon>person</mat-icon>
           <span matListItemTitle>Profile</span>
           <span matListItemLine>Gérer votre profile</span>
         </a>
 
         <!-- categorie nav -->
-        <a mat-list-item [routerLink]="['/categories']">
+        <a mat-list-item [routerLink]="['/categories']" routerLinkActive="active"
+          (click)="sidenav.mode === 'side' || sidenav.close()">
           <mat-icon matListItemIcon>label</mat-icon>
           <span matListItemTitle>Categories</span>
           <span matListItemLine>Creer les categories</span>
         </a>
 
         <!-- articles nav -->
-        <a mat-list-item [routerLink]="['/articles']">
+        <a mat-list-item [routerLink]="['/articles']" routerLinkActive="active"
+          (click)="sidenav.mode === 'side' || sidenav.close()">
           <mat-icon matListItemIcon>format_list_bulleted</mat-icon>
           <span matListItemTitle>Elements du menu</span>
           <span matListItemLine>Gérer les articles</span>
         </a>
 
         <!-- qrcode nav -->
-        <a mat-list-item [routerLink]="['/codes']">
+        <a mat-list-item [routerLink]="['/codes']" routerLinkActive="active"
+          (click)="sidenav.mode === 'side' || sidenav.close()">
           <mat-icon matListItemIcon>qr_code</mat-icon>
           <span matListItemTitle>Qr code</span>
           <span matListItemLine>Créer les code Qr</span>
         </a>
 
-        <a mat-list-item [routerLink]="['/users']">
+        <a mat-list-item [routerLink]="['/users']" routerLinkActive="active"
+          (click)="sidenav.mode === 'side' || sidenav.close()">
           <mat-icon matListItemIcon>group_add</mat-icon>
           <span matListItemTitle>Clients</span>
           <span matListItemLine>Gérer les comptes</span>
         </a>
 
-        <!-- <a mat-list-item [routerLink]="['/tables']">
+        <!-- <a mat-list-item [routerLink]="['/tables']" routerLinkActive="active" (click)="sidenav.mode === 'side' || sidenav.close()">
           <mat-icon matListItemIcon>table_rows</mat-icon>
           <span matListItemTitle>Tables</span>
           <span matListItemLine>Gérer tables</span>
@@ -62,13 +67,14 @@
         <mat-divider></mat-divider>
 
         <span matSubheader>Client</span>
-        <a mat-list-item [routerLink]="['/menu']">
+        <a mat-list-item [routerLink]="['/menu']" routerLinkActive="active"
+          (click)="sidenav.mode === 'side' || sidenav.close()">
           <mat-icon matListItemIcon>storefront</mat-icon>
           <span matListItemTitle>Menu</span>
           <span matListItemLine>Consulter notre menu</span>
         </a>
 
-        <!-- <a mat-list-item [routerLink]="['/codes']">
+        <!-- <a mat-list-item [routerLink]="['/codes']" routerLinkActive="active" (click)="sidenav.mode === 'side' || sidenav.close()">
           <mat-icon matListItemIcon>shopping_cart</mat-icon>
           <span matListItemTitle>Panier</span>
           <span matListItemLine>Modifier votre panier</span>
