@@ -10,8 +10,7 @@ import { MustMatch } from 'src/app/validators/must-match';
   styleUrls: ['./change-password-modal.component.css']
 })
 export class ChangePasswordModalComponent implements OnInit {
-  // password: FormControl;
-  // confirmPassword: FormControl;
+  passwordMinLength: number = 3;
   passwordForm: FormGroup;
   user: User;
 
@@ -25,7 +24,7 @@ export class ChangePasswordModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.passwordForm = this.formBuilder.group({
-      password: new FormControl<string>("", [Validators.required, Validators.minLength(3)]),
+      password: new FormControl<string>("", [Validators.required, Validators.minLength(this.passwordMinLength)]),
       confirmPassword: new FormControl<string>("", [Validators.required]),
     }, {
       validator: MustMatch('password', 'confirmPassword'),
