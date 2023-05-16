@@ -13,6 +13,7 @@ import { NotificationService } from 'src/app/services/notification.service';
 export class LoginComponent {
   loginForm!: UntypedFormGroup;
   loading!: boolean;
+  hide = true;
   public loginValid = true;
 
   constructor(private router: Router,

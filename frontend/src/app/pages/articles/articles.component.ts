@@ -65,6 +65,9 @@ export class ArticlesComponent implements OnInit {
       return '2' + data[sortHeaderId].toLocaleLowerCase();
     };
     this.dataSource.filterPredicate = function (data, filter: string): boolean {
+      if (data.categorie) {
+        return data.libelle.toLocaleLowerCase().includes(filter) || data.categorie.nom.toLocaleLowerCase().includes(filter);
+      }
       return data.libelle.toLocaleLowerCase().includes(filter);
     };
   }

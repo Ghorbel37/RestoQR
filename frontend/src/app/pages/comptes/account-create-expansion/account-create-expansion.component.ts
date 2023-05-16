@@ -9,6 +9,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./account-create-expansion.component.css']
 })
 export class AccountCreateExpansionComponent {
+  hide = true;
   user: User = new User();
   roles = Object.values(Role).filter(value => isNaN(Number(value)));
 
