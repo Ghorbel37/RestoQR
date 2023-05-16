@@ -1,10 +1,13 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Categorie } from 'src/app/model/categorie';
 import { CategorieService } from 'src/app/services/categorie.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '../_common/confirm-dialog/confirm-dialog.component';
 import { UpdateCategorieModalComponent } from './update-categorie-modal/update-categorie-modal.component';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-categories',
@@ -14,9 +17,12 @@ import { UpdateCategorieModalComponent } from './update-categorie-modal/update-c
 export class CategoriesComponent implements OnInit {
 
   columnsToDisplay = ['nom', 'image', 'action'];
-  existingCategories: Categorie[];
   categorie: Categorie = new Categorie();
   result: string = '';
+  dataSource = new MatTableDataSource<Categorie>;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(
     private categorieService: CategorieService,
@@ -29,9 +35,32 @@ export class CategoriesComponent implements OnInit {
     this.notificationService.openSnackBar('Categories affichés')
   }
 
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+    this.dataSource.sortingDataAccessor = (data, sortHeaderId) => {
+      if (!data[sortHeaderId]) {
+        return this.sort.direction === "asc" ? '3' : '1';
+      }
+      return '2' + data[sortHeaderId].toLocaleLowerCase();
+    };
+    this.dataSource.filterPredicate = function (data, filter: string): boolean {
+      return data.nom.toLocaleLowerCase().includes(filter);
+    };
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
   refresh() {
     this.categorieService.getAll().subscribe(data => {
-      this.existingCategories = data;
+      this.dataSource.data = data;
       this.changeDetectorRef.detectChanges();
     });
   }
@@ -50,7 +79,9 @@ export class CategoriesComponent implements OnInit {
     dialogRef.afterClosed().subscribe(dialogResult => {
       if (dialogResult) {
         this.categorie = dialogResult;
-        this.categorieService.update(this.categorie.idCategorie, this.categorie).subscribe();
+        this.categorieService.update(this.categorie.idCategorie, this.categorie).subscribe({
+          next: () => this.refresh(),
+        });
         this.categorie = new Categorie();
       }
       else this.refresh();
