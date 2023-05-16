@@ -94,7 +94,7 @@
           <mat-icon>menu</mat-icon>
         </button>
 
-        <span matTooltip="Menu">Restaurant</span>
+        <span matTooltip="Menu" [routerLink]="['/articles']">{{title}}</span>
         <span class="navbar-spacer"></span>
 
         <!-- <button mat-icon-button>
@@ -103,8 +103,12 @@
         <!-- <button mat-icon-button [matMenuTriggerFor]="themeMenu">
       <mat-icon class="navbar-icon">format_color_fill</mat-icon>
     </button> -->
+
         <button mat-icon-button (click)="logout()" matTooltip="Déconnecter">
           <mat-icon>logout</mat-icon>
+        </button>
+        <button mat-icon-button [matMenuTriggerFor]="userMenu" matTooltip="Compte">
+          <mat-icon class="navbar-icon">person</mat-icon>
         </button>
       </mat-toolbar>
 
@@ -123,6 +127,27 @@
     </mat-sidenav-content>
 
   </mat-sidenav-container>
+
+
+  <mat-menu #userMenu="matMenu" [overlapTrigger]="false">
+
+    <a mat-menu-item [routerLink]="['/menu']">
+      <mat-icon>storefront</mat-icon>
+      <span>Menu</span>
+    </a>
+
+    <a mat-menu-item [routerLink]="['/profile']">
+      <mat-icon>person</mat-icon>
+      <span>Profile</span>
+    </a>
+
+    <a mat-menu-item (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      <span>Déconnecter</span>
+    </a>
+
+  </mat-menu>
+
   <mat-menu #themeMenu="matMenu">
     <h4 mat-subheader>Light Themes</h4>
     <button mat-menu-item (click)="setCurrentTheme('indigo-pink-light')">

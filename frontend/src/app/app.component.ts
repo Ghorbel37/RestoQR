@@ -28,7 +28,8 @@ export class AppComponent implements OnInit {
       this.restaurantService.getRestaurant().subscribe({
         next: (data) => {
           this.restaurant = data;
-          this.titleService.setTitle(this.restaurant.nomRestaurant);
+          this.title = this.restaurant.nomRestaurant
+          this.titleService.setTitle(this.title);
         },
         error: () => this.titleService.setTitle(this.title)
       });

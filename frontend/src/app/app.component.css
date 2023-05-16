@@ -48,6 +48,10 @@ mat-sidenav mat-sidenav-container mat-sidenav-content {
     height: 100%;
 }
 
+#toolbar-header {
+    height: 56px;
+}
+
 .avatar {
     margin-top: 16px;
     width: 100px;
