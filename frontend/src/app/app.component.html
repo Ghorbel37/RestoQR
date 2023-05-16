@@ -1,5 +1,5 @@
 <!-- Top Toolbar -->
-<mat-toolbar color="primary" id="toolbar-header">
+<mat-toolbar color="primary" id="toolbar-header" *ngIf="isLoggedIn()">
   <button mat-icon-button (click)="sidenav.toggle()">
     <mat-icon>menu</mat-icon>
   </button>
@@ -20,7 +20,7 @@
 <!-- Body -->
 <mat-sidenav-container class="navbar-sidenav-container">
   <!-- Sidenav content -->
-  <mat-sidenav #sidenav mode="over">
+  <mat-sidenav mode="over" #sidenav>
 
     <div *ngIf="restaurant.logo">
       <div class="center-div" color="primary">

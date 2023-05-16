@@ -23,13 +23,18 @@ export class AppComponent implements OnInit {
 
   }
   ngOnInit() {
-    this.restaurantService.getRestaurant().subscribe({
-      next: (data) => {
-        this.restaurant = data;
-        this.titleService.setTitle(this.restaurant.nomRestaurant);
-      },
-      error: () => this.titleService.setTitle(this.title)
-    });
+    if (this.isLoggedIn())
+      this.restaurantService.getRestaurant().subscribe({
+        next: (data) => {
+          this.restaurant = data;
+          this.titleService.setTitle(this.restaurant.nomRestaurant);
+        },
+        error: () => this.titleService.setTitle(this.title)
+      });
+  }
+
+  isLoggedIn(): boolean {
+    return this.authService.isLoggedIn();
   }
 
   logout() {
