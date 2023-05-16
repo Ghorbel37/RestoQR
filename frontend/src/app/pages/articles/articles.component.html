@@ -23,25 +23,26 @@
 
                 <!-- libelle column -->
                 <ng-container matColumnDef="libelle">
-                    <th mat-header-cell *matHeaderCellDef> Libelle </th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Libelle </th>
                     <td mat-cell *matCellDef="let article"> {{article.libelle}} </td>
                 </ng-container>
 
                 <!-- description column -->
                 <ng-container matColumnDef="description">
-                    <th mat-header-cell *matHeaderCellDef> Description </th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
                     <td mat-cell *matCellDef="let article"> {{article.description}} </td>
                 </ng-container>
 
                 <!-- prix column -->
                 <ng-container matColumnDef="prix">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Prix </th>
-                    <td mat-cell *matCellDef="let article"> {{article.prix}}
+                    <td mat-cell *matCellDef="let article"> {{article.prix | currency:'TND':'code'}}
                     </td>
                 </ng-container>
 
+                <!-- categorie column -->
                 <ng-container matColumnDef="categorie">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Categorie </th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header="categorie.nom"> Categorie </th>
                     <td mat-cell *matCellDef="let article"> <span *ngIf="article.categorie">
                             {{article.categorie.nom}}</span>
                     </td>
@@ -49,14 +50,14 @@
 
                 <!-- reference column -->
                 <ng-container matColumnDef="reference">
-                    <th mat-header-cell *matHeaderCellDef> Reference </th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Reference </th>
                     <td mat-cell *matCellDef="let article"> {{article.reference}}
                     </td>
                 </ng-container>
 
                 <!-- duree column -->
                 <ng-container matColumnDef="duree">
-                    <th mat-header-cell *matHeaderCellDef> Duree </th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Duree </th>
                     <td mat-cell *matCellDef="let article"> {{article.duree}}
                     </td>
                 </ng-container>

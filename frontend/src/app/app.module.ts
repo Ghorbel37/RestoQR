@@ -1,6 +1,7 @@
 import { QRCodeModule } from 'angularx-qrcode';
 
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
+import localeFr from '@angular/common/locales/fr-TN';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -29,6 +30,9 @@ import { CreateAccountComponent } from './pages/comptes/create-account/create-ac
 import { AccountListComponent } from './pages/comptes/account-list/account-list.component';
 import { AccountCreateExpansionComponent } from './pages/comptes/account-create-expansion/account-create-expansion.component';
 import { ChangePasswordModalComponent } from './pages/comptes/change-password-modal/change-password-modal.component';
+import { registerLocaleData } from '@angular/common';
+
+registerLocaleData(localeFr);
 
 @NgModule({
   declarations: [
@@ -64,7 +68,8 @@ import { ChangePasswordModalComponent } from './pages/comptes/change-password-mo
     QRCodeModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: LOCALE_ID, useValue: 'fr-TN' }
   ],
   bootstrap: [AppComponent]
 })

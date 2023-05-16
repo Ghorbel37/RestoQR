@@ -36,7 +36,8 @@ export class ArticlesComponent implements OnInit {
   }
   ngOnInit(): void {
     this.refresh();
-    this.setupDataSource();
+    this.sortDataSource();
+    this.filterDataSource();
     this.categorieService.getAll().subscribe({
       next: (data) => this.categories = data,
     })
@@ -57,13 +58,31 @@ export class ArticlesComponent implements OnInit {
     }
   }
 
-  setupDataSource() {
+  sortDataSource() {
     this.dataSource.sortingDataAccessor = (data, sortHeaderId) => {
-      if (!data[sortHeaderId]) {
-        return this.sort.direction === "asc" ? '3' : '1';
+      switch (sortHeaderId) {
+        case 'categorie.nom': {
+          console.log(sortHeaderId);
+          const value = sortHeaderId
+            .split(".")
+            .reduce((accumulator, key) => accumulator && accumulator[key], data) as | string | number;
+          console.log(value);
+          if (!value) {
+            return this.sort.direction === "asc" ? '3' : '1';
+          }
+          return typeof value === 'string' ? '2' + value.toLocaleLowerCase() : '2' + value;
+        }
+        default: {
+          if (!data[sortHeaderId]) {
+            return this.sort.direction === "asc" ? '3' : '1';
+          }
+          return typeof data[sortHeaderId] === 'string' ? '2' + data[sortHeaderId].toLocaleLowerCase() : data[sortHeaderId];
+        }
       }
-      return '2' + data[sortHeaderId].toLocaleLowerCase();
     };
+  }
+
+  filterDataSource() {
     this.dataSource.filterPredicate = function (data, filter: string): boolean {
       if (data.categorie) {
         return data.libelle.toLocaleLowerCase().includes(filter) || data.categorie.nom.toLocaleLowerCase().includes(filter);
@@ -97,7 +116,6 @@ export class ArticlesComponent implements OnInit {
       }
       else this.refresh();
     });
-
   }
 
   delete(id: number) {
@@ -111,5 +129,39 @@ export class ArticlesComponent implements OnInit {
       }
     });
   }
-
 }
+
+
+const nestedProperty = (data: any, sortHeaderId: string): string | number => {
+  return sortHeaderId
+    .split(".")
+    .reduce((accumulator, key) => accumulator && accumulator[key], data) as | string | number;
+};
+
+const caseInsensitive = (data: any, sortHeaderId: string): string | number => {
+  const value = data[sortHeaderId];
+  return typeof value === 'string' ? value.toUpperCase() : value;
+};
+
+const nestedCaseInsensitive = (data: any, sortHeaderId: string): string | number => {
+  const value = sortHeaderId
+    .split(".")
+    .reduce((accumulator, key) => accumulator && accumulator[key], data) as | string | number;
+  return typeof value === 'string' ? value.toUpperCase() : value;
+};
+
+// const oldCaseInsensitive = (data: any, sortHeaderId: string): string | number => {
+// if (!data[sortHeaderId]) {
+//   return this.sort.direction === "asc" ? '3' : '1';
+// }
+// return '2' + data[sortHeaderId].toLocaleLowerCase();
+// };
+
+const sortingDataAccessor = {
+  nestedProperty,
+  caseInsensitive,
+  nestedCaseInsensitive
+};
+
+
+export default sortingDataAccessor;
