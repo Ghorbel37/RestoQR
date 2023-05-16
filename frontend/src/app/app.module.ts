@@ -15,7 +15,6 @@ import { ConfirmDialogComponent } from './pages/_common/confirm-dialog/confirm-d
 import { EditCategorieComponent } from './pages/categories/edit-categorie/edit-categorie.component';
 import { LoginComponent } from './pages/login/login.component';
 import { QrCodesComponent } from './pages/qr-codes/qr-codes.component';
-import { CreateArticleModalComponent } from './pages/articles/create-article-modal/create-article-modal.component';
 import { UpdateArticleModalComponent } from './pages/articles/update-article-modal/update-article-modal.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { CreateCategorieExpansionComponent } from './pages/categories/create-categorie-expansion/create-categorie-expansion.component';
@@ -40,7 +39,6 @@ import { ChangePasswordModalComponent } from './pages/comptes/change-password-mo
     EditCategorieComponent,
     LoginComponent,
     QrCodesComponent,
-    CreateArticleModalComponent,
     UpdateArticleModalComponent,
     CreateCategorieExpansionComponent,
     ProfileRestoComponent,
