@@ -1,12 +1,14 @@
-import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
+import { Component, ChangeDetectorRef, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Article, Categorie } from 'src/app/model/article';
 import { ArticleService } from 'src/app/services/article.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '../_common/confirm-dialog/confirm-dialog.component';
-import { CreateArticleModalComponent } from './create-article-modal/create-article-modal.component';
 import { UpdateArticleModalComponent } from './update-article-modal/update-article-modal.component';
 import { CategorieService } from 'src/app/services/categorie.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-articles',
@@ -14,10 +16,13 @@ import { CategorieService } from 'src/app/services/categorie.service';
   styleUrls: ['./articles.component.css']
 })
 export class ArticlesComponent implements OnInit {
-  columnsToDisplay = ['libelle', 'description', 'prix', 'reference', 'duree', 'image', 'action'];
-  existingArticles: Article[];
+  columnsToDisplay = ['libelle', 'description', 'prix', 'categorie', 'reference', 'duree', 'image', 'action'];
   article: Article = new Article();
   categories: Categorie[];
+  dataSource = new MatTableDataSource<Article>;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
 
   constructor(
@@ -31,40 +36,46 @@ export class ArticlesComponent implements OnInit {
   }
   ngOnInit(): void {
     this.refresh();
+    this.setupDataSource();
     this.categorieService.getAll().subscribe({
       next: (data) => this.categories = data,
     })
     this.notificationService.openSnackBar('Articles affichés')
   }
 
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
+  setupDataSource() {
+    this.dataSource.sortingDataAccessor = (data, sortHeaderId) => {
+      if (!data[sortHeaderId]) {
+        return this.sort.direction === "asc" ? '3' : '1';
+      }
+      return '2' + data[sortHeaderId].toLocaleLowerCase();
+    };
+    this.dataSource.filterPredicate = function (data, filter: string): boolean {
+      return data.libelle.toLocaleLowerCase().includes(filter);
+    };
+  }
+
   refresh() {
     this.articleService.getAll().subscribe(data => {
-      this.existingArticles = data;
+      this.dataSource.data = data;
       this.changeDetectorRef.detectChanges();
     });
   }
 
-  private saveArticle() {
-    this.articleService.save(this.article).subscribe(data => {
-      this.refresh();
-      this.notificationService.openSnackBar("Article ajouté avec succés");
-      this.article = new Article();
-    });
-  }
-
-  // submit() {
-  //   const dialogRef = this.dialog.open(CreateArticleModalComponent, { data: this.newArticle });
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log(result);
-  //     this.newArticle = result;
-  //     if (this.newArticle) {
-  //       this.saveArticle();
-  //       this.notificationService.openSnackBar("Article ajouté avec succés");
-  //     }
-  //     this.newArticle = new Article();
-  //   })
-
-  // }
 
   update(article: Article) {
     let articleCategorie: any[] = [article, this.categories];
@@ -72,14 +83,18 @@ export class ArticlesComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.article = result;
-        console.log(this.article);
         this.articleService.update(this.article.idArticle, this.article).subscribe({
-          next: (data) => console.log(data),
+          next: () => {
+            this.refresh();
+            this.notificationService.openSnackBar("Element modifié");
+          },
         }
         );
         this.article = new Article();
       }
+      else this.refresh();
     });
+
   }
 
   delete(id: number) {
