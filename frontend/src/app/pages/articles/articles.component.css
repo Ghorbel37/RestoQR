@@ -6,3 +6,7 @@ img {
 .article-card {
     width: fit-content;
 }
+
+.form-field {
+    width: 250px;
+}
