@@ -4,7 +4,7 @@
 
 mat-sidenav {
     min-width: 180px !important;
-    border-right: 1px solid #eee;
+    /* border-right: 1px solid #eee; */
     box-shadow: 6px 0 6px rgba(0, 0, 0, .1);
     /* background-color: rgb(63, 81, 181); */
 }
@@ -43,9 +43,6 @@ mat-sidenav {
     min-height: calc(100vh - (56px));
 }
 
-#toolbar-header {
-    height: 56px;
-}
 
 mat-sidenav mat-sidenav-container mat-sidenav-content {
     height: 100%;

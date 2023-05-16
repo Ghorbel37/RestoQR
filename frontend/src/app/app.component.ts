@@ -13,6 +13,7 @@ import { Title } from '@angular/platform-browser';
 export class AppComponent implements OnInit {
   title = 'Restaurant';
   restaurant: Restaurant = new Restaurant();
+  theme = 'indigo-pink-light';
 
   constructor(
     private router: Router,
@@ -31,6 +32,14 @@ export class AppComponent implements OnInit {
         },
         error: () => this.titleService.setTitle(this.title)
       });
+  }
+
+  currentTheme() {
+    return { [this.theme]: true };
+  }
+
+  setCurrentTheme(theme: string) {
+    this.theme = theme;
   }
 
   isLoggedIn(): boolean {
