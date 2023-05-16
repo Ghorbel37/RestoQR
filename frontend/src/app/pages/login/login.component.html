@@ -25,9 +25,7 @@
                 <mat-form-field>
                     <input id="passwordInput" matInput placeholder="Mot de passe" [type]="hide ? 'password' : 'text'"
                         formControlName="password" type="password" autocomplete="current-password">
-                    <button mat-icon-button matSuffix (click)="hide = !hide">
-                        <mat-icon>{{!hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                    </button>
+                    <mat-icon matSuffix (click)="hide = !hide">{{!hide ? 'visibility_off' :'visibility'}}</mat-icon>
                     <mat-error id="requiredPasswordError" *ngIf="loginForm.controls['email'].hasError('required')">
                         Le mot de passe
                         <strong>obligatoire</strong>

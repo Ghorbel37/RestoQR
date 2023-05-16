@@ -20,9 +20,7 @@
             <mat-label>Mot de passe</mat-label>
             <input matInput [(ngModel)]="user.password" [type]="hide ? 'password' : 'text'" #password="ngModel"
                 required>
-            <button mat-icon-button matSuffix (click)="hide = !hide">
-                <mat-icon>{{!hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button>
+            <mat-icon matSuffix (click)="hide = !hide">{{!hide ? 'visibility_off' :'visibility'}}</mat-icon>
             <mat-error>
                 Mot de passe est obligatoire
             </mat-error>
