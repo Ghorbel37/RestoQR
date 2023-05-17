@@ -7,7 +7,7 @@
             <mat-form-field class="form-field">
                 <mat-icon matPrefix>search</mat-icon>
                 <mat-label> Chercher</mat-label>
-                <input matInput (keyup)="applyFilter($event)" placeholder="Ex. salade" #input>
+                <input matInput (keyup)="applyFilter($event)" placeholder="Ex. User" #input>
                 <button mat-icon-button *ngIf="input.value" matSuffix (click)="input.value='';dataSource.filter =''">
                     <mat-icon>close</mat-icon>
                 </button>
