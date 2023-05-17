@@ -20,24 +20,35 @@ export class AuthenticationService {
     return this.http.post(`${environment.apiUrl}${this.endpoint}/login`, { email, password }, { responseType: 'text' });
   }
 
-  setSession(token: string) {
-    let decodedToken = jwt_decode(token);
-
-    localStorage.setItem('id_token', token);
-    localStorage.setItem('expires_at', decodedToken["exp"]);
+  setSession(token: string): boolean {
+    const decodedToken = jwt_decode(token);
+    const roles = decodedToken["iss"].slice(1, -1).split(",") as string[];
+    if (roles.includes('ROLE_ADMIN')) {
+      localStorage.setItem('is_admin', 'true');
+      localStorage.setItem('id_token', token);
+      localStorage.setItem('expires_at', decodedToken["exp"]);
+      return true;
+    }
+    return false;
   }
 
   logout() {
     localStorage.removeItem("id_token");
     localStorage.removeItem("expires_at");
+    localStorage.removeItem("is_admin");
   }
 
   public isLoggedIn(): boolean {
     return localStorage.getItem("id_token") != null && moment().isBefore(this.getExpiration());
   }
 
+
   isLoggedOut() {
     return !this.isLoggedIn();
+  }
+
+  public isAdmin(): boolean {
+    return localStorage.getItem("is_admin") == "true";
   }
 
   getExpiration() {
