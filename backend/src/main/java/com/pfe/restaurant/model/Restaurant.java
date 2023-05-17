@@ -16,7 +16,7 @@ import java.io.Serializable;
 @EqualsAndHashCode
 public class Restaurant implements Serializable {
     @Id
-    private Long idRestaurant=1L;
+    private Long idRestaurant;
     private String nomRestaurant;
     private String telephone;
     private String adresse;
