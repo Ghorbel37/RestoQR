@@ -13,6 +13,8 @@ export class ChangePasswordModalComponent implements OnInit {
   passwordMinLength: number = 3;
   passwordForm: FormGroup;
   user: User;
+  hide = true;
+  hide1 = true;
 
 
 
@@ -33,7 +35,6 @@ export class ChangePasswordModalComponent implements OnInit {
 
   close() {
     this.data.password = this.passwordForm.get("password").value;
-    console.log(this.data.password);
     this.dialogRef.close(this.data);
   }
 }
