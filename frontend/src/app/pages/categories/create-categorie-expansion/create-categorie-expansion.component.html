@@ -8,14 +8,16 @@
         </mat-panel-description>
     </mat-expansion-panel-header>
 
-    <mat-form-field appearance="fill">
-        <mat-label>Nom categorie</mat-label>
-        <input matInput placeholder="Entrées, Desserts, etc." [(ngModel)]="categorie.nom" #nomCategorie="ngModel"
-            required>
-        <mat-error>
-            Le nom est obligatoire
-        </mat-error>
-    </mat-form-field>
+    <div class="form-fields">
+        <mat-form-field appearance="fill">
+            <mat-label>Nom categorie</mat-label>
+            <input matInput placeholder="Entrées, Desserts, etc." [(ngModel)]="categorie.nom" #nomCategorie="ngModel"
+                required>
+            <mat-error>
+                Le nom est obligatoire
+            </mat-error>
+        </mat-form-field>
+    </div>
 
     <input type="file" class="file-input" (change)="changeListener($event)" accept="image/png, image/jpeg" #fileUpload>
     <div class="file-upload">

@@ -3,6 +3,16 @@ img {
     height: auto;
 }
 
+.form-fields {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.mat-mdc-form-field {
+    flex: 1 1 auto;
+}
+
 .file-input {
     display: none;
 }
