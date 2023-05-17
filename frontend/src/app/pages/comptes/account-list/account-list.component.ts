@@ -61,20 +61,6 @@ export class AccountListComponent implements OnInit {
     });
   }
 
-  updateRole(user: User) {
-    const dialogRef = this.dialog.open(ChangeRoleModalComponent, { data: user })
-    dialogRef.afterClosed().subscribe(dialogResult => {
-      if (dialogResult) {
-        this.user = dialogResult;
-        this.userService.update(this.user.idUser, this.user).subscribe({
-          next: () => this.notificationService.openSnackBar("Role modifié"),
-          complete: () => this.refresh()
-        });
-        this.user = new User();
-      }
-    });
-  }
-
   delete(id: number) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, { maxWidth: "400px", data: new ConfirmDialogModel("Attention", "Êtes-vous sûr de vouloir supprimer") });
     dialogRef.afterClosed().subscribe(dialogResult => {

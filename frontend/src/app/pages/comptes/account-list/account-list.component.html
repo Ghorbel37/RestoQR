@@ -37,14 +37,6 @@
                         <button mat-icon-button color="warn" (click)="delete(user.idUser)">
                             <mat-icon>delete</mat-icon>
                         </button>
-                        <mat-menu #editMenu="matMenu" [overlapTrigger]="false">
-                            <a mat-menu-item (click)="updateRole(user)">
-                                <span>Role</span>
-                            </a>
-                            <a mat-menu-item (click)="updatePassword(user)">
-                                <span>Mot de passe</span>
-                            </a>
-                        </mat-menu>
                     </td>
                 </ng-container>
 
