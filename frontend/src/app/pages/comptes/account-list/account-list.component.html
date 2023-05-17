@@ -23,10 +23,10 @@
                 <ng-container matColumnDef="action">
                     <th mat-header-cell *matHeaderCellDef> Action </th>
                     <td mat-cell *matCellDef="let user">
-                        <button mat-icon-button (click)="update(user)">
+                        <button mat-icon-button color="primary" (click)="update(user)">
                             <mat-icon>edit</mat-icon>
                         </button>
-                        <button mat-icon-button (click)="delete(user.idUser)">
+                        <button mat-icon-button color="warn" (click)="delete(user.idUser)">
                             <mat-icon>delete</mat-icon>
                         </button>
                     </td>

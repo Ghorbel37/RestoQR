@@ -40,13 +40,13 @@ export class AccountListComponent implements OnInit {
   update(user: User) {
     const dialogRef = this.dialog.open(ChangePasswordModalComponent, { data: user })
     dialogRef.afterClosed().subscribe(dialogResult => {
-      console.log(dialogResult)
       if (dialogResult) {
         this.user = dialogResult;
         this.userService.update(this.user.idUser, this.user).subscribe();
         this.user = new User();
+        this.refresh();
       }
-      else this.refresh();
+
     });
   }
 
