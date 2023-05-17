@@ -30,6 +30,7 @@ import { AccountListComponent } from './pages/comptes/account-list/account-list.
 import { AccountCreateExpansionComponent } from './pages/comptes/account-create-expansion/account-create-expansion.component';
 import { ChangePasswordModalComponent } from './pages/comptes/change-password-modal/change-password-modal.component';
 import { registerLocaleData } from '@angular/common';
+import { ChangeRoleModalComponent } from './pages/comptes/change-role-modal/change-role-modal.component';
 
 registerLocaleData(localeFr);
 
@@ -54,6 +55,7 @@ registerLocaleData(localeFr);
     AccountListComponent,
     AccountCreateExpansionComponent,
     ChangePasswordModalComponent,
+    ChangeRoleModalComponent,
   ],
   imports: [
     BrowserModule,
