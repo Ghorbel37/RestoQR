@@ -26,7 +26,6 @@ import { MenuClientComponent } from './pages/menu-client/menu-client/menu-client
 import { PanierComponent } from './pages/menu-client/panier/panier.component';
 import { CommandeModalComponent } from './pages/menu-client/commande-modal/commande-modal.component';
 import { AlertDialogComponent } from './pages/_common/alert-dialog/alert-dialog.component';
-import { CreateAccountComponent } from './pages/comptes/create-account/create-account.component';
 import { AccountListComponent } from './pages/comptes/account-list/account-list.component';
 import { AccountCreateExpansionComponent } from './pages/comptes/account-create-expansion/account-create-expansion.component';
 import { ChangePasswordModalComponent } from './pages/comptes/change-password-modal/change-password-modal.component';
@@ -52,7 +51,6 @@ registerLocaleData(localeFr);
     PanierComponent,
     CommandeModalComponent,
     AlertDialogComponent,
-    CreateAccountComponent,
     AccountListComponent,
     AccountCreateExpansionComponent,
     ChangePasswordModalComponent,
