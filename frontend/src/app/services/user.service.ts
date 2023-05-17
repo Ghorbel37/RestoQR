@@ -17,16 +17,16 @@ export class UserService {
     return this.httpClient.get<User[]>(`${environment.apiUrl}${this.endpoint}`);
   }
 
-  save(dto: User): Observable<Object> {
-    return this.httpClient.post(`${environment.apiUrl}${this.endpoint}`, dto);
+  save(dto: User): Observable<User> {
+    return this.httpClient.post<User>(`${environment.apiUrl}${this.endpoint}`, dto);
   }
 
   getById(id: number): Observable<User> {
     return this.httpClient.get<User>(`${environment.apiUrl}${this.endpoint}/${id}`);
   }
 
-  update(id: number, dto: User): Observable<Object> {
-    return this.httpClient.put(`${environment.apiUrl}${this.endpoint}/${id}`, dto);
+  update(id: number, dto: User): Observable<User> {
+    return this.httpClient.put<User>(`${environment.apiUrl}${this.endpoint}/${id}`, dto);
   }
 
   delete(id: number): Observable<Object> {
