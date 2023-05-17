@@ -37,7 +37,6 @@ public class RestaurantService {
     }
 
     public RestaurantDto update(Long id, RestaurantDto restaurantDto) {
-        restaurantRepository.findById(id).orElse(restaurantRepository.save(new Restaurant()));
         Restaurant existingRestaurant = restaurantRepository.findById(id).orElseThrow(() -> new RuntimeException("Restaurant not found"));
         Restaurant updatedRestaurant = restaurantMapper.fromDtoToEntity(restaurantDto);
         updatedRestaurant.setIdRestaurant(existingRestaurant.getIdRestaurant());
