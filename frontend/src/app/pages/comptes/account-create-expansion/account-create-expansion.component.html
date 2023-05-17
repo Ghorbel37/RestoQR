@@ -8,43 +8,90 @@
         </mat-panel-description>
     </mat-expansion-panel-header>
 
-    <div class="form-fields">
-        <mat-form-field appearance="fill">
-            <mat-label>Email</mat-label>
-            <input matInput type="email" [(ngModel)]="user.email" #email="ngModel" required>
-            <mat-error>
-                Email est obligatoire
-            </mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-            <mat-label>Mot de passe</mat-label>
-            <input matInput [(ngModel)]="user.password" [type]="hide ? 'password' : 'text'" #password="ngModel"
-                required>
-            <mat-icon matSuffix (click)="hide = !hide">{{!hide ? 'visibility_off' :'visibility'}}</mat-icon>
-            <mat-error>
-                Mot de passe est obligatoire
-            </mat-error>
-        </mat-form-field>
-        <!-- <mat-form-field appearance="fill">
-            <mat-label>Mot de passe</mat-label>
-            <input matInput [(ngModel)]="user.password" name="password" required>
-            <mat-error>
-                Mot de passe est obligatoire
-            </mat-error>
-        </mat-form-field> -->
-        <mat-form-field>
-            <mat-label>Role</mat-label>
-            <mat-select [(ngModel)]="user.role" #role="ngModel" required>
-                <mat-option *ngFor="let role of roles | keyvalue" [value]="role.key">
-                    {{role.value}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-    </div>
+    <mat-tab-group>
+        <!-- tab client -->
+        <mat-tab label="Client">
+            <ng-template matTabContent>
+                <form [formGroup]="formClient">
+                    <div class="form-fields">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Email</mat-label>
+                            <input matInput type="email" formControlName="email" />
+                            <mat-error> Email est obligatoire </mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Mot de passe</mat-label>
+                            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" />
+                            <mat-icon matSuffix (click)="hide = !hide">{{!hide ? 'visibility_off'
+                                :'visibility'}}</mat-icon>
+                            <mat-error> Mot de passe est obligatoire </mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Prenom</mat-label>
+                            <input matInput formControlName="firstname" />
+                            <mat-error> Prenom est obligatoire </mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Nom</mat-label>
+                            <input matInput formControlName="lastname" />
+                            <mat-error> Nom est obligatoire </mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Numero</mat-label>
+                            <input matInput type="tel" formControlName="numero" />
+                            <mat-icon matSuffix>call</mat-icon>
+                            <mat-error> Numero doit être composé de 8 chiffres </mat-error>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Date de naissance</mat-label>
+                            <input matInput [matDatepicker]="picker" formControlName="dateNais">
+                            <mat-error>Format correcte est JJ/MM/AAAA</mat-error>
+                            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </form>
 
-    <mat-action-row>
-        <button mat-button color="primary" [disabled]="email.invalid||password.invalid||role.invalid"
-            (click)="submit();expansion.close()">Créer</button>
-    </mat-action-row>
+                <mat-action-row>
+                    <button mat-button color="primary" [disabled]="formClient.invalid" (click)="submitClient()">
+                        Créer
+                    </button>
+                </mat-action-row>
+            </ng-template>
+        </mat-tab>
+
+        <!-- tab employe -->
+        <mat-tab label="Employé">
+            <ng-template matTabContent>
+                <form [formGroup]="formEmploye">
+                    <div class="form-fields">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Email</mat-label>
+                            <input matInput formControlName="email" />
+                            <mat-error> Email est obligatoire </mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Mot de passe</mat-label>
+                            <input matInput formControlName="password" [type]="hide ? 'password' : 'text'" />
+                            <mat-icon matSuffix (click)="hide = !hide">{{!hide ? 'visibility_off'
+                                :'visibility'}}</mat-icon>
+                            <mat-error> Mot de passe est obligatoire </mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Nom</mat-label>
+                            <input matInput formControlName="nom" />
+                            <mat-error> Nom est obligatoire </mat-error>
+                        </mat-form-field>
+                    </div>
+                </form>
+
+                <mat-action-row>
+                    <button mat-button color="primary" [disabled]="formEmploye.invalid" (click)="submitEmploye()">
+                        Créer
+                    </button>
+                </mat-action-row>
+            </ng-template>
+        </mat-tab>
+    </mat-tab-group>
 
 </mat-expansion-panel>
