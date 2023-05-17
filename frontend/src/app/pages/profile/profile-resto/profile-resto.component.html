@@ -12,7 +12,8 @@
 
                     <mat-form-field appearance="fill">
                         <mat-label>Nom du restaurant</mat-label>
-                        <input matInput [(ngModel)]="restaurant.nomRestaurant" name="nomRestaurant">
+                        <input matInput [(ngModel)]="restaurant.nomRestaurant" #nom="ngModel" name="nomRestaurant"
+                            required>
                     </mat-form-field>
                     <mat-form-field appearance="fill">
                         <mat-label>Adresse</mat-label>
@@ -20,7 +21,9 @@
                     </mat-form-field>
                     <mat-form-field appearance="fill">
                         <mat-label>Téléphone</mat-label>
-                        <input matInput [(ngModel)]="restaurant.telephone" name="telephone">
+                        <input matInput [(ngModel)]="restaurant.telephone" #tel="ngModel" pattern="[0-9]{8}"
+                            name="telephone">
+                        <mat-icon matSuffix>call</mat-icon>
                     </mat-form-field>
                     <mat-form-field appearance="fill">
                         <mat-label>WiFi</mat-label>
@@ -28,12 +31,15 @@
                     </mat-form-field>
                     <mat-form-field appearance="fill">
                         <mat-label>Mot de passe WiFi</mat-label>
-                        <input matInput [(ngModel)]="restaurant.mdpWifi" name="mdpWifi">
+                        <input matInput [(ngModel)]="restaurant.mdpWifi" [type]="hide ? 'password' : 'text'"
+                            name="mdpWifi">
+                        <mat-icon matSuffix (click)="hide = !hide">{{!hide ? 'visibility_off'
+                            :'visibility'}}</mat-icon>
                     </mat-form-field>
                     <mat-form-field appearance="fill">
                         <mat-label>Nombre des tables</mat-label>
-                        <input matInput type="number" min="0" max="128" [(ngModel)]="restaurant.nbrTables"
-                            name="nbrTables">
+                        <input matInput type="number" min="1" max="128" [(ngModel)]="restaurant.nbrTables"
+                            #nbrT="ngModel" name="nbrTables" required>
                     </mat-form-field>
                 </div>
 
@@ -47,62 +53,13 @@
                     </button>
                     {{fileName ||"Aucun fichier choisi"}}
                 </div>
-
-                <button mat-raised-button id="login" color="primary" (click)="submit()">Modifier</button>
+                <br>
+                <div>
+                    <button mat-raised-button id="login" [disabled]="nom.invalid||tel.invalid||nbrT.invalid"
+                        color="primary" (click)="submit()">Modifier</button>
+                </div>
             </mat-card-content>
         </mat-card>
     </form>
 
 </div>
-
-
-<!-- <div>
-    <form [formGroup]="loginForm">
-        <mat-card>
-            <mat-card-title>Restaurant</mat-card-title>
-            <mat-card-subtitle>Se connecter</mat-card-subtitle>
-            <mat-card-content>
-                <mat-error *ngIf="!loginValid">
-                    Veuillez verifier vos informations
-                </mat-error>
-
-                <mat-form-field>
-                    <input id="emailInput" matInput placeholder="Email" formControlName="email" autocomplete="email"
-                        type="email">
-
-                    <mat-error id="invalidEmailError" *ngIf="loginForm.controls['email'].hasError('email')">
-                        Veuillez saisir un email valide
-                    </mat-error>
-                    <mat-error id="requiredEmailError" *ngIf="loginForm.controls['email'].hasError('required')">
-                        L'email est
-                        <strong>obligatoire</strong>
-                    </mat-error>
-
-                </mat-form-field>
-
-                <mat-form-field>
-                    <input id="passwordInput" matInput placeholder="Mot de passe" formControlName="password"
-                        type="password" autocomplete="current-password">
-                    <mat-error id="requiredPasswordError" *ngIf="loginForm.controls['email'].hasError('required')">
-                        Le mot de passe
-                        <strong>obligatoire</strong>
-                    </mat-error>
-                </mat-form-field>
-                <mat-card-actions class="remember-me">
-                    <div class="full-width">
-                        <mat-slide-toggle formControlName="rememberMe">Se souvenir de mon email</mat-slide-toggle>
-                    </div>
-                </mat-card-actions>
-
-
-                <button mat-raised-button id="login" color="primary" [disabled]="loginForm.invalid || loading"
-                    (click)="login()">Se connecter</button>
-            </mat-card-content>
-
-
-
-        </mat-card>
-
-        <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
-    </form>
-</div> -->

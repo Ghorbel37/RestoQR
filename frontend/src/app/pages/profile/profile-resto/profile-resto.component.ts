@@ -12,6 +12,7 @@ import { TablesService } from 'src/app/services/tables.service';
 export class ProfileRestoComponent implements OnInit {
   restaurant: Restaurant = new Restaurant();
   fileName: string;
+  hide = true;
 
   constructor(
     private restaurantService: RestaurantService,
