@@ -4,7 +4,7 @@ export class User {
     password: string;
     role: Role;
 
-    constructor(role: Role = 1) {
+    constructor(role: Role = null) {
         this.role = role;
     }
 }
