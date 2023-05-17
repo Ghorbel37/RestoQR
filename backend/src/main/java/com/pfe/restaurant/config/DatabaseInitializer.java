@@ -38,8 +38,8 @@ public class DatabaseInitializer {
             restaurant.setNbrTables(1);
         }
 
-        if(userRepository.countByRole(Role.valueOf("ADMIN"))==0){
-            User admin=new User();
+        if(userRepository.countByRole(Role.valueOf("ADMIN"))==0) {
+            User admin = new User();
             admin.setEmail("admin@admin.com");
             admin.setPassword(passwordEncoder.encode("admin"));
             admin.setRole(Role.ADMIN);

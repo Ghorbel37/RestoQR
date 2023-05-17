@@ -54,4 +54,10 @@ public class ClientController {
         ClientDto result = clientService.findByUser(userDto);
         return ResponseEntity.ok(result);
     }
+
+    @GetMapping("/name/{name}")
+    public ResponseEntity<ClientDto> getClientByName(@PathVariable String name) {
+        ClientDto result = clientService.findByFirstName(name);
+        return ResponseEntity.ok(result);
+    }
 }

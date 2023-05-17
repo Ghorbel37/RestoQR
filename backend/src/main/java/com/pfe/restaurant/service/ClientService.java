@@ -51,4 +51,9 @@ public class ClientService {
         Client client = clientRepository.findByUser(userMapper.fromDtoToEntity(userDto));
         return clientMapper.fromEntityToDto(client);
     }
+
+    public ClientDto findByFirstName(String firstName){
+       Client client=clientRepository.findByFirstname(firstName);
+       return clientMapper.fromEntityToDto(client);
+    }
 }
