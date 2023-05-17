@@ -23,6 +23,7 @@ export class AccountCreateExpansionComponent {
 
   formClient: FormGroup;
   formEmploye: FormGroup;
+  formAdmin: FormGroup;
 
   constructor(
     private userService: UserService,
@@ -33,6 +34,7 @@ export class AccountCreateExpansionComponent {
   ) {
     this.createFormClient();
     this.createFormEmploye();
+    this.createFormAdmin();
   }
 
   createFormClient() {
@@ -94,6 +96,25 @@ export class AccountCreateExpansionComponent {
         });
       },
     });
+  }
+
+  createFormAdmin() {
+    this.formAdmin = this.formBuilder.group({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required]),
+    })
+  }
+
+  submitAdmin() {
+    let user: User = new User(0);
+    user.email = this.formEmploye.get('email').value;
+    user.password = this.formEmploye.get('password').value;
+    this.userService.save(user).subscribe({
+      next: () => {
+        this.reset();
+      }
+    },
+    );
   }
 
   reset() {
