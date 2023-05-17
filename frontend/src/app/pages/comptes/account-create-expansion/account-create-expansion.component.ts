@@ -107,8 +107,8 @@ export class AccountCreateExpansionComponent {
 
   submitAdmin() {
     let user: User = new User(0);
-    user.email = this.formEmploye.get('email').value;
-    user.password = this.formEmploye.get('password').value;
+    user.email = this.formAdmin.get('email').value;
+    user.password = this.formAdmin.get('password').value;
     this.userService.save(user).subscribe({
       next: () => {
         this.reset();
@@ -123,6 +123,7 @@ export class AccountCreateExpansionComponent {
     this.notificationService.openSnackBar("Compte ajouté avec succés");
     this.formClient.reset();
     this.formEmploye.reset();
+    this.formAdmin.reset();
   }
 
 }
