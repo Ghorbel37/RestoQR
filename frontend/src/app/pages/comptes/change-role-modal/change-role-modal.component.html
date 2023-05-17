@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>Changer le role de {{data.email}}</h1>
+<div mat-dialog-content>
+    <form [formGroup]="passwordForm">
+        <p>Choisir le nouveau role</p>
+        <div class="form-fields">
+            <mat-form-field>
+                <mat-label>Role</mat-label>
+                <mat-select formControlName="role">
+                    <mat-option *ngFor="let role of roles" [value]="role">
+                        {{role}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="false">Annuler</button>
+    <button mat-button (click)="close()" [disabled]="passwordForm.invalid" color="primary">Confirmer</button>
+</div>
