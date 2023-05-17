@@ -16,7 +16,7 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class CategoriesComponent implements OnInit {
 
-  columnsToDisplay = ['nom', 'image', 'action'];
+  columnsToDisplay = ['nom', 'image', 'active', 'action'];
   categorie: Categorie = new Categorie();
   result: string = '';
   dataSource = new MatTableDataSource<Categorie>;
@@ -32,7 +32,7 @@ export class CategoriesComponent implements OnInit {
   ) { }
   ngOnInit(): void {
     this.refresh();
-    this.notificationService.openSnackBar('Categories affichés')
+    this.notificationService.openSnackBar('Categories affichés');
   }
 
   ngAfterViewInit() {
@@ -63,6 +63,12 @@ export class CategoriesComponent implements OnInit {
       this.dataSource.data = data;
       this.changeDetectorRef.detectChanges();
     });
+  }
+
+  toggleActive(id: number, categorie: Categorie) {
+    console.log(categorie)
+    categorie.active = !categorie.active;
+    this.categorieService.update(id, categorie).subscribe();
   }
 
   submit() {
