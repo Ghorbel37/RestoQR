@@ -24,6 +24,10 @@ export class ClientService {
     return this.httpClient.get<Client>(`${environment.apiUrl}${this.endpoint}/${id}`);
   }
 
+  getByName(name: string): Observable<Client> {
+    return this.httpClient.get<Client>(`${environment.apiUrl}${this.endpoint}/name/${name}`);
+  }
+
   update(id: number, dto: Client): Observable<Object> {
     return this.httpClient.put(`${environment.apiUrl}${this.endpoint}/${id}`, dto);
   }
