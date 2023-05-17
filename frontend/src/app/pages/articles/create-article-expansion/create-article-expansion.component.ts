@@ -1,5 +1,6 @@
-import { Component, Output, EventEmitter, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { Component, Output, EventEmitter, OnInit, ViewChild } from '@angular/core';
+import { FormControl, NgForm, Validators } from '@angular/forms';
+import { MatExpansionPanel } from '@angular/material/expansion';
 import { Article, Categorie } from 'src/app/model/article';
 import { ArticleService } from 'src/app/services/article.service';
 import { CategorieService } from 'src/app/services/categorie.service';
@@ -14,6 +15,8 @@ export class CreateArticleExpansionComponent implements OnInit {
   article: Article = new Article();
   fileName: string;
   @Output("refresh") refresh: EventEmitter<any> = new EventEmitter();
+  @ViewChild(NgForm) form: NgForm;
+  @ViewChild(MatExpansionPanel) expansionPanel: MatExpansionPanel;
   categories: Categorie[];
 
   constructor(
@@ -31,6 +34,8 @@ export class CreateArticleExpansionComponent implements OnInit {
   submit() {
     this.articleService.save(this.article).subscribe(data => {
       this.refresh.emit();
+      this.form.resetForm();
+      this.expansionPanel.close();
       this.notificationService.openSnackBar("Article ajouté avec succés");
       this.article = new Article();
     });

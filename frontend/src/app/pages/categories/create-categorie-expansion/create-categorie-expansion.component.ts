@@ -1,4 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { MatExpansionPanel } from '@angular/material/expansion';
 import { Categorie } from 'src/app/model/categorie';
 import { CategorieService } from 'src/app/services/categorie.service';
 import { NotificationService } from 'src/app/services/notification.service';
@@ -12,6 +14,8 @@ export class CreateCategorieExpansionComponent {
   categorie: Categorie = new Categorie();
   fileName: string;
   @Output("refresh") refresh: EventEmitter<any> = new EventEmitter();
+  @ViewChild(NgForm) form: NgForm;
+  @ViewChild(MatExpansionPanel) expansionPanel: MatExpansionPanel;
 
   constructor(
     private categorieService: CategorieService,
@@ -22,6 +26,8 @@ export class CreateCategorieExpansionComponent {
     this.categorieService.save(this.categorie).subscribe(data => {
       this.refresh.emit();
       this.notificationService.openSnackBar("Categorie ajouté avec succés");
+      this.form.resetForm();
+      this.expansionPanel.close();
       this.categorie = new Categorie();
     });
   }

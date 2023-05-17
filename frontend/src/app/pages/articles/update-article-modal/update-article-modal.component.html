@@ -3,26 +3,18 @@
     <p>Informations articles</p>
     <div class="form-fields">
         <mat-form-field appearance="fill">
-            <mat-label>Libelle</mat-label>
-            <input matInput [(ngModel)]="article.libelle" #libelle="ngModel" required>
+            <mat-label>Reference</mat-label>
+            <input matInput [(ngModel)]="article.reference" #ref="ngModel" name="reference" minlength="1" required>
         </mat-form-field>
         <mat-form-field appearance="fill">
-            <mat-label>Description</mat-label>
-            <input matInput [(ngModel)]="article.description">
+            <mat-label>Libelle</mat-label>
+            <input matInput [(ngModel)]="article.libelle" #libelle="ngModel" required>
         </mat-form-field>
         <mat-form-field appearance="fill" floatLabel="always">
             <mat-label>Prix</mat-label>
             <input type="number" matInput [(ngModel)]="article.prix" min="0" #prix="ngModel" placeholder="0.00"
                 required>
             <span matTextSuffix>TND</span>
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-            <mat-label>Reference</mat-label>
-            <input matInput [(ngModel)]="article.reference">
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-            <mat-label>Duree</mat-label>
-            <input matInput [(ngModel)]="article.duree">
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Categorie</mat-label>
@@ -32,6 +24,14 @@
                     {{categorie.nom}}
                 </mat-option>
             </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Duree</mat-label>
+            <input matInput [(ngModel)]="article.duree">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Description</mat-label>
+            <input matInput [(ngModel)]="article.description">
         </mat-form-field>
     </div>
 
@@ -51,6 +51,6 @@
 </div>
 <div mat-dialog-actions>
     <button mat-button [mat-dialog-close]="false">Annuler</button>
-    <button mat-button (click)="close()" color="primary" [disabled]="libelle.invalid||prix.invalid"
+    <button mat-button (click)="close()" color="primary" [disabled]="libelle.invalid||prix.invalid||ref.invalid"
         cdkFocusInitial>Modifier</button>
 </div>
