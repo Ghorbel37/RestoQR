@@ -12,6 +12,7 @@
     <mat-form-field appearance="fill" class="full-width">
         <mat-label>Instructions speciales</mat-label>
         <textarea matInput [formControl]="instructions"></textarea>
+        <mat-hint>{{ instructions.value?.length || 0 }}/{{instructionsMaxLength}} caractères saisis</mat-hint>
     </mat-form-field>
 </div>
 <div mat-dialog-actions>

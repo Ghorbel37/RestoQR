@@ -14,6 +14,7 @@ export class CommandeModalComponent implements OnInit {
   numeroTable: number;
   numTable: FormControl;
   instructions: FormControl;
+  instructionsMaxLength: number = 255;
 
   constructor(
     public dialogRef: MatDialogRef<CommandeModalComponent>,
@@ -24,7 +25,7 @@ export class CommandeModalComponent implements OnInit {
     this.numMax = this.data.nbrTables;
     this.table = this.data.table;
     this.numTable = new FormControl<number>(0, [Validators.required, Validators.min(1), Validators.max(this.numMax)]);
-    this.instructions = new FormControl<string>(null, [Validators.maxLength(255)]);
+    this.instructions = new FormControl<string>(null, [Validators.maxLength(this.instructionsMaxLength)]);
 
     if (this.table) {
       this.numTable.setValue(this.table.numero);
