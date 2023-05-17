@@ -27,6 +27,7 @@ export class AuthenticationService {
       localStorage.setItem('is_admin', 'true');
       localStorage.setItem('id_token', token);
       localStorage.setItem('expires_at', decodedToken["exp"]);
+      localStorage.setItem('subscriber', decodedToken["sub"]);
       return true;
     }
     return false;
@@ -36,6 +37,7 @@ export class AuthenticationService {
     localStorage.removeItem("id_token");
     localStorage.removeItem("expires_at");
     localStorage.removeItem("is_admin");
+    localStorage.removeItem("subscriber");
   }
 
   public isLoggedIn(): boolean {
