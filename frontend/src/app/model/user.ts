@@ -3,6 +3,10 @@ export class User {
     email: string;
     password: string;
     role: Role;
+
+    constructor(role: Role = 1) {
+        this.role = role;
+    }
 }
 
 export enum Role {
