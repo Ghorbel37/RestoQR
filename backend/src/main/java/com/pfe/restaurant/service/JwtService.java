@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.security.Key;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -57,15 +58,16 @@ public class JwtService {
     }
 
 
-    public String generateToken(String userName){
+    public String generateToken(String userName, Collection<String> roles){
         Map<String,Object> claims=new HashMap<>();
-        return createToken(claims,userName);
+        return createToken(claims,userName, roles);
     }
 
-    private String createToken(Map<String, Object> claims, String userName) {
+    private String createToken(Map<String, Object> claims, String userName, Collection<String> roles) {
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(userName)
+                .setIssuer(roles.toString())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis()+1000*60*60*24))
                 .signWith(getSignKey(), SignatureAlgorithm.HS256).compact();
