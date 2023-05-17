@@ -1,3 +1,4 @@
+import { Client } from "./client";
 import { LigneCommande } from "./ligne-commande"
 import { Table } from "./table";
 
@@ -7,6 +8,7 @@ export class Commande {
     etat: Etat;
     description: string;
     ligneCommandes: LigneCommande[];
+    client: Client;
     tableRestaurant: Table;
 }
 

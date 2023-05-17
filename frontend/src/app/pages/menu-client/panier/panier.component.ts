@@ -9,6 +9,8 @@ import { Table } from 'src/app/model/table';
 import { Commande } from 'src/app/model/commande';
 import { AlertDialogComponent, AlertDialogModel } from '../../_common/alert-dialog/alert-dialog.component';
 import { MenuService } from 'src/app/services/menu.service';
+import { Client } from 'src/app/model/client';
+import { ClientService } from 'src/app/services/client.service';
 
 @Component({
   selector: 'app-panier',
@@ -39,6 +41,7 @@ export class PanierComponent implements OnInit {
     private route: ActivatedRoute,
     private renderer: Renderer2,
     private menu: MenuService,
+    private clientService: ClientService
   ) { }
 
   // setCartBottomHeight() {
@@ -102,12 +105,20 @@ export class PanierComponent implements OnInit {
     this.menu.saveAllLigneCommandes(this.panier.lignes).subscribe({
       next: (data) => {
         this.panier.lignes = data;
-        this.createCommande(numTable, instructions);
+        this.getPassager(numTable, instructions);
       },
     })
   }
 
-  createCommande(numTable: number, instructions: string) {
+  getPassager(numTable: number, instructions: string) {
+    this.clientService.getByName("Passager").subscribe({
+      next: (data) => {
+        this.createCommande(numTable, instructions, data);
+      }
+    })
+  }
+
+  createCommande(numTable: number, instructions: string, passager: Client) {
     this.menu.getTableByNumero(numTable).subscribe({
       next: (data) => {
         this.commande.date = new Date();
@@ -115,6 +126,7 @@ export class PanierComponent implements OnInit {
         this.commande.description = instructions;
         this.commande.ligneCommandes = this.panier.lignes;
         this.commande.tableRestaurant = data;
+        this.commande.client = passager;
         this.saveCommande(this.commande);
       },
     })
@@ -127,7 +139,6 @@ export class PanierComponent implements OnInit {
           this.router.navigate(["/menu"]);
           this.panier.emptyCart();
         }),
-
     });
   }
 }
