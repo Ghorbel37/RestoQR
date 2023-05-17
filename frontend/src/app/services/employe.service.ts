@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment.development';
   providedIn: 'root'
 })
 export class EmployeService {
-  private endpoint = 'employe';
+  private endpoint = 'employes';
 
   constructor(private httpClient: HttpClient) { }
 
