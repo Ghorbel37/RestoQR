@@ -8,7 +8,6 @@ import { ChangePasswordModalComponent } from '../change-password-modal/change-pa
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ChangeRoleModalComponent } from '../change-role-modal/change-role-modal.component';
 
 @Component({
   selector: 'app-account-list',
@@ -18,7 +17,7 @@ import { ChangeRoleModalComponent } from '../change-role-modal/change-role-modal
 export class AccountListComponent implements OnInit {
 
   columnsToDisplay = ['email', 'role', 'action'];
-  existingUsers: User[];
+  loggedEmail: string = localStorage.getItem("subscriber");
   user: User = new User();
   result: string = '';
   dataSource = new MatTableDataSource<User>;
@@ -42,6 +41,7 @@ export class AccountListComponent implements OnInit {
 
   refresh() {
     this.userService.getAll().subscribe(data => {
+      data = data.filter(row => row.email != localStorage.getItem("subscriber"));
       this.dataSource.data = data;
       this.changeDetectorRef.detectChanges();
     });
