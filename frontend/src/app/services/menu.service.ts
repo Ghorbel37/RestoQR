@@ -8,6 +8,7 @@ import { Table } from '../model/table';
 import { LigneCommande } from '../model/ligne-commande';
 import { Commande } from '../model/commande';
 import { Article } from '../model/article';
+import { Client } from '../model/client';
 
 @Injectable({
   providedIn: 'root'
@@ -43,5 +44,9 @@ export class MenuService {
 
   saveAllLigneCommandes(dto: LigneCommande[]): Observable<LigneCommande[]> {
     return this.httpClient.post<LigneCommande[]>(`${environment.apiUrl}${this.endpoint}/ligneCommandes/saveAll`, dto);
+  }
+
+  getClientByName(name: string): Observable<Client> {
+    return this.httpClient.get<Client>(`${environment.apiUrl}${this.endpoint}/name/${name}`);
   }
 }
