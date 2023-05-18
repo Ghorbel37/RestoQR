@@ -14,20 +14,6 @@ img {
     width: fit-content;
 }
 
-/* .cart-bottom {
-    position: fixed;
-    bottom: 0;
-    margin-bottom: 8px;
-    text-align: center;
-
-}
-
-
-
-.cart-buttons button {
-    font-size: 10px;
-} */
-
 .table-card {
     margin-bottom: 100px;
 }
@@ -50,7 +36,6 @@ button {
 .panier {
     position: relative;
     max-height: calc(100vh - 110px);
-    /* Adjust the height value to leave space for the sticky footer */
     overflow-y: auto;
 }
 
