@@ -36,6 +36,7 @@ public class DatabaseInitializer {
             restaurant.setIdRestaurant(1L);
             restaurant.setNomRestaurant("Restaurant");
             restaurant.setNbrTables(1);
+            restaurantRepository.save(restaurant);
         }
 
         if(userRepository.countByRole(Role.valueOf("ADMIN"))==0) {
