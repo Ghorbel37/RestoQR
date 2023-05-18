@@ -21,6 +21,12 @@ public class TableRestaurantController {
         return ResponseEntity.created(null).body(result);
     }
 
+    @PostMapping("/multiple")
+    public ResponseEntity<List<TableRestaurantDto>> createMultipleTables(@RequestBody int nbrTables){
+        List<TableRestaurantDto> result = tableRestaurantService.saveMultipleTable(nbrTables);
+        return ResponseEntity.created(null).body(result);
+    }
+
     @GetMapping
     public ResponseEntity<List<TableRestaurantDto>> getAll() {
         List<TableRestaurantDto> result = tableRestaurantService.findAll();
