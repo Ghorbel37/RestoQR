@@ -8,6 +8,7 @@ import com.pfe.restaurant.repository.CategorieRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Service
@@ -38,7 +39,14 @@ public class CategorieService {
     }
 
     public void delete(Long id) {
-        categorieRepository.deleteById(id);
+        Categorie categorie = categorieRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Categorie not found"));
+
+        if (!categorie.getArticles().isEmpty()) {
+            throw new IllegalStateException("Cannot delete Categorie with associated Articles");
+        }
+
+        categorieRepository.delete(categorie);
     }
 
     public CategorieDto update(Long id, CategorieDto categorieDto) {

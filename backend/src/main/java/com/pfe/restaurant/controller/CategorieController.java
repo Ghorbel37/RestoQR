@@ -3,9 +3,11 @@ package com.pfe.restaurant.controller;
 import com.pfe.restaurant.dto.CategorieDto;
 import com.pfe.restaurant.service.CategorieService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @RestController
@@ -39,8 +41,14 @@ public class CategorieController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        categorieService.delete(id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<String> delete(@PathVariable Long id) {
+        try {
+            categorieService.delete(id);
+            return ResponseEntity.noContent().build();
+        } catch (IllegalStateException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
     }
 }
