@@ -25,6 +25,7 @@
                             <mat-icon matSuffix (click)="hide = !hide">{{!hide ? 'visibility_off'
                                 :'visibility'}}</mat-icon>
                             <mat-error> Mot de passe est obligatoire </mat-error>
+                            <mat-hint>{{passwordMinLength}} caractères min</mat-hint>
                         </mat-form-field>
                         <mat-form-field appearance="fill">
                             <mat-label>Prenom</mat-label>
@@ -76,6 +77,7 @@
                             <mat-icon matSuffix (click)="hide = !hide">{{!hide ? 'visibility_off'
                                 :'visibility'}}</mat-icon>
                             <mat-error> Mot de passe est obligatoire </mat-error>
+                            <mat-hint>{{passwordMinLength}} caractères min</mat-hint>
                         </mat-form-field>
                         <mat-form-field appearance="fill">
                             <mat-label>Nom</mat-label>
@@ -109,6 +111,7 @@
                             <mat-icon matSuffix (click)="hide = !hide">{{!hide ? 'visibility_off'
                                 :'visibility'}}</mat-icon>
                             <mat-error> Mot de passe est obligatoire </mat-error>
+                            <mat-hint>{{passwordMinLength}} caractères min</mat-hint>
                         </mat-form-field>
                     </div>
                 </form>

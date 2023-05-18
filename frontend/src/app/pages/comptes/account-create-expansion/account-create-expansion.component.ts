@@ -15,6 +15,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./account-create-expansion.component.css']
 })
 export class AccountCreateExpansionComponent {
+  passwordMinLength: number = 3;
   hide = true;
   roles = Object.values(Role).filter(value => isNaN(Number(value)));
 
@@ -40,7 +41,7 @@ export class AccountCreateExpansionComponent {
   createFormClient() {
     this.formClient = this.formBuilder.group({
       email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required, Validators.minLength(this.passwordMinLength)]),
       firstname: new FormControl('', [Validators.required]),
       lastname: new FormControl('', [Validators.required]),
       dateNais: new FormControl('',),
