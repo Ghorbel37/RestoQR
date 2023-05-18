@@ -7,6 +7,7 @@ import { Categorie } from '../model/categorie';
 import { Table } from '../model/table';
 import { LigneCommande } from '../model/ligne-commande';
 import { Commande } from '../model/commande';
+import { Article } from '../model/article';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,10 @@ export class MenuService {
 
   getCategories(): Observable<Categorie[]> {
     return this.httpClient.get<Categorie[]>(`${environment.apiUrl}${this.endpoint}/categories`);
+  }
+
+  getArticlesActifs(): Observable<Article[]> {
+    return this.httpClient.get<Article[]>(`${environment.apiUrl}${this.endpoint}/articles`);
   }
 
   getTableById(id: number): Observable<Table> {
