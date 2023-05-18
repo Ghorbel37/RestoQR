@@ -15,16 +15,4 @@ import java.io.Serializable;
 public class TableRestaurantDto implements Serializable {
     private Long idTable;
     private int numero;
-    private ZoneDto zone;
-
-    /**
-     * A DTO for the {@link com.pfe.restaurant.model.Zone} entity
-     */
-    @Data
-    @AllArgsConstructor
-    @NoArgsConstructor
-    public static class ZoneDto implements Serializable {
-        private Long idZone;
-        private String nom;
-    }
 }

@@ -6,7 +6,7 @@ import org.mapstruct.*;
 import org.springframework.stereotype.Component;
 
 @Component
-@Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR, uses = {ZoneMapper.class})
+@Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public interface TableRestaurantMapper extends GenericMapper<TableRestaurantDto, TableRestaurant> {
 
 }
