@@ -28,6 +28,11 @@ public class ArticleService {
         return articleMapper.fromEntitiesToDtoList(articles);
     }
 
+    public List<ArticleDto> findAllCategorieActive(){
+        List<Article> articles = articleRepository.findByCategorie_Active(true);
+        return articleMapper.fromEntitiesToDtoList(articles);
+    }
+
     public ArticleDto findOne(Long id) {
         return articleMapper.fromEntityToDto(articleRepository.findById(id).get());
     }

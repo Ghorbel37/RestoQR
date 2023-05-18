@@ -28,6 +28,11 @@ public class CategorieService {
         return categorieMapper.fromEntitiesToDtoList(categories);
     }
 
+    public List<CategorieDto> findAllMenu() {
+        List<Categorie> categories = categorieRepository.findByActive(true);
+        return categorieMapper.fromEntitiesToDtoList(categories);
+    }
+
     public CategorieDto findOne(Long id) {
         return categorieMapper.fromEntityToDto(categorieRepository.findById(id).get());
     }

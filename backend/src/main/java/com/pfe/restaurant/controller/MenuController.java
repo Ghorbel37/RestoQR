@@ -18,6 +18,7 @@ public class MenuController {
     private final TableRestaurantService tableRestaurantService;
     private final CommandeService commandeService;
     private final LigneCommandeService ligneCommandeService;
+    private final ArticleService articleService;
 
 
 
@@ -29,7 +30,13 @@ public class MenuController {
 
     @GetMapping("/categories")
     public ResponseEntity<List<CategorieDto>> getAllCategories() {
-        List<CategorieDto> result = categorieService.findAll();
+        List<CategorieDto> result = categorieService.findAllMenu();
+        return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("/articles")
+    public ResponseEntity<List<ArticleDto>> getAllArticlesActifs() {
+        List<ArticleDto> result = articleService.findAllCategorieActive();
         return ResponseEntity.ok(result);
     }
 

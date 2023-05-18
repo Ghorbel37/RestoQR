@@ -19,6 +19,8 @@ public class Categorie implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idCategorie;
     private String nom;
+    @Column(columnDefinition = "boolean default false")
+    private boolean active;
     @Lob
     private String image;
     @OneToMany(mappedBy = "categorie")//(fetch =FetchType.EAGER)//, cascade = CascadeType.DETACH)//orphanRemoval = true)

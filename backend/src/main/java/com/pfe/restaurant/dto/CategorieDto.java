@@ -17,6 +17,7 @@ import java.util.List;
 public class CategorieDto implements Serializable {
     private Long idCategorie;
     private String nom;
+    private boolean active;
     private String image;
     private List<ArticleDto> articles;
 }
