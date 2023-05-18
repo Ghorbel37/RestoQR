@@ -1,7 +1,3 @@
-<!-- <div [align]="['center']">
-    <button mat-raised-button color="primary" [disabled]="" (click)="submit()">Créer</button>
-</div>
-<mat-divider></mat-divider> -->
 <app-create-article-expansion (refresh)="refresh()"></app-create-article-expansion>
 <mat-divider></mat-divider>
 
@@ -23,7 +19,7 @@
 
                 <!-- libelle column -->
                 <ng-container matColumnDef="libelle">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Libelle </th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Libellé </th>
                     <td mat-cell *matCellDef="let article"> {{article.libelle}} </td>
                 </ng-container>
 
@@ -44,7 +40,7 @@
 
                 <!-- categorie column -->
                 <ng-container matColumnDef="categorie">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header="categorie.nom"> Categorie </th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header="categorie.nom"> Catégorie </th>
                     <td mat-cell *matCellDef="let article"> <span *ngIf="article.categorie">
                             {{article.categorie.nom}}</span>
                     </td>
@@ -52,15 +48,15 @@
 
                 <!-- reference column -->
                 <ng-container matColumnDef="reference">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Reference </th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Référence </th>
                     <td mat-cell *matCellDef="let article"> {{article.reference}}
                     </td>
                 </ng-container>
 
                 <!-- duree column -->
                 <ng-container matColumnDef="duree">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Duree </th>
-                    <td mat-cell *matCellDef="let article"> {{article.duree}}
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Durée </th>
+                    <td mat-cell *matCellDef="let article"> {{article.duree}} Minutes
                     </td>
                 </ng-container>
 

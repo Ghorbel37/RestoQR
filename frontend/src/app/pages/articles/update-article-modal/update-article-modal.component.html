@@ -3,17 +3,17 @@
     <p>Informations articles</p>
     <div class="form-fields">
         <mat-form-field appearance="fill">
-            <mat-label>Reference</mat-label>
+            <mat-label>Référence</mat-label>
             <input matInput [(ngModel)]="article.reference" #ref="ngModel" name="reference" minlength="1" maxlength="6"
                 required>
-            <mat-error>La reference est obligatoire</mat-error>
+            <mat-error>La référence est obligatoire</mat-error>
             <mat-hint>6 caractères max</mat-hint>
         </mat-form-field>
         <mat-form-field appearance="fill">
-            <mat-label>Libelle</mat-label>
+            <mat-label>Libellé</mat-label>
             <input matInput [(ngModel)]="article.libelle" #libelle="ngModel" name="libelle" minlength="1" maxlength="30"
                 required placeholder="Spaghetti, soupe, etc.">
-            <mat-error>Le libelle est obligatoire</mat-error>
+            <mat-error>Le libellé est obligatoire</mat-error>
             <mat-hint>30 caractères max</mat-hint>
         </mat-form-field>
         <mat-form-field appearance="fill" floatLabel="always">
@@ -23,7 +23,7 @@
             <span matTextSuffix>TND</span>
         </mat-form-field>
         <mat-form-field appearance="fill">
-            <mat-label>Categorie</mat-label>
+            <mat-label>Catégorie</mat-label>
             <mat-select [(value)]="idCategorie">
                 <mat-option [value]="null">--</mat-option>
                 <mat-option *ngFor="let categorie of categories" [value]="categorie.idCategorie">
@@ -31,9 +31,11 @@
                 </mat-option>
             </mat-select>
         </mat-form-field>
-        <mat-form-field appearance="fill">
-            <mat-label>Duree</mat-label>
-            <input matInput [(ngModel)]="article.duree">
+        <mat-form-field appearance="fill" floatLabel="always">
+            <mat-label>Durée</mat-label>
+            <input matInput [(ngModel)]="article.duree" type="number" name="duree" min="0" #duree="ngModel">
+            <span matTextSuffix>Min</span>
+            <mat-error>La durée doit être positive</mat-error>
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Description</mat-label>
@@ -59,5 +61,6 @@
 <div mat-dialog-actions>
     <button mat-button [mat-dialog-close]="false">Annuler</button>
     <button mat-button (click)="close()" color="primary"
-        [disabled]="libelle.invalid||prix.invalid||ref.invalid||description.invalid" cdkFocusInitial>Modifier</button>
+        [disabled]="libelle.invalid||prix.invalid||ref.invalid||description.invalid||duree.invalid"
+        cdkFocusInitial>Modifier</button>
 </div>

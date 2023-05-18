@@ -62,11 +62,9 @@ export class ArticlesComponent implements OnInit {
     this.dataSource.sortingDataAccessor = (data, sortHeaderId) => {
       switch (sortHeaderId) {
         case 'categorie.nom': {
-          console.log(sortHeaderId);
           const value = sortHeaderId
             .split(".")
             .reduce((accumulator, key) => accumulator && accumulator[key], data) as | string | number;
-          console.log(value);
           if (!value) {
             return this.sort.direction === "asc" ? '3' : '1';
           }
@@ -84,7 +82,7 @@ export class ArticlesComponent implements OnInit {
 
   filterDataSource() {
     this.dataSource.filterPredicate = function (data, filter: string): boolean {
-      return data.categorie?.nom.toLocaleLowerCase().includes(filter) || data.libelle.toLocaleLowerCase().includes(filter) || data.description?.toLocaleLowerCase().includes(filter) || data.prix.toString().includes(filter) || data.reference?.toLocaleLowerCase().includes(filter) || data.duree?.toLocaleLowerCase().includes(filter);
+      return data.categorie?.nom.toLocaleLowerCase().includes(filter) || data.libelle.toLocaleLowerCase().includes(filter) || data.description?.toLocaleLowerCase().includes(filter) || data.prix.toString().includes(filter) || data.reference?.toLocaleLowerCase().includes(filter) || data.duree?.toString().includes(filter);
     };
   }
 

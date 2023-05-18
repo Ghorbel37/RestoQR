@@ -4,7 +4,7 @@ export class Article {
     libelle: string;
     prix: number;
     reference: string;
-    duree: string;
+    duree: number;
     image: string;
     categorie: Categorie;
 }
