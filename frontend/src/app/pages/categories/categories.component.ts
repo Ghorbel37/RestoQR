@@ -99,10 +99,13 @@ export class CategoriesComponent implements OnInit {
     dialogRef.afterClosed().subscribe(dialogResult => {
       this.result = dialogResult;
       if (this.result) {
-        this.categorieService.delete(id).subscribe(data => {
-          this.refresh();
-          this.notificationService.openSnackBar("Element supprimé");
-        });
+        this.categorieService.delete(id).subscribe({
+          next: (data) => {
+            this.refresh();
+            this.notificationService.openSnackBar("Element supprimé");
+          },
+          error: (data) => this.notificationService.openSnackBar("❌ Echec de suppression: Categorie contient des articles"),
+        })
       }
     });
   }
