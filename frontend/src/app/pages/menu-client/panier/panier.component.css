@@ -2,6 +2,7 @@ img {
     max-width: 64px;
     height: auto;
     margin-top: 5px;
+    border-radius: 8px;
 }
 
 .align {
@@ -46,7 +47,15 @@ button {
     justify-content: center;
 }
 
+.panier {
+    position: relative;
+    max-height: calc(100vh - 110px);
+    /* Adjust the height value to leave space for the sticky footer */
+    overflow-y: auto;
+}
+
 .cart-bottom {
+    height: 80px;
     position: fixed;
     bottom: 0;
     left: 50%;

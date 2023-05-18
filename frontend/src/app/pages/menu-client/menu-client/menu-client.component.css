@@ -17,6 +17,7 @@
 .img-article {
     width: auto;
     max-height: 128px;
+    border-radius: 16px;
 }
 
 #button-cart {
