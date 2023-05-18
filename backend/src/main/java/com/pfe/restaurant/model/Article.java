@@ -22,7 +22,7 @@ public class Article implements Serializable {
     private String libelle;
     private BigDecimal prix;
     private String reference;
-    private String duree;
+    private int duree;
     @Lob
     private String image;
     @ManyToOne

@@ -21,7 +21,7 @@ public class ArticleDto implements Serializable {
     private String libelle;
     private BigDecimal prix;
     private String reference;
-    private String duree;
+    private int duree;
     private String image;
     private CategorieDto categorie;
 
