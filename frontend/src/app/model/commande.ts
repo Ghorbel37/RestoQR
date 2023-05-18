@@ -12,7 +12,7 @@ export class Commande {
     tableRestaurant: Table;
 }
 
-enum Etat {
+export enum Etat {
     valide,
     annule,
     En_cours,
