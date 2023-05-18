@@ -1,11 +1,9 @@
 package com.pfe.restaurant.config;
 
-import com.pfe.restaurant.model.Client;
-import com.pfe.restaurant.model.Restaurant;
-import com.pfe.restaurant.model.Role;
-import com.pfe.restaurant.model.User;
+import com.pfe.restaurant.model.*;
 import com.pfe.restaurant.repository.ClientRepository;
 import com.pfe.restaurant.repository.RestaurantRepository;
+import com.pfe.restaurant.repository.TableRestaurantRepository;
 import com.pfe.restaurant.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,6 +17,7 @@ public class DatabaseInitializer {
     private final ClientRepository clientRepository;
     private final RestaurantRepository restaurantRepository;
     private final UserRepository userRepository;
+    private final TableRestaurantRepository tableRepository;
     private final PasswordEncoder passwordEncoder ;
 
 
@@ -45,6 +44,12 @@ public class DatabaseInitializer {
             admin.setPassword(passwordEncoder.encode("admin"));
             admin.setRole(Role.ADMIN);
             userRepository.save(admin);
+        }
+
+        if(tableRepository.count()==0) {
+            TableRestaurant table=new TableRestaurant();
+            table.setNumero(1);
+            tableRepository.save(table);
         }
     }
 }
