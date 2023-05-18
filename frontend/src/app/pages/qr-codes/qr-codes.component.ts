@@ -15,6 +15,7 @@ import { Table } from 'src/app/model/table';
 export class QrCodesComponent implements OnInit {
   qrData = environment.qrCodeUrl;
   nomRestaurant: string = "Restaurant";
+  nbrTables: number;
   tables: Table[];
   selectedTable: number;
 
@@ -26,16 +27,21 @@ export class QrCodesComponent implements OnInit {
   }
   ngOnInit(): void {
     this.restaurantService.getRestaurant().subscribe({
-      next: (data) => this.nomRestaurant = data.nomRestaurant,
+      next: (data) => {
+        this.nomRestaurant = data.nomRestaurant;
+        this.nbrTables = data.nbrTables;
+        this.tableService.getAll().subscribe({
+          next: (data) => {
+            data.splice(this.nbrTables);
+            this.tables = data;
+            this.selectedTable = this.tables[0].idTable;
+          },
+        })
+      },
       error: () => this.nomRestaurant = "Restaurant"
     });
 
-    this.tableService.getAll().subscribe({
-      next: (data) => {
-        this.tables = data;
-        this.selectedTable = this.tables[0].idTable;
-      },
-    })
+
   }
 
   tableUrl(idTable: number): string {
