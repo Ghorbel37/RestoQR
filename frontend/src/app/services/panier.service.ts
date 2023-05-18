@@ -60,6 +60,12 @@ export class PanierService {
     }
   }
 
+  isEmpty(): boolean {
+    if (this.lignes && this.lignes.length > 0)
+      return false;
+    return true;
+  }
+
   emptyCart() {
     this.lignes = null;
     this.prixTotal = 0;

@@ -10,7 +10,6 @@ import { Commande } from 'src/app/model/commande';
 import { AlertDialogComponent, AlertDialogModel } from '../../_common/alert-dialog/alert-dialog.component';
 import { MenuService } from 'src/app/services/menu.service';
 import { Client } from 'src/app/model/client';
-import { ClientService } from 'src/app/services/client.service';
 
 @Component({
   selector: 'app-panier',
@@ -18,20 +17,26 @@ import { ClientService } from 'src/app/services/client.service';
   styleUrls: ['./panier.component.css']
 })
 export class PanierComponent implements OnInit {
-  // @ViewChild('cartBottom', { static: true }) cartBottomRef!: ElementRef;
   columnsToDisplay = ['image', 'details', 'action'];
   nbrTables: number;
   table: Table;
   commande = new Commande();
+  idTable: number;
 
   ngOnInit(): void {
+    this.idTable = this.route.snapshot.params['idTable'];
+
     if (this.route.snapshot.params['idTable']) {
-      this.menu.getTableById(this.route.snapshot.params['idTable']).subscribe({
+      this.idTable = this.route.snapshot.params['idTable'];
+      this.menu.getTableById(this.idTable).subscribe({
         next: (data) => this.table = data,
         error: () => this.router.navigate(['/panier']),
-      })
+      });
+
     }
-    // this.setCartBottomHeight();
+    if (this.panier.isEmpty()) {
+      this.goToMenu();
+    }
   }
 
   constructor(
@@ -39,23 +44,8 @@ export class PanierComponent implements OnInit {
     private dialog: MatDialog,
     private router: Router,
     private route: ActivatedRoute,
-    private renderer: Renderer2,
     private menu: MenuService,
-    private clientService: ClientService
   ) { }
-
-  // setCartBottomHeight() {
-  //   const cartBottom = this.cartBottomRef.nativeElement;
-  //   const contentHeight = document.querySelector('.content')!.clientHeight; // replace with selector for content above "cart-bottom" div
-  //   const windowHeight = window.innerHeight;
-  //   const cartBottomHeight = windowHeight - contentHeight;
-  //   this.renderer.setStyle(cartBottom, 'height', cartBottomHeight + 'px');
-  // }
-
-  // @HostListener('window:resize')
-  // onWindowResize() {
-  //   this.setCartBottomHeight();
-  // }
 
   addToCart(ligne: LigneCommande) {
     this.panier.addToCart(ligne);
@@ -63,10 +53,16 @@ export class PanierComponent implements OnInit {
 
   removeFromCart(ligne: LigneCommande) {
     this.panier.removeFromCart(ligne);
+    if (this.panier.isEmpty()) {
+      this.goToMenu();
+    }
   }
 
   deleteLigne(ligne: LigneCommande) {
     this.panier.deleteLigne(ligne);
+    if (this.panier.isEmpty()) {
+      this.goToMenu();
+    }
   }
 
   emptyCart() {
@@ -74,7 +70,7 @@ export class PanierComponent implements OnInit {
     dialogRef.afterClosed().subscribe(dialogResult => {
       if (dialogResult) {
         this.panier.emptyCart();
-        this.router.navigate(['menu']);
+        this.goToMenu();
       }
     });
   }
@@ -92,11 +88,7 @@ export class PanierComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       dialogResult => {
         if (dialogResult) {
-          console.log(dialogResult);
           this.saveLigneCommandes(dialogResult[0], dialogResult[1]);
-
-          // this.panier.emptyCart();
-          // this.router.navigate(['menu']);
         }
       });
   }
@@ -111,7 +103,7 @@ export class PanierComponent implements OnInit {
   }
 
   getPassager(numTable: number, instructions: string) {
-    this.clientService.getByName("Passager").subscribe({
+    this.menu.getClientByName("Passager").subscribe({
       next: (data) => {
         this.createCommande(numTable, instructions, data);
       }
@@ -136,9 +128,16 @@ export class PanierComponent implements OnInit {
     this.menu.saveCommande(commande).subscribe({
       next: (data) => this.dialog.open(AlertDialogComponent, { maxWidth: "400px", data: new AlertDialogModel("Succés", "Nous avons reçu votre commande") })
         .afterClosed().subscribe(() => {
-          this.router.navigate(["/menu"]);
+          this.goToMenu();
           this.panier.emptyCart();
         }),
     });
+  }
+
+  goToMenu() {
+    if (this.idTable)
+      this.router.navigate(["/menu", this.idTable]);
+    else
+      this.router.navigate(["/menu"]);
   }
 }
