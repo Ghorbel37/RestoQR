@@ -19,7 +19,7 @@ public class MenuController {
     private final CommandeService commandeService;
     private final LigneCommandeService ligneCommandeService;
     private final ArticleService articleService;
-
+    private final ClientService clientService;
 
 
     @GetMapping("/restaurant")
@@ -63,5 +63,11 @@ public class MenuController {
     public ResponseEntity<CommandeDto> saveCommande(@RequestBody CommandeDto commandeDto) {
         CommandeDto result = commandeService.save(commandeDto);
         return ResponseEntity.created(null).body(result);
+    }
+
+    @GetMapping("/name/{name}")
+    public ResponseEntity<ClientDto> getClientByName(@PathVariable String name) {
+        ClientDto result = clientService.findByFirstName(name);
+        return ResponseEntity.ok(result);
     }
 }
