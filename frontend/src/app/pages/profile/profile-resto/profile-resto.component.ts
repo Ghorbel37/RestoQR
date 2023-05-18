@@ -52,7 +52,7 @@ export class ProfileRestoComponent implements OnInit {
         if (this.restaurant.nbrTables && this.restaurant.nbrTables > 0) {
           this.tableService.updateTables(this.restaurant.nbrTables).subscribe();
         }
-        this.notificationService.openSnackBar("Informations restaurant mises a jour")
+        this.notificationService.openSnackBar("Informations restaurant mises à jour")
       }
     });
   }
