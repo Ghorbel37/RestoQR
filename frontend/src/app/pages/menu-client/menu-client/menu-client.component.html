@@ -31,7 +31,8 @@
                             <mat-card-subtitle>
                                 <span *ngIf="article.description" class="article-description">
                                     {{article.description}}</span>
-                                {{article.prix}} DT <span *ngIf="article.duree">| {{article.duree}} Minutes</span>
+                                {{article.prix| currency:'TND':'code'}}<span *ngIf="article.duree">| {{article.duree}}
+                                    Minutes</span>
                             </mat-card-subtitle>
                         </mat-card-title-group>
                     </mat-card-header>
@@ -61,7 +62,8 @@
                             <mat-card-subtitle>
                                 <span *ngIf="article.description" class="article-description">
                                     {{article.description}}</span>
-                                {{article.prix}} DT <span *ngIf="article.duree">| {{article.duree}} Minutes</span>
+                                {{article.prix| currency:'TND':'code'}}<span *ngIf="article.duree">| {{article.duree}}
+                                    Minutes</span>
                             </mat-card-subtitle>
                         </mat-card-title-group>
                     </mat-card-header>
