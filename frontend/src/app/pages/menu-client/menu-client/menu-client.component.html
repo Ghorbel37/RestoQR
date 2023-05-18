@@ -29,9 +29,9 @@
                         <mat-card-title-group>
                             <mat-card-title>{{article.libelle}}</mat-card-title>
                             <mat-card-subtitle>
-                                {{article.prix}} DT <span *ngIf="article.duree">| {{article.duree}}</span>
                                 <span *ngIf="article.description" class="article-description">
                                     {{article.description}}</span>
+                                {{article.prix}} DT <span *ngIf="article.duree">| {{article.duree}} Minutes</span>
                             </mat-card-subtitle>
                         </mat-card-title-group>
                     </mat-card-header>
@@ -58,8 +58,10 @@
                         <img mat-card-sm-image class="img-article" [src]="article.image" />
                         <mat-card-title-group>
                             <mat-card-title>{{article.libelle}}</mat-card-title>
-                            <mat-card-subtitle>{{article.description}}<br />
-                                {{article.prix}} DT | {{article.duree}}
+                            <mat-card-subtitle>
+                                <span *ngIf="article.description" class="article-description">
+                                    {{article.description}}</span>
+                                {{article.prix}} DT <span *ngIf="article.duree">| {{article.duree}} Minutes</span>
                             </mat-card-subtitle>
                         </mat-card-title-group>
                     </mat-card-header>
