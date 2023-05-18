@@ -1,8 +1,8 @@
-<div>
-    <form [formGroup]="loginForm">
+<div class="container">
+    <form [formGroup]="loginForm" class="form-container">
         <mat-card>
-            <mat-card-title>Restaurant</mat-card-title>
-            <mat-card-subtitle>Se connecter</mat-card-subtitle>
+            <mat-card-title>Tableau de bord restaurant</mat-card-title>
+            <mat-card-subtitle>Se connecter</mat-card-subtitle><br>
             <mat-card-content>
                 <mat-error *ngIf="!loginValid">
                     Veuillez verifier vos informations
