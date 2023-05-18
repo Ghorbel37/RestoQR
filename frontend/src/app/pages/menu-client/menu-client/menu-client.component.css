@@ -51,3 +51,29 @@
 .img-article {
     margin: 8px
 }
+
+.card-search-title {
+    text-align: center;
+}
+
+.cart-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.main-div {
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.article-description {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 150px;
+}

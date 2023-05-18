@@ -15,6 +15,8 @@ import { PanierService } from 'src/app/services/panier.service';
 })
 export class MenuClientComponent implements OnInit {
   categories: Categorie[];
+  articles: Article[];
+  articlesFiltered: Article[];
   restaurant: Restaurant = new Restaurant();
   table: Table;
 
@@ -39,6 +41,21 @@ export class MenuClientComponent implements OnInit {
     this.menu.getCategories().subscribe({
       next: (data) => this.categories = data,
     });
+    this.menu.getArticlesActifs().subscribe({
+      next: (data) => this.articles = data,
+    })
+  }
+
+  onKey(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.articlesFiltered = this.search(filterValue);
+    console.log(this.articlesFiltered);
+  }
+
+  //** Filter the states list and send back to populate the selectedStates**
+  search(value: string) {
+    let filter = value.trim().toLowerCase();
+    return this.articles.filter(option => option.libelle.toLowerCase().includes(filter));
   }
 
   addToCart(article: Article) {
