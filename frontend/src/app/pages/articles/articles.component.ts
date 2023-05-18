@@ -16,7 +16,7 @@ import { MatSort } from '@angular/material/sort';
   styleUrls: ['./articles.component.css']
 })
 export class ArticlesComponent implements OnInit {
-  columnsToDisplay = ['libelle', 'description', 'prix', 'categorie', 'reference', 'duree', 'image', 'action'];
+  columnsToDisplay = ['reference', 'libelle', 'prix', 'categorie', 'description', 'duree', 'image', 'action'];
   article: Article = new Article();
   categories: Categorie[];
   dataSource = new MatTableDataSource<Article>;
