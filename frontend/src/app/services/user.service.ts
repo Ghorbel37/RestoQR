@@ -25,6 +25,10 @@ export class UserService {
     return this.httpClient.get<User>(`${environment.apiUrl}${this.endpoint}/${id}`);
   }
 
+  getByEmail(email: string): Observable<User> {
+    return this.httpClient.get<User>(`${environment.apiUrl}${this.endpoint}/email/${email}`);
+  }
+
   update(id: number, dto: User): Observable<User> {
     return this.httpClient.put<User>(`${environment.apiUrl}${this.endpoint}/${id}`, dto);
   }
