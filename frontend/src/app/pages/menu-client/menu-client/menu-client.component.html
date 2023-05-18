@@ -15,8 +15,8 @@
                 <mat-icon>close</mat-icon>
             </button>
         </mat-form-field>
-        <mat-accordion *ngIf="!input.value" multi>
-            <mat-expansion-panel *ngFor="let categorie of categories" [expanded]="true" hideToggle>
+        <mat-accordion *ngIf="!input.value">
+            <mat-expansion-panel *ngFor="let categorie of categories" hideToggle>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         <img class="img-categorie" [src]="categorie.image" />
