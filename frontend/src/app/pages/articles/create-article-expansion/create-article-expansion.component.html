@@ -15,14 +15,14 @@
                 <input matInput [(ngModel)]="article.reference" #ref="ngModel" name="reference" minlength="1"
                     maxlength="6" required>
                 <mat-error>La reference est obligatoire</mat-error>
-                <mat-hint>6 characteres max</mat-hint>
+                <mat-hint>6 caractères max</mat-hint>
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Libelle</mat-label>
                 <input matInput [(ngModel)]="article.libelle" #libelle="ngModel" name="libelle" minlength="1"
                     maxlength="30" required placeholder="Spaghetti, soupe, etc.">
                 <mat-error>Le libelle est obligatoire</mat-error>
-                <mat-hint>30 characteres max</mat-hint>
+                <mat-hint>30 caractères max</mat-hint>
             </mat-form-field>
             <mat-form-field appearance="fill" floatLabel="always">
                 <mat-label>Prix</mat-label>
@@ -49,7 +49,7 @@
                 <mat-label>Description</mat-label>
                 <input matInput [(ngModel)]="article.description" name="description" #description="ngModel"
                     maxlength="255">
-                <mat-error>255 characteres max</mat-error>
+                <mat-error>255 caractères max</mat-error>
             </mat-form-field>
         </div>
     </form>

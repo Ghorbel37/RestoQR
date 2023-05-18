@@ -14,6 +14,7 @@
                         <mat-label>Nom du restaurant</mat-label>
                         <input matInput [(ngModel)]="restaurant.nomRestaurant" #nom="ngModel" name="nomRestaurant"
                             required>
+                        <mat-error>Le nom est obligatoire</mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="fill">
                         <mat-label>Adresse</mat-label>
@@ -24,6 +25,7 @@
                         <input matInput [(ngModel)]="restaurant.telephone" #tel="ngModel" pattern="[0-9]{8}"
                             name="telephone">
                         <mat-icon matSuffix>call</mat-icon>
+                        <mat-error>Un numero est composé de 8 chiffres</mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="fill">
                         <mat-label>WiFi</mat-label>
@@ -40,6 +42,7 @@
                         <mat-label>Nombre des tables</mat-label>
                         <input matInput type="number" min="1" max="128" [(ngModel)]="restaurant.nbrTables"
                             #nbrT="ngModel" name="nbrTables" required>
+                        <mat-error>Le nombre des tables est obligatoire</mat-error>
                     </mat-form-field>
                 </div>
 

@@ -4,7 +4,9 @@
     <div class="form-fields">
         <mat-form-field appearance="fill">
             <mat-label>Nom</mat-label>
-            <input matInput [(ngModel)]="data.nom" #nomCategorie="ngModel" required>
+            <input matInput [(ngModel)]="data.nom" #nomCategorie="ngModel" minlength="1" maxlength="30" required>
+            <mat-error>Le nom est obligatoire</mat-error>
+            <mat-hint>30 caractères max</mat-hint>
         </mat-form-field>
     </div>
 
