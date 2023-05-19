@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Commande, Etat, EtatLabels } from 'src/app/model/commande';
+import { Commande, EtatLabels } from 'src/app/model/commande';
 import { Restaurant } from 'src/app/model/restaurant';
 import { MenuService } from 'src/app/services/menu.service';
 
