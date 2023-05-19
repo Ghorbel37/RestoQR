@@ -1,7 +1,7 @@
 <div>
     <br>
     <h2 *ngIf="commande">Commande de la table numéro {{commande.tableRestaurant.numero}}</h2>
-    <h3 *ngIf="duree">Durée estimée est {{duree}} Minutes</h3>
+    <h3 *ngIf="duree">Le durée estimée est: <b>{{duree}} Minutes</b></h3>
     <h3 *ngIf="restaurant?.wifi&&restaurant?.mdpWifi">Vous pouvez utiliser le Wifi: <b>{{restaurant?.wifi}}</b><br> Mot
         de passe: <b>{{restaurant?.mdpWifi}}</b></h3>
     <h3 *ngIf="commande">Etat de la commande: <b>{{etat}}</b></h3>
