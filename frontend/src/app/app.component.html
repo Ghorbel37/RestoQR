@@ -30,15 +30,15 @@
         <a mat-list-item [routerLink]="['/categories']" routerLinkActive="active"
           (click)="sidenav.mode === 'side' || sidenav.close()">
           <mat-icon matListItemIcon>label</mat-icon>
-          <span matListItemTitle>Categories</span>
-          <span matListItemLine>Creer les categories</span>
+          <span matListItemTitle>Catégories</span>
+          <span matListItemLine>Créer les cétegories</span>
         </a>
 
         <!-- articles nav -->
         <a mat-list-item [routerLink]="['/articles']" routerLinkActive="active"
           (click)="sidenav.mode === 'side' || sidenav.close()">
           <mat-icon matListItemIcon>format_list_bulleted</mat-icon>
-          <span matListItemTitle>Elements du menu</span>
+          <span matListItemTitle>Eléments du menu</span>
           <span matListItemLine>Gérer les articles</span>
         </a>
 
@@ -57,14 +57,8 @@
           <span matListItemLine>Gérer les comptes</span>
         </a>
 
-        <!-- <a mat-list-item [routerLink]="['/tables']" routerLinkActive="active" (click)="sidenav.mode === 'side' || sidenav.close()">
-          <mat-icon matListItemIcon>table_rows</mat-icon>
-          <span matListItemTitle>Tables</span>
-          <span matListItemLine>Gérer tables</span>
-        </a> -->
 
-
-        <mat-divider></mat-divider>
+        <!-- <mat-divider></mat-divider>
 
         <span matSubheader>Client</span>
         <a mat-list-item [routerLink]="['/menu']" routerLinkActive="active"
@@ -72,14 +66,7 @@
           <mat-icon matListItemIcon>storefront</mat-icon>
           <span matListItemTitle>Menu</span>
           <span matListItemLine>Consulter notre menu</span>
-        </a>
-
-        <!-- <a mat-list-item [routerLink]="['/codes']" routerLinkActive="active" (click)="sidenav.mode === 'side' || sidenav.close()">
-          <mat-icon matListItemIcon>shopping_cart</mat-icon>
-          <span matListItemTitle>Panier</span>
-          <span matListItemLine>Modifier votre panier</span>
         </a> -->
-
 
       </mat-nav-list>
 
@@ -146,10 +133,10 @@
       <span>Modifier mot de passe</span>
     </a>
 
-    <a mat-menu-item (click)="logout()">
+    <!-- <a mat-menu-item (click)="logout()">
       <mat-icon>logout</mat-icon>
       <span>Déconnecter</span>
-    </a>
+    </a> -->
 
   </mat-menu>
 
