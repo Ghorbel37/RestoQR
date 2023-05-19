@@ -3,7 +3,6 @@ import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -18,14 +17,13 @@ export class LoginComponent {
 
   constructor(private router: Router,
     private titleService: Title,
-    private notificationService: NotificationService,
     private _authService: AuthenticationService) {
   }
 
   ngOnInit() {
     this.titleService.setTitle('Login');
     if (this._authService.isLoggedIn()) {
-      this.router.navigateByUrl('/articles');
+      this.redirectAfterLogin();
     }
     this.createForm();
   }
@@ -57,12 +55,16 @@ export class LoginComponent {
       next: (token) => {
         if (this._authService.setSession(token)) {
           this.titleService.setTitle("Restaurant");
-          this.router.navigateByUrl('/articles');
+          this.redirectAfterLogin();
         }
         else
           this.loginValid = false;
       },
       error: () => this.loginValid = false
     })
+  }
+
+  redirectAfterLogin() {
+    this.router.navigateByUrl('/profile');
   }
 }
