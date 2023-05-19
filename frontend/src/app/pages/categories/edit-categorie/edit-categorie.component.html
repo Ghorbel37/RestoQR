@@ -3,7 +3,7 @@
         <input matInput type="text" [(ngModel)]="categorie.idCategorie" disabled name="idCategorie">
     </mat-form-field>
     <mat-form-field appearance="fill">
-        <mat-label>Sous Categorie</mat-label>
+        <mat-label>Articles</mat-label>
         <mat-select multiple="true" [(ngModel)]="articlesSelectionnes" name="scSelect">
             <mat-option *ngFor="let option of articles" [value]="option">
                 {{option.idArticle}} | {{option.libelle}}

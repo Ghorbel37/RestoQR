@@ -32,7 +32,7 @@ export class CategoriesComponent implements OnInit {
   ) { }
   ngOnInit(): void {
     this.refresh();
-    this.notificationService.openSnackBar('Categories affichés');
+    this.notificationService.openSnackBar('Catégories affichés');
   }
 
   ngAfterViewInit() {
@@ -74,7 +74,7 @@ export class CategoriesComponent implements OnInit {
   submit() {
     this.categorieService.save(this.categorie).subscribe(data => {
       this.refresh();
-      this.notificationService.openSnackBar("Categorie ajouté avec succés");
+      this.notificationService.openSnackBar("Catégorie ajouté avec succés");
       this.categorie = new Categorie();
     });
   }
@@ -104,7 +104,7 @@ export class CategoriesComponent implements OnInit {
             this.refresh();
             this.notificationService.openSnackBar("Element supprimé");
           },
-          error: (data) => this.notificationService.openSnackBar("❌ Echec de suppression: Categorie contient des articles"),
+          error: (data) => this.notificationService.openSnackBar("❌ Echec de suppression: Catégorie contient des articles"),
         })
       }
     });

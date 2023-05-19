@@ -25,7 +25,7 @@ export class CreateCategorieExpansionComponent {
   submit() {
     this.categorieService.save(this.categorie).subscribe(data => {
       this.refresh.emit();
-      this.notificationService.openSnackBar("Categorie ajouté avec succés");
+      this.notificationService.openSnackBar("Catégorie ajouté avec succés");
       this.form.resetForm();
       this.expansionPanel.close();
       this.categorie = new Categorie();
