@@ -15,7 +15,7 @@ import java.io.Serializable;
 @EqualsAndHashCode
 public class TableRestaurant implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idTable;
     private int numero;
 }
