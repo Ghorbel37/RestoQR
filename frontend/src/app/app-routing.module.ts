@@ -10,6 +10,7 @@ import { ProfileRestoComponent } from './pages/profile/profile-resto/profile-res
 import { MenuClientComponent } from './pages/menu-client/menu-client/menu-client.component';
 import { PanierComponent } from './pages/menu-client/panier/panier.component';
 import { AccountListComponent } from './pages/comptes/account-list/account-list.component';
+import { ShowCommandeComponent } from './pages/commande/show-commande/show-commande.component';
 
 const routes: Routes = [
   // { path: '', redirectTo: 'articles', pathMatch: 'full' },
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'panier', component: PanierComponent },
   { path: 'panier/:idTable', component: PanierComponent },
   { path: 'users', component: AccountListComponent, canActivate: [AuthGuard] },
+  { path: 'commande/:idCommande', component: ShowCommandeComponent },
 
   { path: '**', redirectTo: 'menu', pathMatch: 'full' },
 ];
