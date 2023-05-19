@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Commande, Etat, EtatsLabel } from 'src/app/model/commande';
+import { Commande, Etat, EtatLabels } from 'src/app/model/commande';
 import { Restaurant } from 'src/app/model/restaurant';
 import { MenuService } from 'src/app/services/menu.service';
 
@@ -16,8 +16,8 @@ export class ShowCommandeComponent {
   idCommande: number;
   duree: number;
   total: number;
-  // etat: string = "";
-  // etats = EtatsLabel;
+  etat: string;
+  EtatLabels = EtatLabels;
 
 
 
@@ -28,8 +28,7 @@ export class ShowCommandeComponent {
       this.menu.getCommandeById(this.idCommande).subscribe({
         next: (data) => {
           this.commande = data;
-          // this.etat = this.etats.get(this.commande.etat);
-          // console.log(this.etat)
+          this.etat = EtatLabels[this.commande.etat];
           this.calculerDureeTotal(this.commande);
         },
         error: () => this.router.navigate(['/menu']),
@@ -56,18 +55,5 @@ export class ShowCommandeComponent {
     this.duree = duree;
     this.total = total;
   }
-
-  // getLabel(etat: Etat): string {
-  //   switch (etat) {
-  //     case 0:
-  //       return "Preparée";
-  //     case 1:
-  //       return "Annulée";
-  //     case 2:
-  //       return "En cours";
-  //     default:
-  //       return "";
-  //   }
-  // }
 }
 

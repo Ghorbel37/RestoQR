@@ -17,3 +17,9 @@ export enum Etat {
     annule,
     En_cours,
 }
+
+export const EtatLabels: Record<string, string> = {
+    'valide': 'Preparée',
+    'annule': 'Annulée',
+    'En_cours': 'En cours'
+};
