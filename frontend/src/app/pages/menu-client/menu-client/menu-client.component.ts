@@ -30,8 +30,17 @@ export class MenuClientComponent implements OnInit {
   ngOnInit(): void {
     if (this.route.snapshot.params['idTable']) {
       this.menu.getTableById(this.route.snapshot.params['idTable']).subscribe({
-        next: (data) => this.table = data,
-        error: () => this.router.navigate(['menu']),
+        next: (data) => {
+          this.table = data;
+          this.menu.getCommandeEnCoursByTable(this.table.idTable).subscribe({
+            next: (data) => {
+              if (data) {
+                this.router.navigate(['/commande', data.idCommande])
+              }
+            },
+          })
+        },
+        error: () => this.router.navigate(['/menu']),
       })
     }
     this.menu.getRestaurant().subscribe({

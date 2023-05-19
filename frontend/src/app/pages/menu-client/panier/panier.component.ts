@@ -25,14 +25,13 @@ export class PanierComponent implements OnInit {
 
   ngOnInit(): void {
     this.idTable = this.route.snapshot.params['idTable'];
-
-    if (this.route.snapshot.params['idTable']) {
-      this.idTable = this.route.snapshot.params['idTable'];
+    if (this.idTable) {
       this.menu.getTableById(this.idTable).subscribe({
-        next: (data) => this.table = data,
-        error: () => this.router.navigate(['/panier']),
+        next: (data) => {
+          this.table = data;
+        },
+        error: () => this.router.navigate(["/panier"]),
       });
-
     }
     if (this.panier.isEmpty()) {
       this.goToMenu();
@@ -126,11 +125,13 @@ export class PanierComponent implements OnInit {
 
   saveCommande(commande: Commande) {
     this.menu.saveCommande(commande).subscribe({
-      next: (data) => this.dialog.open(AlertDialogComponent, { maxWidth: "400px", data: new AlertDialogModel("Succés", "Nous avons reçu votre commande") })
-        .afterClosed().subscribe(() => {
-          this.goToMenu();
-          this.panier.emptyCart();
-        }),
+      next: (data) => {
+        this.dialog.open(AlertDialogComponent, { maxWidth: "400px", data: new AlertDialogModel("Succés", "Nous avons reçu votre commande") })
+          .afterClosed().subscribe(() => {
+            this.router.navigate(['/commande', data.idCommande]);
+            this.panier.emptyCart();
+          })
+      },
     });
   }
 

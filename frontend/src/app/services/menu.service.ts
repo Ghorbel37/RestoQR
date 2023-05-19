@@ -42,6 +42,14 @@ export class MenuService {
     return this.httpClient.post<Commande>(`${environment.apiUrl}${this.endpoint}/commande`, dto);
   }
 
+  getCommandeEnCoursByTable(id: number): Observable<Commande> {
+    return this.httpClient.get<Commande>(`${environment.apiUrl}${this.endpoint}/commande/table/${id}`);
+  }
+
+  getCommandeById(id: number): Observable<Commande> {
+    return this.httpClient.get<Commande>(`${environment.apiUrl}${this.endpoint}/commande/${id}`);
+  }
+
   saveAllLigneCommandes(dto: LigneCommande[]): Observable<LigneCommande[]> {
     return this.httpClient.post<LigneCommande[]>(`${environment.apiUrl}${this.endpoint}/ligneCommandes/saveAll`, dto);
   }
