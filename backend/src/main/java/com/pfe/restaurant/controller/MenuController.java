@@ -65,6 +65,21 @@ public class MenuController {
         return ResponseEntity.created(null).body(result);
     }
 
+    @GetMapping("/commande/table/{idTable}")
+    public ResponseEntity<CommandeDto> getCommandeEnCoursByTable(@PathVariable Long idTable) {
+        CommandeDto result = commandeService.findByEnCoursByTable(idTable);
+        return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("/commande/{id}")
+    public ResponseEntity<CommandeDto> getCommandeById(@PathVariable Long id) {
+        CommandeDto result = commandeService.findOne(id);
+        return ResponseEntity.ok(result);
+    }
+
+
+
+
     @GetMapping("/name/{name}")
     public ResponseEntity<ClientDto> getClientByName(@PathVariable String name) {
         ClientDto result = clientService.findByFirstName(name);

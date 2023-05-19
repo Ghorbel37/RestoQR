@@ -3,6 +3,7 @@ package com.pfe.restaurant.service;
 import com.pfe.restaurant.dto.CommandeDto;
 import com.pfe.restaurant.model.Commande;
 import com.pfe.restaurant.mapper.CommandeMapper;
+import com.pfe.restaurant.model.Etat;
 import com.pfe.restaurant.repository.CommandeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -47,5 +48,10 @@ public class CommandeService {
     public List<CommandeDto> findByDate(LocalDate date) {
         List<Commande> commandes = commandeRepository.findByDate(date);
         return commandeMapper.fromEntitiesToDtoList(commandes);
+    }
+
+    public CommandeDto findByEnCoursByTable(Long idTable){
+        Commande commande= commandeRepository.findByTableRestaurant_IdTableAndEtat(idTable, Etat.En_cours);
+        return commandeMapper.fromEntityToDto(commande);
     }
 }
