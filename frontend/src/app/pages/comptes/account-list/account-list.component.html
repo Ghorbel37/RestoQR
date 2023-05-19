@@ -24,7 +24,7 @@
                 <!-- id column -->
                 <ng-container matColumnDef="role">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Role </th>
-                    <td mat-cell *matCellDef="let user"> {{user.role}} </td>
+                    <td mat-cell *matCellDef="let user"> {{RoleLabels[user.role]}} </td>
                 </ng-container>
 
                 <!-- action column -->

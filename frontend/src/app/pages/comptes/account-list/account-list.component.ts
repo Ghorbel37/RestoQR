@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { User } from 'src/app/model/user';
+import { User, RoleLabels } from 'src/app/model/user';
 import { NotificationService } from 'src/app/services/notification.service';
 import { UserService } from 'src/app/services/user.service';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '../../_common/confirm-dialog/confirm-dialog.component';
@@ -20,6 +20,7 @@ export class AccountListComponent implements OnInit {
   loggedEmail: string = localStorage.getItem("subscriber");
   user: User = new User();
   result: string = '';
+  RoleLabels = RoleLabels;
   dataSource = new MatTableDataSource<User>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

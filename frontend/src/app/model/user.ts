@@ -14,3 +14,9 @@ export enum Role {
     USER,
     PERSONEL
 }
+
+export const RoleLabels: Record<string, string> = {
+    'ADMIN': 'Administrateur',
+    'USER': 'Client',
+    'PERSONEL': 'Personel'
+};
