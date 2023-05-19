@@ -45,7 +45,7 @@ export class QrCodesComponent implements OnInit {
   }
 
   tableUrl(idTable: number): string {
-    return environment.menuUrl + idTable;
+    return environment.qrCodeTableUrl + idTable;
   }
 
   printPdf(parent: any, photoNumber: number) {

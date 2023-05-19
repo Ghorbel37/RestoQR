@@ -1,5 +1,8 @@
+const backUrl = 'http://localhost:9090/';
+const frontUrl = 'http://localhost:4200/';
+
 export const environment = {
-    apiUrl: 'http://localhost:9090/api/',
-    qrCodeUrl: 'http://localhost:4200',
-    menuUrl: 'http://localhost:4200/menu/'
+    apiUrl: `${backUrl}api/`,
+    qrCodeUrl: `${frontUrl}login/`,
+    qrCodeTableUrl: `${frontUrl}menu/`
 };
