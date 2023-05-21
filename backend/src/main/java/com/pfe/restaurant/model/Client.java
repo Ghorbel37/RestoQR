@@ -19,7 +19,7 @@ public class Client {
     private String firstname;
     private String lastname;
     private LocalDate dateNais;
-    private Integer numero;
+    private String numero;
     @OneToOne
     private User user;
 }
