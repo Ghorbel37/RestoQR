@@ -68,6 +68,9 @@ export class AccountCreateExpansionComponent {
           }
         });
       },
+      error: (data) => {
+        this.notificationService.openSnackBar("❌ Echec de création: E-mail déja utilisé");
+      },
     });
   }
 
