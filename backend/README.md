@@ -65,18 +65,20 @@ The API is then available at `http://localhost:9090/api/`.
 
 ### Run with Docker
 
+From the repository root:
+
 ```bash
 docker compose up --build
 ```
 
-This builds the image from the `Dockerfile` and exposes port 9090. The database still needs to be reachable: override `SPRING_DATASOURCE_URL` to point to your MySQL container. See [README.Docker.md](README.Docker.md) for more.
+The `Dockerfile` builds the jar with Maven, then runs it on a small Alpine JRE image as a non-root user. Compose starts MySQL first and passes the database settings through `SPRING_DATASOURCE_*` environment variables.
 
 ## Security notes
 
 This is a student project (PFE, 2023) and isn't production-ready:
 
 - The JWT signing key is hardcoded in `JwtService.java`
-- The seeded admin account uses a weak default password set in `DatabaseInitializer.java`
+- The seeded admin account (`admin@admin.com` / `admin`) is set in `DatabaseInitializer.java`
 - The database uses `root` with an empty password
 
 Move these to environment variables and change the admin password before deploying anywhere.

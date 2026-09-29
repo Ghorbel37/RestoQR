@@ -11,7 +11,7 @@ Part of the [RestoQR](../README.md) monorepo. The API is in [`backend/`](../back
 - Angular 15, Angular Material
 - `angularx-qrcode` to generate QR codes, `print-js` to print them
 - JWT authentication (`jwt-decode`, HTTP interceptor, route guards)
-- Docker
+- nginx and Docker for production
 
 ## Features
 
@@ -40,38 +40,35 @@ The interface is in French.
 
 ### Requirements
 
-- Node.js 18 (the Docker image uses Node 20)
+- Node.js 18
 - Angular CLI 15 (`npm install -g @angular/cli@15`)
 - The backend running on port 9090
 
 ### Configuration
 
-URLs are set in `src/environments/environment.development.ts`:
-
-| Setting | Default | Used for |
+| File | Used by | API URL |
 |---|---|---|
-| `apiUrl` | `http://localhost:9090/api/` | Backend API |
-| `qrCodeTableUrl` | `http://localhost:4200/menu/` | Link encoded in each table's QR code |
-| `qrCodeUrl` | `http://localhost:4200/login/` | Link encoded in the staff login QR code |
+| `src/environments/environment.development.ts` | `ng serve` | `http://localhost:9090/api/` |
+| `src/environments/environment.ts` | `ng build` (production) | `/api/`, forwarded to the backend by nginx |
 
-To scan the QR codes with a phone, replace `localhost` with your computer's local IP address (for example `http://192.168.1.10:4200/`) and start the dev server with `--host 0.0.0.0`.
+In both, the QR codes link to the address the app was opened from (`window.location.origin`), so they work on another device as long as you open the app through your computer's IP address.
 
-### Run locally
+### Run locally (development)
 
 ```bash
 npm install
 ng serve
 ```
 
-Then open `http://localhost:4200/`.
+Then open `http://localhost:4200/`. To test from a phone, run `ng serve --host 0.0.0.0` and open `http://<your-pc-ip>:4200/`.
 
-### Run with Docker
+### Production build
 
 ```bash
-docker compose up --build
+ng build
 ```
 
-This builds the image from the `Dockerfile` and serves the app on port 4200. See [README.Docker.md](README.Docker.md) for more.
+The output goes to `dist/angular-restaurant-qr-code/`. The `Dockerfile` builds it and serves it with nginx (see `nginx.conf`), which also forwards `/api/` to the backend. Run the whole stack with `docker compose up --build` from the repository root.
 
 ## Project structure
 

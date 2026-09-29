@@ -19,10 +19,10 @@ Each app has its own README with details: [backend](backend/README.md), [fronten
 ## How it works
 
 ```
-Customer phone ──scan QR──▶ frontend /menu/:idTable ──▶ backend /api/menu/**   (public)
-Staff browser  ──login────▶ frontend back office    ──▶ backend /api/**        (JWT)
-                                                           │
-                                                         MySQL
+Customer phone ──scan QR──▶ nginx: /menu/:idTable ──▶ /api/menu/** → backend  (public)
+Staff browser  ──login────▶ nginx: back office    ──▶ /api/**      → backend  (JWT)
+                                                                        │
+                                                                      MySQL
 ```
 
 ## Quick start with Docker
@@ -31,21 +31,21 @@ Staff browser  ──login────▶ frontend back office    ──▶ back
 docker compose up --build
 ```
 
+This runs production builds: the Angular app is compiled and served by nginx, which also forwards `/api/` to the Spring Boot backend.
+
 | Service | URL |
 |---|---|
-| Frontend | http://localhost:4200 |
-| Backend API | http://localhost:9090/api/ |
+| App (nginx) | http://localhost:4200 |
+| Backend API (direct) | http://localhost:9090/api/ |
 | phpMyAdmin | http://localhost:8081 |
 | MySQL | localhost:3306 (user `root`, empty password) |
 
-The backend creates the schema and an initial admin account on first start. To load the sample data instead, import `database/pfe_restoqr.sql` into the `pfe_restoQR` database through phpMyAdmin.
+The backend creates the schema and an admin account (`admin@admin.com` / `admin`) on first start. To load the sample data instead, import `database/pfe_restoqr.sql` into the `pfe_restoQR` database through phpMyAdmin.
+
+Because the app uses relative URLs, it also works from other devices on your network: open `http://<your-pc-ip>:4200` and the generated QR codes point to that address too.
 
 ## Run without Docker
 
 1. Start MySQL on port 3306.
 2. Backend: `cd backend` then `./mvnw spring-boot:run`
 3. Frontend: `cd frontend`, `npm install`, then `ng serve`
-
-## History
-
-The backend and frontend were first developed in two separate repositories, [RestoQR-Backend](https://github.com/Ghorbel37/RestoQR-Backend) and [RestoQR-Frontend](https://github.com/Ghorbel37/RestoQR-Frontend), which are now archived. They were merged here with their full commit history.
