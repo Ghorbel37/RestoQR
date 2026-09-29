@@ -6,6 +6,24 @@ Each table in the restaurant has its own QR code. Customers scan it with their p
 
 Built in 2023 as a PFE (end-of-studies) project.
 
+## Screenshots
+
+### Customer menu (phone)
+
+| Menu | Cart | Order status |
+|:---:|:---:|:---:|
+| <img src="docs/screenshots/menu.png" width="250" alt="Menu of the restaurant with a category open"> | <img src="docs/screenshots/cart.png" width="250" alt="Cart with quantities and total"> | <img src="docs/screenshots/order.png" width="250" alt="Order status page after ordering"> |
+
+### Staff back office
+
+| Articles | Categories |
+|:---:|:---:|
+| ![Articles management](docs/screenshots/articles.png) | ![Categories management](docs/screenshots/categories.png) |
+
+| Table QR codes |
+|:---:|
+| <img src="docs/screenshots/qr-codes.png" width="640" alt="QR codes for the restaurant and each table, ready to print"> |
+
 ## Repository structure
 
 | Folder | Description | Stack |
