@@ -48,4 +48,4 @@ The backend creates the schema and an initial admin account on first start. To l
 
 ## History
 
-The backend and frontend were first developed in two separate repositories, `RestoQR-Backend` and `RestoQR-Frontend`. They were merged here with their full commit history.
+The backend and frontend were first developed in two separate repositories, [RestoQR-Backend](https://github.com/Ghorbel37/RestoQR-Backend) and [RestoQR-Frontend](https://github.com/Ghorbel37/RestoQR-Frontend), which are now archived. They were merged here with their full commit history.

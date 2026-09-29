@@ -2,7 +2,7 @@
 
 Spring Boot REST API for **RestoQR**, a restaurant ordering app based on QR codes. Each table has its own QR code: customers scan it to open the menu, fill a cart and place an order, while staff manage the menu, tables, orders and accounts from a back office.
 
-The web app lives in [RestoQR-Frontend](https://github.com/Ghorbel37/RestoQR-Frontend).
+Part of the [RestoQR](../README.md) monorepo. The web app is in [`frontend/`](../frontend/).
 
 ## Tech stack
 

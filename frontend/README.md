@@ -4,7 +4,7 @@ Angular web app for **RestoQR**: a QR-code menu for customers and a back office 
 
 Each table has its own QR code. Customers scan it to open the menu for that table, fill a cart and place an order. Staff log in to manage the menu, accounts, tables and QR codes.
 
-The API lives in [RestoQR-Backend](https://github.com/Ghorbel37/RestoQR-Backend).
+Part of the [RestoQR](../README.md) monorepo. The API is in [`backend/`](../backend/).
 
 ## Tech stack
 
