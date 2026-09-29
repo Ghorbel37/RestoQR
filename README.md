@@ -40,7 +40,9 @@ This runs production builds: the Angular app is compiled and served by nginx, wh
 | phpMyAdmin | http://localhost:8081 |
 | MySQL | localhost:3306 (user `root`, empty password) |
 
-The backend creates the schema and an admin account (`admin@admin.com` / `admin`) on first start. To load the sample data instead, import `database/pfe_restoqr.sql` into the `pfe_restoQR` database through phpMyAdmin.
+On first start, MySQL loads the sample data from `database/pfe_restoqr.sql`: the restaurant "Chef food", 20 tables, 4 categories, 11 articles with images and a few orders. You can log in with `admin@admin.com` / `admin` (admin) or `user@user.com` / `admin` (user).
+
+The dump only runs when the database volume is empty. To reset to the sample data, run `docker compose down -v` then `docker compose up`.
 
 Because the app uses relative URLs, it also works from other devices on your network: open `http://<your-pc-ip>:4200` and the generated QR codes point to that address too.
 
