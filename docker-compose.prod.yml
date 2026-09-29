@@ -1,0 +1,43 @@
+# Production setup: empty database, passwords from .env, only the app port exposed.
+# Usage: cp .env.example .env, set the passwords, then
+#        docker compose -f docker-compose.prod.yml up -d --build
+name: restoqr-prod
+
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Set MYSQL_ROOT_PASSWORD in .env}
+      MYSQL_DATABASE: pfe_restoQR
+      MYSQL_USER: restoqr
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?Set MYSQL_PASSWORD in .env}
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -u restoqr -p\"$$MYSQL_PASSWORD\" --silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    restart: unless-stopped
+
+  backend:
+    build: ./backend
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/pfe_restoQR?serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: restoqr
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD}
+    depends_on:
+      mysql:
+        condition: service_healthy
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "${APP_PORT:-80}:80" # The only port exposed; nginx forwards /api/ to the backend
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  mysql_data:
