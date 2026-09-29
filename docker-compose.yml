@@ -1,9 +1,12 @@
+# Demo setup: sample data, phpMyAdmin and every port exposed.
+# For production, use docker-compose.prod.yml instead.
+name: restoqr-demo
+
 services:
   mysql:
     image: mysql:8.0
-    container_name: restoqr-mysql
     environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: "yes" # Empty root password, for local development only
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes" # Empty root password, for local use only
       MYSQL_DATABASE: pfe_restoQR
     ports:
       - "3306:3306"
@@ -15,29 +18,21 @@ services:
       interval: 5s
       timeout: 5s
       retries: 20
-    networks:
-      - app_network
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
-    container_name: restoqr-phpmyadmin
     environment:
       PMA_HOST: mysql
       UPLOAD_LIMIT: 512M
-      POST_MAX_SIZE: 512M
-      MAX_EXECUTION_TIME: 600
     ports:
       - "8081:80"
     depends_on:
       - mysql
-    networks:
-      - app_network
 
   backend:
     build: ./backend
-    container_name: restoqr-backend
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/pfe_restoQR?serverTimezone=UTC&createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/pfe_restoQR?serverTimezone=UTC
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: ""
     ports:
@@ -46,23 +41,14 @@ services:
       mysql:
         condition: service_healthy # Wait until MySQL accepts connections
     restart: unless-stopped
-    networks:
-      - app_network
 
   frontend:
     build: ./frontend
-    container_name: restoqr-frontend
     ports:
       - "4200:80" # nginx serves the app and forwards /api/ to the backend
     depends_on:
       - backend
     restart: unless-stopped
-    networks:
-      - app_network
 
 volumes:
   mysql_data:
-
-networks:
-  app_network:
-    driver: bridge
