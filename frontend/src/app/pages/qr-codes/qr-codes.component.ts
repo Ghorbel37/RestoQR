@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as printJS from 'print-js';
 import { RestaurantService } from 'src/app/services/restaurant.service';
 import { QRCodeModule } from 'angularx-qrcode';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 import { TablesService } from 'src/app/services/tables.service';
 import { Table } from 'src/app/model/table';
 

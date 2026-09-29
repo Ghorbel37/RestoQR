@@ -1,8 +1,9 @@
-const backUrl = 'http://localhost:9090/';
-const frontUrl = 'http://localhost:4200/';
+// Production: the app is served by nginx, which forwards /api/ to the backend,
+// so every URL is relative to the host the app was opened from.
+const frontUrl = `${window.location.origin}/`;
 
 export const environment = {
-    apiUrl: `${backUrl}api/`,
+    apiUrl: '/api/',
     qrCodeUrl: `${frontUrl}login/`,
     qrCodeTableUrl: `${frontUrl}menu/`
 };
