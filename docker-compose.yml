@@ -10,7 +10,7 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1"] # TCP, so it fails while MySQL is still initializing
       interval: 5s
       timeout: 5s
       retries: 20
@@ -44,7 +44,7 @@ services:
     depends_on:
       mysql:
         condition: service_healthy # Wait until MySQL accepts connections
-    restart: on-failure
+    restart: unless-stopped
     networks:
       - app_network
 
@@ -52,9 +52,10 @@ services:
     build: ./frontend
     container_name: restoqr-frontend
     ports:
-      - "4200:4200"
+      - "4200:80" # nginx serves the app and forwards /api/ to the backend
     depends_on:
       - backend
+    restart: unless-stopped
     networks:
       - app_network
 
