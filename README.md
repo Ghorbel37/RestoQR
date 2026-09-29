@@ -25,13 +25,20 @@ Staff browser  ──login────▶ nginx: back office    ──▶ /api/*
                                                                       MySQL
 ```
 
-## Quick start with Docker
+## Docker
+
+Both setups run production builds: the Angular app is compiled and served by nginx, which also forwards `/api/` to the Spring Boot backend. They use separate database volumes, so demo data never mixes with production data.
+
+| File | Use | Data | Exposed ports |
+|---|---|---|---|
+| `docker-compose.yml` | Demo, local testing | Sample data | App, API, MySQL, phpMyAdmin |
+| `docker-compose.prod.yml` | Production | Empty database | App only |
+
+### Demo with sample data
 
 ```bash
 docker compose up --build
 ```
-
-This runs production builds: the Angular app is compiled and served by nginx, which also forwards `/api/` to the Spring Boot backend.
 
 | Service | URL |
 |---|---|
@@ -45,6 +52,19 @@ On first start, MySQL loads the sample data from `database/pfe_restoqr.sql`: the
 The dump only runs when the database volume is empty. To reset to the sample data, run `docker compose down -v` then `docker compose up`.
 
 Because the app uses relative URLs, it also works from other devices on your network: open `http://<your-pc-ip>:4200` and the generated QR codes point to that address too.
+
+### Production
+
+1. Copy `.env.example` to `.env` and set strong values for `MYSQL_ROOT_PASSWORD` and `MYSQL_PASSWORD`. Optionally change `APP_PORT` (default 80).
+2. Start the stack:
+
+   ```bash
+   docker compose -f docker-compose.prod.yml up -d --build
+   ```
+
+3. Open `http://<server>:<APP_PORT>` and log in with `admin@admin.com` / `admin`, then change that password right away.
+
+MySQL and the backend are only reachable inside the Docker network, and the backend connects with a dedicated `restoqr` database user instead of `root`. The JWT signing key is still hardcoded in the backend (see the [backend README](backend/README.md#security-notes)).
 
 ## Run without Docker
 
