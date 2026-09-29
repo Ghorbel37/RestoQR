@@ -1,0 +1,80 @@
+.example-card {
+    max-width: 600px;
+    margin-bottom: 8px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mat-mdc-form-field+.mat-mdc-form-field {
+    margin-left: 8px;
+}
+
+.img-categorie {
+    width: auto;
+    max-height: 32px;
+}
+
+.img-article {
+    width: auto;
+    max-height: 128px;
+    border-radius: 16px;
+}
+
+#button-cart {
+    position: fixed;
+    bottom: 70px;
+    right: 40px;
+}
+
+.avatar {
+    margin-top: 16px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.divider-margin {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    /* background-color: rgba(255, 255, 255, 0.5); */
+}
+
+.center-div {
+    margin: 0px;
+    width: stretch;
+    border-right: none;
+    /* background: gray; */
+    border-radius: 10px;
+    padding: 0px;
+    text-align: center;
+}
+
+.img-article {
+    margin: 8px
+}
+
+.card-search-title {
+    text-align: center;
+}
+
+.cart-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.main-div {
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.article-description {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 150px;
+}

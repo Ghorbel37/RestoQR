@@ -1,0 +1,31 @@
+<h1 mat-dialog-title>Mise à jour catégorie</h1>
+<div mat-dialog-content>
+    <p>Informations catégorie</p>
+    <div class="form-fields">
+        <mat-form-field appearance="fill">
+            <mat-label>Nom</mat-label>
+            <input matInput [(ngModel)]="data.nom" #nomCategorie="ngModel" minlength="1" maxlength="30" required>
+            <mat-error>Le nom est obligatoire</mat-error>
+            <mat-hint>30 caractères max</mat-hint>
+        </mat-form-field>
+    </div>
+
+    <div class="center">
+        <mat-label *ngIf="data.image">Image</mat-label><br>
+        <img [src]="data.image" *ngIf="data.image">
+    </div>
+
+    <input type="file" class="file-input" (change)="changeListener($event)" accept="image/png, image/jpeg" #fileUpload>
+    <div class="file-upload">
+        <button mat-mini-fab color="primary" class="upload-btn" (click)="fileUpload.click()">
+            <mat-icon>attach_file</mat-icon>
+        </button>
+        {{fileName ||"Aucun fichier choisi"}}
+    </div>
+
+</div>
+<div mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="false">Annuler</button>
+    <button mat-button [mat-dialog-close]="data" color="primary" [disabled]="nomCategorie.invalid"
+        cdkFocusInitial>Modifier</button>
+</div>

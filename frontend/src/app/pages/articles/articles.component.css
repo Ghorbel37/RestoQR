@@ -1,0 +1,24 @@
+img {
+    max-width: 64px;
+    height: auto;
+}
+
+.article-card {
+    width: fit-content;
+}
+
+.form-field {
+    width: 250px;
+}
+
+.mat-column-description {
+    width: 150px;
+    max-width: 150px;
+    word-wrap: break-word;
+}
+
+.text-container {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

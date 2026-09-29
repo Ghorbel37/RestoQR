@@ -1,0 +1,35 @@
+<mat-expansion-panel hideToggle #expansion>
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            Nouvelle categorie
+        </mat-panel-title>
+        <mat-panel-description>
+            <mat-icon>add</mat-icon>
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <form>
+        <div class="form-fields">
+            <mat-form-field appearance="fill">
+                <mat-label>Nom categorie</mat-label>
+                <input matInput placeholder="Entrées, Desserts, etc." [(ngModel)]="categorie.nom"
+                    #nomCategorie="ngModel" name="nom" minlength="1" maxlength="30" required>
+                <mat-error>Le nom est obligatoire</mat-error>
+                <mat-hint>30 caractères max</mat-hint>
+            </mat-form-field>
+        </div>
+    </form>
+
+    <input type="file" class="file-input" (change)="changeListener($event)" accept="image/png, image/jpeg" #fileUpload>
+    <div class="file-upload">
+        <button mat-mini-fab color="primary" class="upload-btn" (click)="fileUpload.click()">
+            <mat-icon>attach_file</mat-icon>
+        </button>
+        {{fileName ||"Aucun fichier choisi"}}
+    </div>
+
+    <mat-action-row>
+        <button mat-button color="primary" (click)="submit()" [disabled]="nomCategorie.invalid">Créer</button>
+    </mat-action-row>
+
+</mat-expansion-panel>

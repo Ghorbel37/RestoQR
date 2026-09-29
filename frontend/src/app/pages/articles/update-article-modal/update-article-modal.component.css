@@ -1,0 +1,23 @@
+.mat-expansion-panel-header-description {
+    justify-content: right;
+    align-items: center;
+}
+
+.form-fields {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.mat-mdc-form-field {
+    flex: 1 1 auto;
+}
+
+.file-input {
+    display: none;
+}
+
+img {
+    max-width: 128px;
+    height: auto;
+}

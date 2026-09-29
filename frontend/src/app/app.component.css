@@ -1,0 +1,80 @@
+.navbar-spacer {
+    flex: 1 1 auto;
+}
+
+mat-sidenav {
+    min-width: 180px !important;
+    /* border-right: 1px solid #eee; */
+    box-shadow: 6px 0 6px rgba(0, 0, 0, .1);
+    /* background-color: rgb(63, 81, 181); */
+}
+
+
+.navbar-spacer {
+    flex: 1 1 auto;
+}
+
+/* .navbar {
+    z-index: 2;
+}
+
+.navbar-brand {
+    text-decoration: none;
+    color: white;
+} */
+
+/* .navbar-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+} */
+
+.navbar-is-mobile .navbar {
+    position: fixed;
+    /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+    z-index: 2;
+}
+
+.navbar-sidenav-container {
+    min-height: calc(100vh);
+}
+
+
+mat-sidenav mat-sidenav-container mat-sidenav-content {
+    height: 100%;
+}
+
+#toolbar-header {
+    height: 56px;
+}
+
+.avatar {
+    margin-top: 16px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+mat-divider {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    /* background-color: rgba(255, 255, 255, 0.5); */
+}
+
+.center-div {
+    margin: 0 px;
+    width: stretch;
+    border-right: none;
+    /* background: gray; */
+    border-radius: 10px;
+    padding: 0px;
+    text-align: center;
+}
+
+.active {
+    background: rgba(0, 0, 0, .1);
+}

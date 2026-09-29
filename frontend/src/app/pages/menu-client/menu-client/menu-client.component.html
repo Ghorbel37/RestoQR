@@ -1,0 +1,86 @@
+<div class="main-div">
+    <mat-card class="center">
+        <div *ngIf="restaurant.logo">
+            <div class="center-div" color="primary">
+                <img class="avatar" [src]="restaurant.logo" />
+                <h4 class="name"><b>Menu {{restaurant.nomRestaurant}}</b></h4>
+            </div>
+            <mat-divider class="divider-margin"></mat-divider>
+        </div>
+        <mat-form-field class="form-field">
+            <mat-icon matPrefix>search</mat-icon>
+            <mat-label> Chercher</mat-label>
+            <input matInput (keyup)="onKey($event)" placeholder="Ex. salade" #input>
+            <button mat-icon-button *ngIf="input.value" matSuffix (click)="input.value='';">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+        <mat-accordion *ngIf="!input.value">
+            <mat-expansion-panel *ngFor="let categorie of categories" hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <img class="img-categorie" [src]="categorie.image" />
+                    </mat-panel-title>
+                    <mat-panel-description> {{categorie.nom}} </mat-panel-description>
+                </mat-expansion-panel-header>
+                <mat-card *ngFor="let article of categorie.articles" class="example-card">
+                    <mat-card-header>
+                        <img mat-card-sm-image class="img-article" [src]="article.image" />
+                        <mat-card-title-group>
+                            <mat-card-title>{{article.libelle}}</mat-card-title>
+                            <mat-card-subtitle>
+                                <span *ngIf="article.description" class="article-description">
+                                    {{article.description}}</span>
+                                {{article.prix| currency:'TND':'code'}}<span *ngIf="article.duree">| {{article.duree}}
+                                    Minutes</span>
+                            </mat-card-subtitle>
+                        </mat-card-title-group>
+                    </mat-card-header>
+                    <mat-divider></mat-divider>
+                    <div class="cart-buttons">
+                        <button (click)="addToCart(article)" mat-fab extended color="primary">
+                            <mat-icon>add_shopping_cart</mat-icon>
+                            Ajouter au panier
+                        </button>
+                    </div>
+                </mat-card>
+            </mat-expansion-panel>
+        </mat-accordion>
+
+        <mat-card *ngIf="input.value">
+            <mat-card-header>
+                <mat-card-title class="card-search-title">
+                    <h4>Résultats de la recherche <b>{{input.value}}</b></h4>
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-card *ngFor="let article of articlesFiltered" class="example-card">
+                    <mat-card-header>
+                        <img mat-card-sm-image class="img-article" [src]="article.image" />
+                        <mat-card-title-group>
+                            <mat-card-title>{{article.libelle}}</mat-card-title>
+                            <mat-card-subtitle>
+                                <span *ngIf="article.description" class="article-description">
+                                    {{article.description}}</span>
+                                {{article.prix| currency:'TND':'code'}}<span *ngIf="article.duree">| {{article.duree}}
+                                    Minutes</span>
+                            </mat-card-subtitle>
+                        </mat-card-title-group>
+                    </mat-card-header>
+                    <mat-divider></mat-divider>
+                    <div class="cart-buttons">
+                        <button (click)="addToCart(article)" mat-fab extended color="primary">
+                            <mat-icon>add_shopping_cart</mat-icon>
+                            Ajouter au panier
+                        </button>
+                    </div>
+                </mat-card>
+            </mat-card-content>
+        </mat-card>
+    </mat-card>
+</div>
+
+<button mat-fab id="button-cart" color="accent" *ngIf="panier.lignes" [matBadge]="panier.quantitePanier"
+    matBadgePosition="before" matBadgeColor="accent" (click)="toPanier()" matTooltip="Panier">
+    <mat-icon>shopping_cart</mat-icon>
+</button>

@@ -1,0 +1,66 @@
+<h1 mat-dialog-title>Mise à jour article</h1>
+<div mat-dialog-content>
+    <p>Informations articles</p>
+    <div class="form-fields">
+        <mat-form-field appearance="fill">
+            <mat-label>Référence</mat-label>
+            <input matInput [(ngModel)]="article.reference" #ref="ngModel" name="reference" minlength="1" maxlength="6"
+                required>
+            <mat-error>La référence est obligatoire</mat-error>
+            <mat-hint>6 caractères max</mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Libellé</mat-label>
+            <input matInput [(ngModel)]="article.libelle" #libelle="ngModel" name="libelle" minlength="1" maxlength="30"
+                required placeholder="Spaghetti, soupe, etc.">
+            <mat-error>Le libellé est obligatoire</mat-error>
+            <mat-hint>30 caractères max</mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="fill" floatLabel="always">
+            <mat-label>Prix</mat-label>
+            <input type="number" matInput [(ngModel)]="article.prix" min="0" #prix="ngModel" placeholder="0.00"
+                required>
+            <span matTextSuffix>TND</span>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Catégorie</mat-label>
+            <mat-select [(value)]="idCategorie">
+                <mat-option [value]="null">--</mat-option>
+                <mat-option *ngFor="let categorie of categories" [value]="categorie.idCategorie">
+                    {{categorie.nom}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill" floatLabel="always">
+            <mat-label>Durée</mat-label>
+            <input matInput [(ngModel)]="article.duree" type="number" name="duree" min="0" #duree="ngModel">
+            <span matTextSuffix>Min</span>
+            <mat-error>La durée doit être positive</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Description</mat-label>
+            <input matInput [(ngModel)]="article.description" name="description" #description="ngModel" maxlength="255">
+            <mat-error>255 caractères max</mat-error>
+        </mat-form-field>
+    </div>
+
+    <div class="center">
+        <mat-label *ngIf="article.image">Image</mat-label><br>
+        <img [src]="article.image" *ngIf="article.image">
+    </div>
+
+    <input type="file" class="file-input" (change)="changeListener($event)" accept="image/png, image/jpeg" #fileUpload>
+    <div class="file-upload">
+        <button mat-mini-fab color="primary" class="upload-btn" (click)="fileUpload.click()">
+            <mat-icon>attach_file</mat-icon>
+        </button>
+        {{fileName ||"Aucun fichier choisi"}}
+    </div>
+
+</div>
+<div mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="false">Annuler</button>
+    <button mat-button (click)="close()" color="primary"
+        [disabled]="libelle.invalid||prix.invalid||ref.invalid||description.invalid||duree.invalid"
+        cdkFocusInitial>Modifier</button>
+</div>

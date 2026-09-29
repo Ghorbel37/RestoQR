@@ -1,0 +1,51 @@
+<div class="container">
+    <form [formGroup]="loginForm" class="form-container">
+        <mat-card>
+            <mat-card-title>Tableau de bord restaurant</mat-card-title>
+            <mat-card-subtitle>Se connecter</mat-card-subtitle><br>
+            <mat-card-content>
+                <mat-error *ngIf="!loginValid">
+                    Veuillez verifier vos informations
+                </mat-error>
+
+                <mat-form-field>
+                    <input id="emailInput" matInput placeholder="Email" formControlName="email" autocomplete="email"
+                        type="email">
+
+                    <mat-error id="invalidEmailError" *ngIf="loginForm.controls['email'].hasError('email')">
+                        Veuillez saisir un email valide
+                    </mat-error>
+                    <mat-error id="requiredEmailError" *ngIf="loginForm.controls['email'].hasError('required')">
+                        L'email est
+                        <strong>obligatoire</strong>
+                    </mat-error>
+
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input id="passwordInput" matInput placeholder="Mot de passe" [type]="hide ? 'password' : 'text'"
+                        formControlName="password" type="password" autocomplete="current-password">
+                    <mat-icon matSuffix (click)="hide = !hide">{{!hide ? 'visibility_off' :'visibility'}}</mat-icon>
+                    <mat-error id="requiredPasswordError" *ngIf="loginForm.controls['email'].hasError('required')">
+                        Le mot de passe
+                        <strong>obligatoire</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-card-actions class="remember-me">
+                    <div class="full-width">
+                        <mat-slide-toggle formControlName="rememberMe">Se souvenir de mon email</mat-slide-toggle>
+                    </div>
+                </mat-card-actions>
+
+
+                <button mat-raised-button id="login" color="primary" [disabled]="loginForm.invalid || loading"
+                    (click)="login()">Se connecter</button>
+            </mat-card-content>
+
+
+
+        </mat-card>
+
+        <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+    </form>
+</div>

@@ -1,0 +1,188 @@
+<div [ngClass]="currentTheme()">
+
+
+  <!-- Body -->
+  <mat-sidenav-container class="navbar-sidenav-container">
+    <!-- Sidenav content -->
+    <mat-sidenav mode="over" autoFocus="false" #sidenav>
+
+      <div *ngIf="restaurant.logo">
+        <div class="center-div" color="primary">
+          <img class="avatar" [src]="restaurant.logo" />
+          <h4 class="name">{{restaurant.nomRestaurant}}</h4>
+        </div>
+        <mat-divider></mat-divider>
+      </div>
+
+      <mat-nav-list>
+        <!-- Nav list -->
+        <span matSubheader>Admin</span>
+
+        <!-- profile nav -->
+        <a mat-list-item [routerLink]="['/profile']" routerLinkActive="active"
+          (click)="sidenav.mode === 'side' || sidenav.close()">
+          <mat-icon matListItemIcon>person</mat-icon>
+          <span matListItemTitle>Profile</span>
+          <span matListItemLine>Gérer votre profile</span>
+        </a>
+
+        <!-- categorie nav -->
+        <a mat-list-item [routerLink]="['/categories']" routerLinkActive="active"
+          (click)="sidenav.mode === 'side' || sidenav.close()">
+          <mat-icon matListItemIcon>label</mat-icon>
+          <span matListItemTitle>Catégories</span>
+          <span matListItemLine>Créer les cétegories</span>
+        </a>
+
+        <!-- articles nav -->
+        <a mat-list-item [routerLink]="['/articles']" routerLinkActive="active"
+          (click)="sidenav.mode === 'side' || sidenav.close()">
+          <mat-icon matListItemIcon>format_list_bulleted</mat-icon>
+          <span matListItemTitle>Eléments du menu</span>
+          <span matListItemLine>Gérer les articles</span>
+        </a>
+
+        <!-- qrcode nav -->
+        <a mat-list-item [routerLink]="['/codes']" routerLinkActive="active"
+          (click)="sidenav.mode === 'side' || sidenav.close()">
+          <mat-icon matListItemIcon>qr_code</mat-icon>
+          <span matListItemTitle>Qr code</span>
+          <span matListItemLine>Créer les code Qr</span>
+        </a>
+
+        <a mat-list-item [routerLink]="['/users']" routerLinkActive="active"
+          (click)="sidenav.mode === 'side' || sidenav.close()">
+          <mat-icon matListItemIcon>group_add</mat-icon>
+          <span matListItemTitle>Clients</span>
+          <span matListItemLine>Gérer les comptes</span>
+        </a>
+
+
+        <!-- <mat-divider></mat-divider>
+
+        <span matSubheader>Client</span>
+        <a mat-list-item [routerLink]="['/menu']" routerLinkActive="active"
+          (click)="sidenav.mode === 'side' || sidenav.close()">
+          <mat-icon matListItemIcon>storefront</mat-icon>
+          <span matListItemTitle>Menu</span>
+          <span matListItemLine>Consulter notre menu</span>
+        </a> -->
+
+      </mat-nav-list>
+
+    </mat-sidenav>
+
+    <!-- Main content -->
+    <mat-sidenav-content>
+
+      <!-- Top Toolbar -->
+      <mat-toolbar color="primary" id="toolbar-header" *ngIf="isLoggedIn()">
+        <button mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+
+        <span matTooltip="Menu" [routerLink]="['/articles']">{{title}}</span>
+        <span class="navbar-spacer"></span>
+
+        <!-- <button mat-icon-button>
+      <mat-icon>share</mat-icon>
+    </button> -->
+        <!-- <button mat-icon-button [matMenuTriggerFor]="themeMenu">
+      <mat-icon class="navbar-icon">format_color_fill</mat-icon>
+    </button> -->
+
+        <button mat-icon-button (click)="logout()" matTooltip="Déconnecter">
+          <mat-icon>logout</mat-icon>
+        </button>
+        <button mat-icon-button [matMenuTriggerFor]="userMenu" matTooltip="Compte">
+          <mat-icon class="navbar-icon">person</mat-icon>
+        </button>
+      </mat-toolbar>
+
+      <!-- <div class="progress-bar-container">
+        <mat-progress-bar color="accent" mode="indeterminate">
+        </mat-progress-bar>
+        <mat-spinner class="spinner" [diameter]="50" *ngIf="showSpinner"></mat-spinner>
+      </div> -->
+
+      <router-outlet></router-outlet>
+
+      <!-- <footer id="footer">
+        <span>Menu restaurant QR code </span>
+      </footer> -->
+
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+
+
+  <mat-menu #userMenu="matMenu" [overlapTrigger]="false">
+
+    <a mat-menu-item [routerLink]="['/menu']">
+      <mat-icon>storefront</mat-icon>
+      <span>Menu</span>
+    </a>
+
+    <a mat-menu-item [routerLink]="['/profile']">
+      <mat-icon>person</mat-icon>
+      <span>Profile</span>
+    </a>
+
+    <a mat-menu-item (click)="changePassword()">
+      <mat-icon>lock_reset</mat-icon>
+      <span>Modifier mot de passe</span>
+    </a>
+
+    <!-- <a mat-menu-item (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      <span>Déconnecter</span>
+    </a> -->
+
+  </mat-menu>
+
+  <mat-menu #themeMenu="matMenu">
+    <h4 mat-subheader>Light Themes</h4>
+    <button mat-menu-item (click)="setCurrentTheme('indigo-pink-light')">
+      <mat-icon>fiber_manual_record</mat-icon>
+      <span>Indigo Pink</span>
+    </button>
+    <button mat-menu-item (click)="setCurrentTheme('deeppurple-amber-light')">
+      <mat-icon>fiber_manual_record</mat-icon>
+      <span>Deeppurple Amber</span>
+    </button>
+    <button mat-menu-item (click)="setCurrentTheme('pink-bluegray-light')">
+      <mat-icon>fiber_manual_record</mat-icon>
+      <span>Pink Bluegray</span>
+    </button>
+    <button mat-menu-item (click)="setCurrentTheme('purple-green-light')">
+      <mat-icon>fiber_manual_record</mat-icon>
+      <span>Purple Green</span>
+    </button>
+    <button mat-menu-item (click)="setCurrentTheme('brown-lime-light')">
+      <mat-icon>fiber_manual_record</mat-icon>
+      <span>Brown Lime</span>
+    </button>
+    <mat-divider> </mat-divider>
+    <h4 mat-subheader>Dark Themes</h4>
+    <button mat-menu-item (click)="setCurrentTheme('indigo-pink-dark')">
+      <mat-icon>fiber_manual_record</mat-icon>
+      <span>Indigo Pink</span>
+    </button>
+    <button mat-menu-item (click)="setCurrentTheme('deeppurple-amber-dark')">
+      <mat-icon>fiber_manual_record</mat-icon>
+      <span>Deeppurple Amber</span>
+    </button>
+    <button mat-menu-item (click)="setCurrentTheme('pink-bluegray-dark')">
+      <mat-icon>fiber_manual_record</mat-icon>
+      <span>Pink Bluegray</span>
+    </button>
+    <button mat-menu-item (click)="setCurrentTheme('purple-green-dark')">
+      <mat-icon>fiber_manual_record</mat-icon>
+      <span>Purple Green</span>
+    </button>
+    <button mat-menu-item (click)="setCurrentTheme('brown-lime-dark')">
+      <mat-icon>fiber_manual_record</mat-icon>
+      <span>Brown Lime</span>
+    </button>
+  </mat-menu>
+</div>

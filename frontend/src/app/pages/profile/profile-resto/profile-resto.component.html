@@ -1,0 +1,68 @@
+<div class="center">
+    <form>
+        <mat-card>
+            <mat-card-content>
+                <h2>Profile restaurant</h2>
+
+                <div class="center">
+                    <mat-label *ngIf="restaurant.logo">Logo du restaurant</mat-label><br>
+                    <img [src]="restaurant.logo" *ngIf="restaurant.logo">
+                </div>
+                <div class="form-fields">
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Nom du restaurant</mat-label>
+                        <input matInput [(ngModel)]="restaurant.nomRestaurant" #nom="ngModel" name="nomRestaurant"
+                            required>
+                        <mat-error>Le nom est obligatoire</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Adresse</mat-label>
+                        <input matInput [(ngModel)]="restaurant.adresse" name="adresse">
+                    </mat-form-field>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Téléphone</mat-label>
+                        <input matInput [(ngModel)]="restaurant.telephone" #tel="ngModel" pattern="[0-9]{8}"
+                            name="telephone">
+                        <mat-icon matSuffix>call</mat-icon>
+                        <mat-error>Un numero est composé de 8 chiffres</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill">
+                        <mat-label>WiFi</mat-label>
+                        <input matInput [(ngModel)]="restaurant.wifi" name="wifi">
+                    </mat-form-field>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Mot de passe WiFi</mat-label>
+                        <input matInput [(ngModel)]="restaurant.mdpWifi" [type]="hide ? 'password' : 'text'"
+                            name="mdpWifi">
+                        <mat-icon matSuffix (click)="hide = !hide">{{!hide ? 'visibility_off'
+                            :'visibility'}}</mat-icon>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Nombre des tables</mat-label>
+                        <input matInput type="number" min="1" max="128" [(ngModel)]="restaurant.nbrTables"
+                            #nbrT="ngModel" name="nbrTables" required>
+                        <mat-error>Le nombre des tables est obligatoire</mat-error>
+                    </mat-form-field>
+                </div>
+
+
+
+                <input type="file" class="file-input" (change)="changeListener($event)" accept="image/png, image/jpeg"
+                    #fileUpload>
+                <div class="file-upload">
+                    <button mat-mini-fab color="primary" class="upload-btn" (click)="fileUpload.click()">
+                        <mat-icon>attach_file</mat-icon>
+                    </button>
+                    {{fileName ||"Aucun fichier choisi"}}
+                </div>
+                <br>
+                <div>
+                    <button mat-raised-button id="login" [disabled]="nom.invalid||tel.invalid||nbrT.invalid"
+                        color="primary" (click)="submit()">Modifier</button>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </form>
+
+</div>
